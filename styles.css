@@ -1051,367 +1051,243 @@ footer {
   position: absolute;
   width: 40px;
 }
-/* styles.css - Append these styles */
+/* styles.css - Append these styles at the END */
 
-/* --- Survey Form Styles --- */
-.survey-section {
-  padding: var(--space-xl) var(--space-lg);
-  margin: 3rem auto;
-  width: 80%;
-  text-align: center;
+/* --- Survey Page Specific Layout --- */
+.survey-page-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
-#poll-container {
-  background: var(--color-background-card);
-  padding: var(--space-xl);
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+.survey-main {
+  flex-grow: 1; /* Allow main content to take available space */
+  display: flex; /* Use flex to center content vertically */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
   width: 100%;
-  max-width: 800px; /* Allow survey to be wider */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  position: relative; /* For potential absolute elements inside */
-  border: 1px solid var(--color-border);
-  animation: fadeInUp 0.6s ease-out; /* Reuse animation */
 }
+
+.survey-section {
+  padding-top: var(--space-xl); /* Reduced top padding */
+  padding-bottom: var(--space-xxl); /* More bottom padding */
+  width: 100%; /* Take full width within main */
+  margin-top: 0; /* Remove default section margin */
+  margin-bottom: 0;
+}
+
+.survey-section .container {
+  /* Container already handles max-width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.survey-subtitle {
+  color: var(--text-medium);
+  margin-bottom: var(--space-xl); /* Space below subtitle */
+  font-size: var(--font-size-lg);
+  max-width: 650px;
+}
+
+/* Ensure poll container is centered and sized */
+#poll-container {
+  width: 100%;
+  max-width: 750px; /* Adjust max-width as desired */
+  margin-top: 0; /* Remove top margin if subtitle handles spacing */
+}
+
+/* --- Refined Survey Element Styles --- */
 
 .progress-bar {
-  width: 100%;
-  height: 10px; /* Slightly thicker bar */
-  background: rgba(0, 0, 0, 0.2); /* Darker background */
-  border-radius: 5px;
-  margin-bottom: var(--space-xl);
-  overflow: hidden;
+  background: var(--color-background-dark); /* Darker track */
+  border: 1px solid var(--color-border);
 }
 .progress {
-  height: 100%;
-  background: var(--color-primary); /* Use primary color */
-  transition: width 0.5s ease;
-  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  ); /* Gradient progress */
 }
 
 .poll-question {
-  margin-bottom: var(--space-xl);
+  padding: var(--space-lg); /* Add internal padding */
+  border-bottom: 1px solid var(--color-border); /* Separator between questions if needed, or remove */
+  margin-bottom: 0; /* Remove bottom margin if handled by container */
+  padding-bottom: var(--space-xxl); /* Ensure space for button */
 }
+.poll-question:last-of-type {
+  border-bottom: none; /* No border on the last question section */
+}
+
 .poll-question h2 {
-  font-size: var(--font-size-xl);
-  font-weight: 600; /* Slightly less bold */
+  font-family: var(--font-family-heading);
+  font-size: 1.3rem; /* Slightly smaller */
+  font-weight: 500;
   margin-bottom: var(--space-lg);
   color: var(--text-light);
-  line-height: 1.4;
-  text-align: left; /* Align question text left */
-  margin-bottom: 2rem;
+  line-height: 1.5;
+  text-align: left;
+  border-left: 3px solid var(--color-primary); /* Accent line */
+  padding-left: var(--space-md);
 }
-.poll-question p {
-  /* Style for info text */
+.poll-question p.info-text {
+  /* Specific style for intro/final text */
   font-size: var(--font-size-md);
   color: var(--text-medium);
-  line-height: var(--line-height-base);
-  margin-bottom: var(--space-lg);
-  margin-bottom: 2rem;
-  text-align: left; /* Align question text left */
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Radio & Checkbox Labels */
+/* Radio & Checkbox Refinements */
 .poll-question label {
-  display: flex;
-  align-items: center;
-  margin: var(--space-sm) 0;
-  font-size: var(--font-size-md);
-  color: var(--text-light);
-  cursor: pointer;
-  padding: var(--space-md);
-  border-radius: var(--border-radius);
-  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+  background-color: transparent; /* Remove slight background */
   border: 1px solid var(--color-border);
-  background-color: rgba(255, 255, 255, 0.03); /* Very subtle background */
+  margin-bottom: var(--space-sm);
 }
 .poll-question label:hover {
-  background-color: rgba(255, 255, 255, 0.07);
+  background-color: rgba(0, 61, 143, 0.1); /* Primary color subtle hover */
   border-color: var(--color-primary);
 }
-.poll-question label i {
-  /* Icon styling */
-  margin-right: var(--space-md);
-  color: var(--color-secondary); /* Accent color for icons */
-  width: 20px;
-  text-align: center;
-}
-.poll-question input[type="radio"],
-.poll-question input[type="checkbox"] {
-  margin-right: var(--space-md);
-  accent-color: var(--color-primary); /* Color the check/dot */
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0; /* Prevent shrinking */
-}
-.poll-question label span {
-  /* Text part of label */
-  flex-grow: 1;
-}
 
-/* Text & Contact Inputs */
-.poll-question input[type="text"],
-.poll-question input[type="email"],
-.poll-question input[type="tel"],
-.poll-question textarea {
-  /* Inherit interactive-form styles */
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-md);
-  background: var(--color-background-card); /* Match poll container bg */
-  color: var(--text-light);
-  transition: border-color 0.3s var(--transition-timing),
-    box-shadow 0.3s var(--transition-timing);
-  margin-top: var(--space-sm); /* Add space above */
+/* Focus style for keyboard navigation */
+.poll-question input[type="radio"]:focus-visible + span,
+.poll-question input[type="checkbox"]:focus-visible + span {
+  outline: 2px solid var(--color-secondary); /* Use secondary for focus outline */
+  outline-offset: 2px;
 }
-.poll-question input[type="text"]:focus,
-.poll-question input[type="email"]:focus,
-.poll-question input[type="tel"]:focus,
-.poll-question textarea:focus {
+.poll-question label:has(input:checked) {
+  /* Style checked label */
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(0, 61, 143, 0.2);
-  outline: none;
-}
-/* Specific styling for the 'Other' text input */
-.other-text-input {
-  margin-left: calc(18px + var(--space-md)); /* Align with option text */
-  width: calc(100% - 18px - var(--space-md));
-  margin-top: var(--space-xs) !important;
+  background-color: rgba(0, 61, 143, 0.08);
 }
 
-/* Rating Styles */
-.rating-group {
-  margin-top: var(--space-lg);
+/* Text & Contact Inputs - inheriting from main form styles */
+.poll-question .form-field label {
+  /* Ensure survey labels use card bg */
+  background: var(--color-background-card);
 }
-.rating-item {
-  margin-bottom: var(--space-lg);
+.poll-question .form-field input:focus + label,
+.poll-question .form-field input:not(:placeholder-shown) + label {
+  background: var(--color-background-card) !important; /* Override */
 }
+
+/* Rating Refinements */
 .rating-item p {
-  /* Label for the rating item */
-  font-weight: 500;
-  color: var(--text-light);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
   text-align: left;
 }
 .rating-options {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: center;
-}
-.rating-option {
-  display: inline-block;
-  margin: 0;
-} /* Remove default margin */
-.rating-option input[type="radio"] {
-  display: none;
-} /* Hide actual radio */
+  justify-content: flex-start;
+  flex-wrap: wrap;
+} /* Align left, allow wrap */
 .rating-option label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: var(--color-background-card); /* Match card background */
-  border: 1px solid var(--color-border);
-  color: var(--text-medium);
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease-out;
-  padding: 0; /* Override general label padding */
+  background: var(--color-background-dark); /* Darker background for numbers */
+  border-color: var(--color-border);
+  width: 38px;
+  height: 38px;
+  line-height: 38px; /* Slightly smaller */
 }
 .rating-option label:hover {
-  background: var(--color-border);
+  background: var(--color-primary-dark);
   color: var(--text-light);
 }
 .rating-option input[type="radio"]:checked + label {
   background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text-light);
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 61, 143, 0.4);
+  border-color: var(--color-primary-dark);
+  /* ... keep other checked styles ... */
+}
+/* Focus for rating labels */
+.rating-option input[type="radio"]:focus-visible + label {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
 }
 
-/* Next/Submit Button */
-#next-btn {
-  /* Inherit from .cta-button */
-  display: block; /* Make it block to center */
-  margin: var(--space-xl) auto 0; /* Center horizontally */
-  width: fit-content; /* Adjust width to content */
+/* Button Styling */
+.survey-nav-btn {
+  min-width: 150px; /* Ensure minimum button width */
 }
-#next-btn i {
-  margin-left: var(--space-sm);
-} /* Space before icon */
-
-/* Contact Form Specific */
-#question-q14 .form-field {
-  margin-bottom: var(--space-lg);
-} /* Reduce margin */
-#question-q14 label {
-  background-color: var(--color-background-card);
-} /* Match input bg */
-#question-q14 input:focus + label,
-#question-q14 input:not(:placeholder-shown) + label {
-  background-color: var(
-    --color-background-card
-  ) !important; /* Ensure label bg matches */
+.submit-btn {
+  /* Style submit button differently */
+  background-color: var(--color-secondary);
+}
+.submit-btn:hover {
+  background-color: var(--color-secondary-dark);
+  box-shadow: 0 5px 15px rgba(224, 165, 86, 0.3);
 }
 
-/* Error Messages for Survey */
-.poll-question .error-message {
-  color: var(--color-danger);
-  font-size: var(--font-size-sm);
-  margin-top: var(--space-xs);
-  display: none;
-  text-align: left;
-  padding-left: 5px; /* Indent slightly */
-}
-.poll-question .error-message-main {
-  /* General error for question */
-  text-align: center !important;
-  padding-left: 0 !important;
-  font-weight: 500;
-}
-
-/* Final Submission Message */
-#poll-container .fa-check-circle {
-  color: var(--color-success);
-}
-#poll-container .fa-exclamation-triangle {
-  color: var(--color-danger);
-}
+/* Final Message Styling */
+#poll-container .fa-check-circle,
+#poll-container .fa-exclamation-triangle,
 #poll-container .fa-spinner {
-  color: var(--color-primary);
+  font-size: 3rem; /* Larger icons */
+  margin-bottom: var(--space-lg);
+}
+#poll-container .poll-question h2 {
+  /* Center final message heading */
+  text-align: center;
+  border-left: none;
+  padding-left: 0;
+}
+#poll-container .poll-question p {
+  /* Center final message text */
+  text-align: center;
 }
 
 /* Footer Text Below Poll */
 #footertext {
-  font-size: var(--font-size-sm);
-  color: var(--text-medium);
-  text-align: center;
   margin-top: var(--space-xl);
-}
-#footertext .clickable-text {
-  color: var(--color-secondary);
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-#footertext .clickable-text:hover {
-  color: var(--color-secondary-dark);
-  text-shadow: 0 0 5px var(--color-secondary);
+  padding-bottom: var(--space-md); /* Add padding below */
 }
 
-/* Video Popup Styles */
+/* Video Popup Styles - Minor adjustments */
 .popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Slightly darker overlay */
-  justify-content: center;
-  align-items: center;
-  z-index: 1050; /* Above header */
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.popup.active {
-  display: flex;
-  opacity: 1;
-}
-
+  z-index: 1050;
+} /* Ensure it's above header */
 .popup-content {
-  position: relative;
-  width: 90%;
-  max-width: 800px; /* Max width for video */
   background: var(--color-background-dark);
-  padding: 0;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  transform: scale(0.8);
-  transition: transform 0.4s ease;
-  aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-}
-.popup.active .popup-content {
-  transform: scale(1);
-}
-
-.popup-content iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
   border-radius: var(--border-radius);
 }
-
 .close-button {
-  position: absolute;
-  top: -15px;
-  right: -15px; /* Position outside slightly */
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--text-light);
-  background: var(--color-danger); /* Use danger color */
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  z-index: 1100;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--color-background-dark); /* Match bg */
+  top: 10px;
+  right: 10px; /* Position inside */
+  width: 32px;
+  height: 32px;
+  font-size: 1.3rem;
+  background: rgba(0, 0, 0, 0.5); /* Less intrusive bg */
+  border: none;
+  box-shadow: none;
 }
 .close-button:hover {
-  transform: rotate(90deg) scale(1.1);
-  background-color: darkred; /* Darken red on hover */
+  background: var(--color-danger);
 }
 
 /* Responsive Adjustments for Survey */
 @media (max-width: 600px) {
+  .survey-section {
+    padding: var(--space-lg) var(--space-md);
+  }
   #poll-container {
     padding: var(--space-lg);
   }
   .poll-question h2 {
-    font-size: 1.2em;
+    font-size: 1.15em;
   }
   .poll-question label {
-    font-size: 0.95em;
     padding: var(--space-sm) var(--space-md);
   }
   .rating-options {
-    flex-wrap: wrap;
-  } /* Allow rating numbers to wrap */
+    gap: var(--space-xs);
+  }
   .rating-option label {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 0.9em;
-  }
-  #next-btn {
-    width: 100%;
-    padding: var(--space-md);
-  }
-
-  /* Make popup slightly smaller relative to screen */
-  .popup-content {
-    width: 95%;
-  }
-  .close-button {
-    top: 5px;
-    right: 5px;
-    width: 30px;
-    height: 30px;
-    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 0.85em;
   }
 }

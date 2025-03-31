@@ -1,0 +1,730 @@
+let answers = {};
+let currentQuestionIndex = 0; // Track current question
+let player; // YouTube player variable
+
+const questions = [
+  {
+    id: "intro",
+    text: "Bienvenue dans le sondage Maintafox ! Nous explorons les besoins pour un nouveau programme GMAO afin d'aider les entreprises comme la vôtre à gérer la maintenance efficacement.",
+    type: "info",
+  },
+  {
+    id: "q1",
+    text: "Quel est votre rôle principal lié à la maintenance ?",
+    type: "radio",
+    options: [
+      "Responsable/Chef de service Maintenance",
+      "Technicien de maintenance",
+      "Directeur Technique/Usine",
+      "Achats/Finance",
+      "Autre",
+    ],
+    hasOther: true,
+  },
+  {
+    id: "q2",
+    text: "Dans quel secteur d'activité opère votre entreprise ?",
+    type: "radio",
+    options: [
+      "Industrie Lourde (acier, ciment...)",
+      "Pétrole & Gaz / Énergie",
+      "Agroalimentaire",
+      "Transport & Logistique",
+      "BTP / Construction",
+      "Pharmaceutique / Chimie",
+      "Manufacturier (divers)",
+      "Services / Tertiaire",
+      "Autre",
+    ],
+    hasOther: true,
+    icons: {
+      "Industrie Lourde (acier, ciment...)": "fa-industry",
+      "Pétrole & Gaz / Énergie": "fa-bolt",
+      Agroalimentaire: "fa-utensils",
+      "Transport & Logistique": "fa-truck",
+      "BTP / Construction": "fa-hard-hat",
+      "Pharmaceutique / Chimie": "fa-flask",
+      "Manufacturier (divers)": "fa-box-open",
+      "Services / Tertiaire": "fa-building-user",
+      Autre: "fa-question",
+    },
+  },
+  {
+    id: "q3",
+    text: "Quelle est la taille approximative de votre entreprise (nombre d'employés) ?",
+    type: "radio",
+    options: ["1-9", "10-49", "50-199", "200+"],
+  },
+  {
+    id: "q4",
+    text: "Comment gérez-vous la maintenance actuellement ?",
+    type: "radio",
+    options: [
+      "Logiciel GMAO dédié",
+      "Excel / Tableurs",
+      "Documents Papier / Manuellement",
+      "Pas de système structuré",
+      "Combinaison (préciser)",
+    ],
+    hasOther: true,
+  },
+  {
+    id: "q5",
+    text: "Si vous utilisez une GMAO, laquelle ?",
+    type: "radio",
+    options: [
+      "SAP PM",
+      "IBM Maximo",
+      "Infor EAM",
+      "Fiix",
+      "UpKeep",
+      "MaintainX",
+      "Carl Source",
+      "Autre GMAO spécifique",
+      "Développée en interne",
+      "Je n'utilise pas de GMAO",
+    ],
+    hasOther: true,
+    dependsOn: { q4: "Logiciel GMAO dédié" },
+  }, // Dependency example
+  {
+    id: "q6",
+    text: "Quels sont les plus grands défis avec votre méthode de gestion actuelle ?",
+    type: "checkbox",
+    options: [
+      "Manque de visibilité sur les actifs",
+      "Difficulté de planification préventive",
+      "Suivi inefficace des ordres de travail",
+      "Gestion des stocks de pièces complexe",
+      "Coûts de maintenance élevés / imprévus",
+      "Manque de reporting / analyse",
+      "Complexité / difficulté d'utilisation",
+      "Manque d'accès mobile",
+      "Autre",
+    ],
+    hasOther: true,
+  },
+  {
+    id: "q7",
+    text: "Si vous n'utilisez pas de GMAO, quelles sont les raisons principales ?",
+    type: "checkbox",
+    options: [
+      "Coût perçu comme trop élevé",
+      "Complexité de mise en place",
+      "Manque de temps / ressources",
+      "Pas de besoin clairement identifié",
+      "Résistance au changement",
+      "Autre",
+    ],
+    hasOther: true,
+    dependsOn: {
+      q4: [
+        "Excel / Tableurs",
+        "Documents Papier / Manuellement",
+        "Pas de système structuré",
+        "Combinaison (préciser)",
+      ],
+    },
+  },
+  {
+    id: "q8",
+    text: "Qui est principalement impliqué dans la décision d'adopter une nouvelle GMAO ?",
+    type: "checkbox",
+    options: [
+      "Responsable Maintenance",
+      "Directeur Technique / Production",
+      "Direction Générale (PDG/DG)",
+      "Service Informatique (IT)",
+      "Service Achats / Finance",
+      "Utilisateurs finaux (Techniciens)",
+      "Autre",
+    ],
+    hasOther: true,
+  },
+  {
+    id: "q9",
+    text: "Quel est votre budget annuel approximatif (ou envisagé) pour une solution GMAO (en DZD) ?",
+    type: "radio",
+    options: [
+      "Moins de 50 000 DZD",
+      "50 000 - 150 000 DZD",
+      "150 000 - 300 000 DZD",
+      "Plus de 300 000 DZD",
+      "Budget non défini / flexible",
+    ],
+  },
+  {
+    id: "q10",
+    text: "Quel intérêt portez-vous à une solution GMAO développée localement, potentiellement plus accessible et adaptée au contexte Algérien ?",
+    type: "radio",
+    options: ["Très intéressé", "Intéressé", "Peu intéressé", "Pas intéressé"],
+  },
+  {
+    id: "q11",
+    text: "Classez l'importance des fonctionnalités suivantes (1=Peu important, 5=Essentiel)",
+    type: "rating",
+    items: [
+      "Gestion Équipements & Interventions",
+      "Maintenance Préventive & Conditionnelle",
+      "Gestion Stocks & Achats",
+      "Gestion Ordres de Travail (OT)",
+      "Tableaux de Bord & Rapports KPIs",
+      "Application Mobile Technicien",
+      "Facilité d'utilisation / Interface intuitive",
+    ],
+  },
+  {
+    id: "q12",
+    text: "Seriez-vous intéressé par un test gratuit (Beta) de notre solution avant son lancement officiel, en échange de vos retours ?",
+    type: "radio",
+    options: ["Oui, très intéressé", "Oui, peut-être", "Non, merci"],
+  },
+  {
+    id: "q13",
+    text: "Souhaitez-vous être contacté pour une démonstration personnalisée gratuite lorsque la solution sera prête ?",
+    type: "radio",
+    options: [
+      "Oui, absolument",
+      "Oui, tenez-moi informé",
+      "Non, pas pour le moment",
+    ],
+  },
+  {
+    id: "q14",
+    text: "Si oui aux questions précédentes, veuillez laisser vos coordonnées :",
+    type: "contact",
+    dependsOn: {
+      q12: ["Oui, très intéressé", "Oui, peut-être"],
+      q13: ["Oui, absolument", "Oui, tenez-moi informé"],
+    },
+    isOptional: true,
+  }, // Optional contact
+  {
+    id: "final",
+    text: "Merci infiniment pour votre temps et vos précieuses réponses !",
+    type: "info",
+    isFinal: true,
+  },
+];
+
+function updateProgress() {
+  // Calculate progress based on *answered* questions up to the current index
+  let answeredCount = 0;
+  for (let i = 0; i < currentQuestionIndex; i++) {
+    // Simple check if an answer exists (might need refinement for complex types)
+    if (
+      answers[questions[i].id] !== undefined ||
+      questions[i].type === "info"
+    ) {
+      answeredCount++;
+    }
+  }
+  // Exclude info/final steps from total progress calculation if needed
+  const totalRelevantQuestions = questions.filter(
+    (q) => q.type !== "info"
+  ).length;
+  const progressPercentage =
+    totalRelevantQuestions > 0
+      ? (answeredCount / totalRelevantQuestions) * 100
+      : 0;
+
+  const progressElement = document.getElementById("progress");
+  if (progressElement) {
+    progressElement.style.width = `${Math.min(progressPercentage, 100)}%`; // Cap at 100
+  }
+}
+
+function renderQuestion() {
+  const question = questions[currentQuestionIndex];
+  if (!question) {
+    console.error("Question not found at index", currentQuestionIndex);
+    return; // Should not happen
+  }
+
+  // --- Dependency Check ---
+  let shouldSkip = false;
+  if (question.dependsOn) {
+    shouldSkip = true; // Assume skip unless dependency met
+    for (const depId in question.dependsOn) {
+      const requiredAnswers = Array.isArray(question.dependsOn[depId])
+        ? question.dependsOn[depId]
+        : [question.dependsOn[depId]];
+      const actualAnswer = answers[depId];
+
+      // Check if the actual answer matches any of the required answers
+      if (Array.isArray(actualAnswer)) {
+        // Handle checkbox answers
+        if (requiredAnswers.some((reqAns) => actualAnswer.includes(reqAns))) {
+          shouldSkip = false;
+          break; // Found a match, no need to check further keys
+        }
+      } else if (requiredAnswers.includes(actualAnswer)) {
+        shouldSkip = false;
+        break; // Found a match
+      }
+    }
+    // Handle OR logic for dependencies (e.g., contact depends on q12 OR q13)
+    if (question.id === "q14") {
+      // Specific logic for contact question
+      const q12Answer = answers["q12"];
+      const q13Answer = answers["q13"];
+      const q12Interested =
+        q12Answer === "Oui, très intéressé" || q12Answer === "Oui, peut-être";
+      const q13Interested =
+        q13Answer === "Oui, absolument" ||
+        q13Answer === "Oui, tenez-moi informé";
+      shouldSkip = !(q12Interested || q13Interested);
+    }
+  }
+
+  if (shouldSkip) {
+    console.log(`Skipping question ${question.id} due to dependency.`);
+    currentQuestionIndex++;
+    renderQuestion(); // Render the next one
+    return;
+  }
+  // --- End Dependency Check ---
+
+  const pollContainer = document.getElementById("poll-container");
+  if (!pollContainer) return;
+
+  let html = `<div class="progress-bar"><div class="progress" id="progress"></div></div>
+                        <div class="poll-question" id="question-${question.id}">`; // Add ID to question div
+
+  // Add title/text based on type
+  if (question.type === "info") {
+    html += `<h2>${question.text}</h2>`;
+  } else if (question.type !== "contact") {
+    html += `<h2>${question.text}</h2>`;
+  } else {
+    // Contact form title is part of the question text
+    html += `<h2>${question.text}</h2>`;
+  }
+
+  // Add input elements
+  if (question.type === "radio" || question.type === "checkbox") {
+    const inputType = question.type;
+    question.options.forEach((option, index) => {
+      const uniqueId = `${question.id}_opt${index}`;
+      const icon =
+        question.icons && question.icons[option]
+          ? `<i class="fas ${question.icons[option]} fa-fw"></i> `
+          : "";
+      html += `<label for="${uniqueId}">${icon}<input type="${inputType}" name="${question.id}" value="${option}" id="${uniqueId}"> <span>${option}</span></label>`;
+    });
+    if (question.hasOther) {
+      const otherId = `${question.id}_other_option`;
+      const otherInputId = `${question.id}_other_text`;
+      html += `<label for="${otherId}"><input type="${inputType}" name="${question.id}" value="Autre" id="${otherId}"> <span>Autre (préciser)</span></label>
+                             <input type="text" id="${otherInputId}" class="other-text-input" placeholder="Veuillez préciser" style="display:none; margin-top: 5px;">`;
+    }
+  } else if (question.type === "rating") {
+    html += '<div class="rating-group">';
+    question.items.forEach((item, itemIndex) => {
+      html += `<div class="rating-item"><p>${item} :</p><div class="rating-options">`; // Wrapper for options
+      for (let i = 1; i <= 5; i++) {
+        const uniqueId = `${question.id}_${itemIndex}_${i}`;
+        html += `<span class="rating-option">
+                                    <input type="radio" name="${question.id}_${itemIndex}" value="${i}" id="${uniqueId}">
+                                    <label for="${uniqueId}">${i}</label>
+                                 </span>`;
+      }
+      html += `</div></div>`; // Close rating-options and rating-item
+    });
+    html += "</div>"; // Close rating-group
+  } else if (question.type === "contact") {
+    html += `<div class="form-field"><input type="text" id="contact_name" placeholder=" " ${
+      question.isOptional ? "" : "required"
+    }><label for="contact_name">Nom Complet</label><span class="error-message"></span></div>`;
+    html += `<div class="form-field"><input type="email" id="contact_email" placeholder=" " ${
+      question.isOptional ? "" : "required"
+    }><label for="contact_email">Adresse Email</label><span class="error-message"></span></div>`;
+    html += `<div class="form-field"><input type="tel" id="contact_phone" placeholder=" " ${
+      question.isOptional ? "" : "required"
+    }><label for="contact_phone">Numéro de Téléphone</label><span class="error-message"></span></div>`;
+  }
+
+  // Add Next/Submit button
+  let buttonText = "Suivant";
+  let isSubmit = false;
+  if (question.type === "info" && !question.isFinal) {
+    buttonText = "Commencer";
+  } else if (currentQuestionIndex >= questions.length - 2 || question.isFinal) {
+    // Penultimate or final info
+    // Check dependencies for contact form display before showing submit
+    const nextQ = questions[currentQuestionIndex + 1];
+    let contactSkipped = false;
+    if (nextQ && nextQ.id === "q14") {
+      // Check specifically for contact question dependency
+      const q12Answer = answers["q12"];
+      const q13Answer = answers["q13"];
+      const q12Interested =
+        q12Answer === "Oui, très intéressé" || q12Answer === "Oui, peut-être";
+      const q13Interested =
+        q13Answer === "Oui, absolument" ||
+        q13Answer === "Oui, tenez-moi informé";
+      contactSkipped = !(q12Interested || q13Interested);
+    }
+
+    if (
+      question.isFinal ||
+      (nextQ && nextQ.type === "contact" && contactSkipped) ||
+      !nextQ
+    ) {
+      buttonText = "Terminer";
+      isSubmit = true;
+    } else if (nextQ && nextQ.type === "contact" && !contactSkipped) {
+      buttonText = "Suivant (Contact)"; // Indicate next step is contact
+    }
+  }
+
+  if (!question.isFinal) {
+    // Don't show button on final thank you message
+    html += `<button id="next-btn" class="cta-button survey-nav-btn ${
+      isSubmit ? "submit-btn" : ""
+    }">${buttonText} <i class="fas fa-arrow-right"></i></button>`;
+  }
+
+  html += "</div>"; // Close poll-question
+  pollContainer.innerHTML = html;
+
+  addInputListeners(question);
+  updateProgress(); // Update progress bar after rendering
+}
+
+function addInputListeners(question) {
+  const nextButton = document.getElementById("next-btn");
+  if (!nextButton) return;
+
+  nextButton.addEventListener("click", handleNextClick);
+
+  if (question.hasOther) {
+    const otherOptionInputs = document.querySelectorAll(
+      `input[name="${question.id}"][value="Autre"]`
+    );
+    const otherTextInput = document.getElementById(`${question.id}_other_text`);
+    if (otherOptionInputs.length > 0 && otherTextInput) {
+      otherOptionInputs.forEach((input) => {
+        input.addEventListener("change", (e) => {
+          otherTextInput.style.display = e.target.checked ? "block" : "none";
+          if (e.target.checked) {
+            otherTextInput.focus();
+          }
+        });
+        // Initial check in case data is pre-filled/restored
+        if (input.checked) {
+          otherTextInput.style.display = "block";
+        }
+      });
+    }
+  }
+  // Add listener for Enter key on text inputs to go next
+  if (
+    question.type === "text" ||
+    question.type === "email" ||
+    question.type === "tel" ||
+    question.type === "contact"
+  ) {
+    const textInputs = pollContainer.querySelectorAll(
+      'input[type="text"], input[type="email"], input[type="tel"]'
+    );
+    textInputs.forEach((input) => {
+      input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Prevent default form submission
+          nextButton.click(); // Trigger the next button click
+        }
+      });
+    });
+  }
+}
+
+function handleNextClick() {
+  const question = questions[currentQuestionIndex];
+  let isValid = true;
+  let value = null;
+  // Clear previous errors for the current question
+  clearValidationErrors(`question-${question.id}`);
+
+  // --- Validation and Answer Gathering ---
+  if (question.type === "radio") {
+    const selected = document.querySelector(
+      `input[name="${question.id}"]:checked`
+    );
+    if (!selected) {
+      showValidationError(question.id, "Veuillez sélectionner une option.");
+      isValid = false;
+    } else {
+      value = selected.value;
+      if (question.hasOther && value === "Autre") {
+        const otherText = document
+          .getElementById(`${question.id}_other_text`)
+          .value.trim();
+        if (!otherText) {
+          showValidationError(
+            question.id,
+            'Veuillez préciser votre réponse "Autre".'
+          );
+          isValid = false;
+        } else {
+          answers[question.id + "_other"] = otherText;
+        }
+      }
+      if (isValid) answers[question.id] = value;
+    }
+  } else if (question.type === "checkbox") {
+    const checked = document.querySelectorAll(
+      `input[name="${question.id}"]:checked`
+    );
+    if (checked.length === 0) {
+      showValidationError(
+        question.id,
+        "Veuillez sélectionner au moins une option."
+      );
+      isValid = false;
+    } else {
+      value = Array.from(checked).map((c) => c.value);
+      if (question.hasOther && value.includes("Autre")) {
+        const otherText = document
+          .getElementById(`${question.id}_other_text`)
+          .value.trim();
+        if (!otherText) {
+          showValidationError(
+            question.id,
+            'Veuillez préciser votre réponse "Autre".'
+          );
+          isValid = false;
+        } else {
+          answers[question.id + "_other"] = otherText;
+        }
+      }
+      if (isValid) answers[question.id] = value;
+    }
+  } else if (question.type === "rating") {
+    answers[question.id] = {};
+    let allRated = true;
+    question.items.forEach((item, itemIndex) => {
+      const selected = document.querySelector(
+        `input[name="${question.id}_${itemIndex}"]:checked`
+      );
+      if (selected) {
+        answers[question.id][item] = parseInt(selected.value);
+      } else {
+        allRated = false;
+      }
+    });
+    if (!allRated) {
+      showValidationError(question.id, "Veuillez noter tous les critères.");
+      isValid = false;
+    }
+  } else if (question.type === "contact") {
+    const nameInput = document.getElementById("contact_name");
+    const emailInput = document.getElementById("contact_email");
+    const phoneInput = document.getElementById("contact_phone");
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    if (!question.isOptional && (!name || !email || !phone)) {
+      showValidationError("contact_name", "Le nom est requis."); // Show specific errors
+      showValidationError("contact_email", "L'email est requis.");
+      showValidationError("contact_phone", "Le téléphone est requis.");
+      isValid = false;
+    }
+    if (email && !/\S+@\S+\.\S+/.test(email)) {
+      showValidationError("contact_email", "Veuillez entrer un email valide.");
+      isValid = false;
+    }
+    if (isValid || question.isOptional) {
+      // Store even if optional and empty
+      answers["contact"] = { name, email, phone };
+    }
+  } else if (question.type === "info") {
+    // No validation needed for info screens
+  }
+  // --- End Validation ---
+
+  if (!isValid) return; // Stop if validation failed
+
+  // --- Navigation / Submission ---
+  if (currentQuestionIndex >= questions.length - 1 || question.isFinal) {
+    submitPoll();
+  } else {
+    currentQuestionIndex++;
+    renderQuestion(); // Render next question
+  }
+}
+
+function showValidationError(fieldId, message) {
+  // Find the error container associated with the input field or question group
+  const questionDiv =
+    document.getElementById(`question-${fieldId}`) ||
+    document.getElementById(`question-${fieldId.split("_")[0]}`); // Handle specific field or general question ID
+  let errorContainer = questionDiv
+    ? questionDiv.querySelector(".error-message-main")
+    : null; // Look for a main error container first
+
+  const inputField = document.getElementById(fieldId); // Try to find specific input
+  if (inputField) {
+    const formField = inputField.closest(".form-field");
+    if (formField) {
+      errorContainer = formField.querySelector(".error-message"); // Use field-specific error message container
+    }
+  }
+
+  // If no specific error container, create/use a general one for the question
+  if (!errorContainer && questionDiv) {
+    errorContainer = document.createElement("p");
+    errorContainer.className = "error-message error-message-main"; // Add main class
+    errorContainer.style.textAlign = "center";
+    errorContainer.style.marginTop = "var(--space-md)";
+    const button = questionDiv.querySelector("button");
+    if (button) {
+      questionDiv.insertBefore(errorContainer, button);
+    } else {
+      questionDiv.appendChild(errorContainer);
+    }
+  }
+
+  if (errorContainer) {
+    errorContainer.textContent = message;
+    errorContainer.style.display = "block";
+  } else {
+    alert(message); // Fallback
+  }
+}
+
+function clearValidationErrors(questionId) {
+  const questionDiv = document.getElementById(questionId);
+  if (questionDiv) {
+    questionDiv.querySelectorAll(".error-message").forEach((el) => {
+      el.textContent = "";
+      el.style.display = "none";
+    });
+  }
+}
+
+function submitPoll() {
+  console.log("Submitting answers:", answers);
+  // Replace with your actual submission logic (e.g., fetch to Basin)
+  const pollContainer = document.getElementById("poll-container");
+  pollContainer.innerHTML = `
+                <div class="poll-question" style="text-align: center;">
+                    <i class="fas fa-spinner fa-spin fa-3x" style="color: var(--color-primary); margin-bottom: 1rem;"></i>
+                    <h2>Envoi de vos réponses...</h2>
+                </div>`;
+
+  // Basin endpoint or your backend
+  fetch("https://usebasin.com/f/da715687b44f", {
+    // Replace with your endpoint
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(answers),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // Basin often returns errors as JSON, try to parse
+        return response.json().then((err) => {
+          throw new Error(err.error || `HTTP error ${response.status}`);
+        });
+      }
+      return response.json(); // Or response.text() if Basin doesn't send JSON success
+    })
+    .then((data) => {
+      // Success
+      console.log("Submission successful:", data);
+      pollContainer.innerHTML = `
+                    <div class="poll-question" style="text-align: center;">
+                        <i class="fas fa-check-circle fa-3x" style="color: var(--color-success); margin-bottom: 1rem;"></i>
+                        <h2>Merci pour votre participation !</h2>
+                        <p>Vos réponses ont été enregistrées avec succès. Votre avis est précieux pour l'avenir de Maintafox.</p>
+                        <a href="index.html" class="cta-button" style="margin-top: 1.5rem;">Retour à l'accueil</a>
+                    </div>`;
+    })
+    .catch((error) => {
+      // Failure
+      console.error("Submission error:", error);
+      pollContainer.innerHTML = `
+                    <div class="poll-question" style="text-align: center;">
+                        <i class="fas fa-exclamation-triangle fa-3x" style="color: var(--color-danger); margin-bottom: 1rem;"></i>
+                        <h2>Erreur lors de l’envoi</h2>
+                        <p>Une erreur s’est produite (${error.message}). Veuillez vérifier votre connexion ou réessayer plus tard.</p>
+                         <button onclick="submitPoll()" class="cta-button" style="margin-top: 1.5rem;">Réessayer</button>
+                    </div>`;
+    });
+}
+
+// --- Video Popup Logic ---
+const videoPopup = document.getElementById("videoPopup");
+const openTrigger = document.getElementById("open-video-popup-trigger");
+const closeTrigger = document.getElementById("close-video-popup-trigger");
+const iframe = videoPopup ? videoPopup.querySelector("iframe") : null;
+const videoSrcBase =
+  "https://www.youtube.com/embed/2hLLxCEbcTk?si=WYQQdbOB6lINkwRt"; // Base video URL without autoplay
+
+function openVideoPopup() {
+  if (videoPopup && iframe) {
+    // Set src with autoplay only when opening
+    iframe.src = `${videoSrcBase}&rel=0&modestbranding=1&autoplay=1&enablejsapi=1`;
+    videoPopup.classList.add("active");
+    // Initialize player if API is ready
+    if (typeof YT !== "undefined" && YT.Player) {
+      if (!player) {
+        // Create player only if it doesn't exist
+        player = new YT.Player(iframe, {
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+          },
+        });
+      } else {
+        // If player exists, ensure video plays if API loaded before click
+        setTimeout(() => {
+          // Timeout might be needed for src change
+          if (player.playVideo) player.playVideo();
+        }, 300);
+      }
+    }
+  }
+}
+
+function closeVideoPopup() {
+  if (videoPopup && iframe) {
+    videoPopup.classList.remove("active");
+    // Stop video and reset src to prevent background playing
+    if (player && typeof player.stopVideo === "function") {
+      player.stopVideo();
+    }
+    iframe.src = ""; // Clear src
+  }
+}
+
+// Add listeners using IDs
+if (openTrigger) openTrigger.addEventListener("click", openVideoPopup);
+if (closeTrigger) closeTrigger.addEventListener("click", closeVideoPopup);
+// Close popup on background click
+if (videoPopup)
+  videoPopup.addEventListener("click", (event) => {
+    if (event.target === videoPopup) {
+      closeVideoPopup();
+    }
+  });
+
+// YouTube Player API Callbacks (optional)
+function onPlayerReady(event) {
+  console.log("YouTube Player Ready");
+  // event.target.playVideo(); // Autoplay is handled by URL param now
+}
+function onPlayerStateChange(event) {
+  // Example: Close popup when video ends
+  if (event.data == YT.PlayerState.ENDED) {
+    console.log("Video ended, closing popup.");
+    closeVideoPopup();
+  }
+}
+
+// Initialize the first question
+renderQuestion();
