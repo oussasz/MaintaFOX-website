@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Maintafox - Revolutionize maintenance management with cutting-edge GMAO software."
+    />
+    <meta
+      name="keywords"
+      content="GMAO, CMMS, maintenance management, Maintafox, software, asset management, preventive maintenance"
+    />
+    <title>Maintafox</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.webp" type="image/png" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"><div class="cursor-inner"></div></div>
+
+    <header>
+      <nav class="futuristic-nav" aria-label="Main Navigation">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/logo-white.png"
+            alt="Maintafox Logo"
+            loading="lazy"
+          />
+          <span>Maintafox</span>
+        </a>
+        <!-- Theme toggle removed -->
+        <button
+          class="menu-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars"></i>
+          <!-- Hamburger Icon -->
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="demo.html">Request a Demo</a></li>
+          <li><a href="#about-main">About Us</a></li>
+          <li><a href="#contact-form">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <div class="laptop">
+            <div class="screen">
+              <div class="header"></div>
+              <div class="text">MaintaFox</div>
+            </div>
+            <div class="keyboard"></div>
+          </div>
+
+          <div>
+            <a href="demo.html" class="cta-button">
+              <span>Request a Demo</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <!-- Survey Button -->
+            <a
+              href="forme.html"
+              class="survey-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Take a Quick Survey</span>
+              <i class="fas fa-poll"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Preview Section -->
+      <section id="features" class="features" data-scroll-section>
+        <h1>Our Core Features</h1>
+        <p>
+          Unleash the full potential of your maintenance operations with
+          Maintafox.
+        </p>
+
+        <div class="feature-item" data-scroll-item>
+          <div class="feature-content">
+            <h2>
+              <i class="fas fa-database"></i> Comprehensive Asset Management
+            </h2>
+            <p>
+              Gain complete visibility and control over all your company assets,
+              from machinery to facilities.
+            </p>
+            <ul>
+              <li>
+                Hierarchical asset structure (locations, systems, equipment)
+              </li>
+              <li>
+                Detailed asset information tracking (serial numbers, warranty,
+                manuals)
+              </li>
+              <li>QR code integration for easy mobile access</li>
+              <li>Track asset downtime and repair history</li>
+            </ul>
+          </div>
+          <!-- Replace with relevant image -->
+          <img
+            src="assets/placeholder-feature1.jpg"
+            alt="Asset Management Dashboard"
+            loading="lazy"
+            class="feature-image"
+          />
+        </div>
+
+        <div class="feature-item" data-scroll-item>
+          <div class="feature-content">
+            <h2>
+              <i class="fas fa-calendar-check"></i> Proactive Maintenance
+              Scheduling
+            </h2>
+            <p>
+              Minimize downtime and extend asset life with smart scheduling for
+              preventive and predictive maintenance.
+            </p>
+            <ul>
+              <li>
+                Time-based (calendar) and usage-based (meter readings) triggers
+              </li>
+              <li>Automated work order generation from maintenance plans</li>
+              <li>
+                Predictive maintenance alerts based on condition monitoring
+                (optional integration)
+              </li>
+              <li>Resource planning and scheduling calendar view</li>
+            </ul>
+          </div>
+          <!-- Replace with relevant image -->
+          <img
+            src="assets/placeholder-feature2.jpg"
+            alt="Maintenance Scheduling Calendar"
+            loading="lazy"
+            class="feature-image"
+          />
+        </div>
+
+        <div class="feature-item" data-scroll-item>
+          <div class="feature-content">
+            <h2>
+              <i class="fas fa-tasks"></i> Streamlined Work Order Management
+            </h2>
+            <p>
+              Automate workflows, improve team communication, and track progress
+              effortlessly from request to completion.
+            </p>
+            <ul>
+              <li>Intuitive work request submission portal</li>
+              <li>Customizable work order templates and workflows</li>
+              <li>Assign tasks to technicians or teams</li>
+              <li>
+                Real-time status updates and mobile access for technicians
+              </li>
+              <li>Track labor hours, parts used, and costs</li>
+            </ul>
+          </div>
+          <!-- Replace with relevant image -->
+          <img
+            src="assets/placeholder-feature3.jpg"
+            alt="Work Order Management Interface"
+            loading="lazy"
+            class="feature-image"
+          />
+        </div>
+
+        <div class="feature-item" data-scroll-item>
+          <div class="feature-content">
+            <h2><i class="fas fa-boxes"></i> Inventory & Parts Management</h2>
+            <p>
+              Optimize spare parts inventory, reduce stockouts, and manage
+              purchasing efficiently.
+            </p>
+            <ul>
+              <li>Track stock levels across multiple warehouses</li>
+              <li>Set reorder points and receive low-stock alerts</li>
+              <li>Associate parts with specific assets and work orders</li>
+              <li>Manage suppliers and purchase orders</li>
+            </ul>
+          </div>
+          <!-- Replace with relevant image -->
+          <img
+            src="assets/placeholder-feature4.jpg"
+            alt="Inventory Management Screen"
+            loading="lazy"
+            class="feature-image"
+          />
+        </div>
+
+        <div class="feature-item" data-scroll-item>
+          <div class="feature-content">
+            <h2>
+              <i class="fas fa-chart-line"></i> Powerful Reporting & Analytics
+            </h2>
+            <p>
+              Make data-driven decisions with customizable reports and
+              insightful dashboards.
+            </p>
+            <ul>
+              <li>Pre-built and custom report generation</li>
+              <li>
+                Key Performance Indicator (KPI) tracking (MTTR, MTBF, etc.)
+              </li>
+              <li>
+                Analyze maintenance costs, labor efficiency, and asset
+                performance
+              </li>
+              <li>Export data for further analysis</li>
+            </ul>
+          </div>
+          <!-- Replace with relevant image -->
+          <img
+            src="assets/placeholder-feature5.jpg"
+            alt="Reporting Dashboard"
+            loading="lazy"
+            class="feature-image"
+          />
+        </div>
+      </section>
+
+      <section class="about" id="about-main" data-scroll-section>
+        <h1>About Maintafox</h1>
+        <p class="about-subtitle">
+          Pioneering the future of maintenance management with innovative
+          GMAO/CMMS solutions.
+        </p>
+        <div class="about-content">
+          <p>
+            Our mission is to empower businesses with cutting-edge technology
+            that streamlines maintenance operations, boosts productivity, and
+            maximizes asset lifespan. We believe that efficient maintenance is
+            the cornerstone of operational excellence.
+          </p>
+          <p>
+            Founded on the principle that data drives efficiency, Maintafox
+            delivers real-time insights and intelligent automation to keep your
+            critical assets performing optimally. We combine deep industry
+            knowledge with advanced software engineering to create a platform
+            that is powerful, intuitive, and adaptable to your unique needs.
+          </p>
+        </div>
+        <!-- Optional Team Section Placeholder -->
+        <!--
+             <div class="team-section">
+                 <h2>Our Team</h2>
+                 <p>Meet the passionate individuals driving Maintafox forward.</p>
+                 <div class="team-grid"> -->
+        <!-- Add team member cards here -->
+        <!-- </div>
+             </div>
+             -->
+      </section>
+
+      <section class="timeline" id="journey" data-scroll-section>
+        <h2>Our Journey</h2>
+        <div class="timeline-container">
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2023 - Birth of VibraFox</h3>
+              <p>
+                The idea began as VibraFox, a vibration analysis software for
+                industrial rotating equipment, aiming to enhance predictive
+                maintenance.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2024 - Recognized as an Innovative Project</h3>
+              <p>
+                The project received the “Innovative Project” label from the
+                Ministry of Knowledge Economy and Startups, validating its
+                potential impact.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2025 - Evolution into MaintaFox</h3>
+              <p>
+                The concept evolved into MaintaFox, transforming from a
+                vibration analysis tool into a fully integrated CMMS
+                (Computerized Maintenance Management System).
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2026 - Official Launch</h3>
+              <p>
+                The first official version of MaintaFox was released, providing
+                advanced maintenance management solutions for industries
+                worldwide.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2027 - AI-Powered Predictive Maintenance</h3>
+              <p>
+                MaintaFox integrated AI-driven predictive maintenance features,
+                leveraging machine learning to optimize asset performance and
+                reduce downtime.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item" data-scroll-item>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2028 - Expansion into Global Markets</h3>
+              <p>
+                MaintaFox expanded internationally, forming partnerships with
+                major industrial clients and setting new standards in
+                maintenance technology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials" id="testimonials" data-scroll-section>
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-slider">
+          <div class="testimonial-item">
+            <p>
+              "Maintafox transformed our operations with real-time insights and
+              automation. Downtime is history!"
+            </p>
+            <p>- John Doe, Operations Manager, Industrio Corp.</p>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "The preventive maintenance feature is incredibly powerful. It
+              reduced our unexpected failures by 40% in the first year."
+            </p>
+            <p>- Jane Smith, Facility Director, Global Manufacturing</p>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "An intuitive platform that scales with our growing business. The
+              support team is fantastic too!"
+            </p>
+            <p>- Alex Lee, Maintenance Lead, TechPark Inc.</p>
+          </div>
+          <div class="testimonial-item">
+            <p>
+              "Finally, a CMMS that our technicians actually enjoy using. The
+              mobile app is a game-changer."
+            </p>
+            <p>- Maria Garcia, Head of Maintenance, AgroFarms</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" data-scroll-section>
+        <h1>Contact Us</h1>
+        <p>
+          We'd love to hear from you! Reach out for sales inquiries, support, or
+          partnership opportunities.
+        </p>
+
+        <div class="contact-info">
+          <h3>Get in Touch Directly</h3>
+          <p>
+            <i class="fas fa-phone"></i> Phone:
+            <a href="tel:+1234567890">+1 (234) 567-890</a> (Sales)
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i> Email:
+            <a href="mailto:info@maintafox.com">info@maintafox.com</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> Address: 123 Innovation Drive,
+            Tech City, TX 75001
+          </p>
+          <!-- Add more contact info like support email/phone if needed -->
+        </div>
+
+        <form id="contact-form" class="interactive-form" novalidate>
+          <h3>Send Us a Message</h3>
+          <div class="form-field">
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              required
+              placeholder=" "
+              autocomplete="name"
+            />
+            <label for="contact-name">Full Name</label>
+            <span class="error-message" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              required
+              placeholder=" "
+              autocomplete="email"
+            />
+            <label for="contact-email">Email Address</label>
+            <span class="error-message" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              required
+              placeholder=" "
+            />
+            <label for="contact-subject">Subject</label>
+            <span class="error-message" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              required
+              placeholder=" "
+            ></textarea>
+            <label for="contact-message">Your Message</label>
+            <span class="error-message" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="form-submit cta-button">
+            <span>Send Message</span>
+            <span class="spinner" aria-hidden="true"></span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <div class="form-success-message" aria-live="polite"></div>
+        </form>
+
+        <!-- Optional Map Placeholder -->
+        <!--
+             <div class="map" data-scroll-section>
+                 <h2>Our Location</h2>
+                 <iframe src="YOUR_GOOGLE_MAPS_EMBED_LINK" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+             </div>
+             -->
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>
+          © <span id="current-year">2024</span> Maintafox. All rights reserved.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+        <p>
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Vanilla Tilt JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
+      integrity="sha512-VvkEU+wPY1rcLR8w5jPKQG3MWXLFVpkEfuKx257mbtF0H0Q71HQx2oTVRoxb6l/A5kELFW4EBbGYbpkbwVbU4PQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
