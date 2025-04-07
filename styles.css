@@ -335,6 +335,7 @@ section {
 .features-preview,
 .features {
   text-align: center;
+  margin-top: -20%;
 }
 .features-preview h2,
 .features h1 {
@@ -1051,243 +1052,274 @@ footer {
   position: absolute;
   width: 40px;
 }
-/* styles.css - Append these styles at the END */
 
-/* --- Survey Page Specific Layout --- */
-.survey-page-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure body takes full viewport height */
-}
+/* styles.css - Maintafox Landing Page - Professional Revamp */
 
+/* --- SURVEY PAGE SPECIFIC STYLES --- */
 .survey-main {
-  flex-grow: 1; /* Allow main content to take available space */
-  display: flex; /* Use flex to center content vertically */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
-  width: 100%;
+  background-color: var(--color-background-dark);
+  padding-top: 0;
+} /* Dark survey background */
+.survey-container {
+  background-color: var(--color-background-card);
+  padding: var(--space-xl) var(--space-xxl);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-section);
 }
-
-.survey-section {
-  padding-top: var(--space-xl); /* Reduced top padding */
-  padding-bottom: var(--space-xxl); /* More bottom padding */
-  width: 100%; /* Take full width within main */
-  margin-top: 0; /* Remove default section margin */
-  margin-bottom: 0;
-}
-
-.survey-section .container {
-  /* Container already handles max-width */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.survey-subtitle {
-  color: var(--text-medium);
-  margin-bottom: var(--space-xl); /* Space below subtitle */
-  font-size: var(--font-size-lg);
-  max-width: 650px;
-}
-
-/* Ensure poll container is centered and sized */
-#poll-container {
-  width: 100%;
-  max-width: 750px; /* Adjust max-width as desired */
-  margin-top: 0; /* Remove top margin if subtitle handles spacing */
-}
-
-/* --- Refined Survey Element Styles --- */
-
-.progress-bar {
-  background: var(--color-background-dark); /* Darker track */
-  border: 1px solid var(--color-border);
-}
-.progress {
-  background: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-secondary)
-  ); /* Gradient progress */
-}
-
-.poll-question {
-  padding: var(--space-lg); /* Add internal padding */
-  border-bottom: 1px solid var(--color-border); /* Separator between questions if needed, or remove */
-  margin-bottom: 0; /* Remove bottom margin if handled by container */
-  padding-bottom: var(--space-xxl); /* Ensure space for button */
-}
-.poll-question:last-of-type {
-  border-bottom: none; /* No border on the last question section */
-}
-
-.poll-question h2 {
-  font-family: var(--font-family-heading);
-  font-size: 1.3rem; /* Slightly smaller */
-  font-weight: 500;
-  margin-bottom: var(--space-lg);
-  color: var(--text-light);
-  line-height: 1.5;
-  text-align: left;
-  border-left: 3px solid var(--color-primary); /* Accent line */
-  padding-left: var(--space-md);
-}
-.poll-question p.info-text {
-  /* Specific style for intro/final text */
-  font-size: var(--font-size-md);
-  color: var(--text-medium);
-  line-height: 1.8;
+.survey-header {
   text-align: center;
-  margin-bottom: var(--space-xl);
-  max-width: 600px;
+  margin-bottom: var(--space-xxl);
+}
+.survey-header h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  opacity: 1;
+  transform: none;
+}
+.survey-header p {
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--text-medium);
 }
-
-/* Radio & Checkbox Refinements */
-.poll-question label {
-  background-color: transparent; /* Remove slight background */
+.progress-container {
+  width: 80%;
+  max-width: 500px;
+  margin: var(--space-lg) auto 0;
+  background-color: var(--color-background-dark);
+  border-radius: 20px;
+  padding: var(--space-xs);
   border: 1px solid var(--color-border);
-  margin-bottom: var(--space-sm);
 }
-.poll-question label:hover {
-  background-color: rgba(0, 61, 143, 0.1); /* Primary color subtle hover */
-  border-color: var(--color-primary);
+.progress-bar {
+  height: 12px;
+  width: 0%;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
 }
-
-/* Focus style for keyboard navigation */
-.poll-question input[type="radio"]:focus-visible + span,
-.poll-question input[type="checkbox"]:focus-visible + span {
-  outline: 2px solid var(--color-secondary); /* Use secondary for focus outline */
-  outline-offset: 2px;
-}
-.poll-question label:has(input:checked) {
-  /* Style checked label */
-  border-color: var(--color-primary);
-  background-color: rgba(0, 61, 143, 0.08);
+.progress-text {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-medium);
 }
 
-/* Text & Contact Inputs - inheriting from main form styles */
-.poll-question .form-field label {
-  /* Ensure survey labels use card bg */
-  background: var(--color-background-card);
+.survey-form-layout {
+  max-width: 800px;
+  margin: 0 auto;
 }
-.poll-question .form-field input:focus + label,
-.poll-question .form-field input:not(:placeholder-shown) + label {
-  background: var(--color-background-card) !important; /* Override */
+.survey-form-layout fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-xl) var(--space-lg);
+  margin-bottom: var(--space-xxl); /* More space between fieldsets */
+  background-color: transparent; /* Make fieldset background transparent */
 }
-
-/* Rating Refinements */
-.rating-item p {
+.survey-form-layout legend {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-secondary);
+  padding: 0 var(--space-md);
+  margin-left: var(--space-md);
+  background-color: var(
+    --color-background-card
+  ); /* Match container background */
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0; /* Style legend */
+  width: auto;
+  display: inline-block;
+  margin-bottom: -1px; /* Overlap border */
+}
+.survey-form-layout .form-field {
+  margin-bottom: var(--space-xl);
+} /* More space between questions */
+.survey-form-layout
+  label:not(.radio-group label):not(.checkbox-group label):not(
+    .radio-group-vertical label
+  ):not(.checkbox-group-vertical label) {
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: var(--font-size-lg); /* Bigger question labels */
   margin-bottom: var(--space-md);
-  text-align: left;
 }
-.rating-options {
-  justify-content: flex-start;
-  flex-wrap: wrap;
-} /* Align left, allow wrap */
-.rating-option label {
-  background: var(--color-background-dark); /* Darker background for numbers */
+.interactive-form input,
+.interactive-form textarea,
+.interactive-form select {
+  background: var(--color-background-dark);
   border-color: var(--color-border);
-  width: 38px;
-  height: 38px;
-  line-height: 38px; /* Slightly smaller */
+} /* Darker inputs */
+.interactive-form input:focus,
+.interactive-form textarea:focus,
+.interactive-form select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 61, 143, 0.3);
 }
-.rating-option label:hover {
-  background: var(--color-primary-dark);
+
+/* Radio & Checkbox Groups */
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+.radio-group-vertical,
+.checkbox-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+.radio-group label,
+.checkbox-group label,
+.radio-group-vertical label,
+.checkbox-group-vertical label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-medium);
+  font-weight: 400;
+  background-color: var(--color-background-dark); /* Match input background */
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  transition: background-color var(--transition-speed),
+    border-color var(--transition-speed), color var(--transition-speed);
+}
+.radio-group label:hover,
+.checkbox-group label:hover,
+.radio-group-vertical label:hover,
+.checkbox-group-vertical label:hover {
+  background-color: var(--color-background-card);
+  border-color: var(--color-primary);
   color: var(--text-light);
 }
-.rating-option input[type="radio"]:checked + label {
-  background: var(--color-primary);
-  border-color: var(--color-primary-dark);
-  /* ... keep other checked styles ... */
-}
-/* Focus for rating labels */
-.rating-option input[type="radio"]:focus-visible + label {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"],
+.radio-group-vertical input[type="radio"],
+.checkbox-group-vertical input[type="checkbox"] {
+  margin-right: var(--space-sm);
+  accent-color: var(--color-primary);
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
 }
 
-/* Button Styling */
-.survey-nav-btn {
-  min-width: 150px; /* Ensure minimum button width */
-}
-.submit-btn {
-  /* Style submit button differently */
-  background-color: var(--color-secondary);
-}
-.submit-btn:hover {
-  background-color: var(--color-secondary-dark);
-  box-shadow: 0 5px 15px rgba(224, 165, 86, 0.3);
-}
-
-/* Final Message Styling */
-#poll-container .fa-check-circle,
-#poll-container .fa-exclamation-triangle,
-#poll-container .fa-spinner {
-  font-size: 3rem; /* Larger icons */
-  margin-bottom: var(--space-lg);
-}
-#poll-container .poll-question h2 {
-  /* Center final message heading */
-  text-align: center;
-  border-left: none;
-  padding-left: 0;
-}
-#poll-container .poll-question p {
-  /* Center final message text */
-  text-align: center;
-}
-
-/* Footer Text Below Poll */
-#footertext {
-  margin-top: var(--space-xl);
-  padding-bottom: var(--space-md); /* Add padding below */
-}
-
-/* Video Popup Styles - Minor adjustments */
-.popup {
-  z-index: 1050;
-} /* Ensure it's above header */
-.popup-content {
-  background: var(--color-background-dark);
-  border-radius: var(--border-radius);
-}
-.close-button {
-  top: 10px;
-  right: 10px; /* Position inside */
-  width: 32px;
-  height: 32px;
-  font-size: 1.3rem;
-  background: rgba(0, 0, 0, 0.5); /* Less intrusive bg */
+/* Conditional Inputs */
+.conditional-section,
+.conditional-input {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out,
+    margin-top 0.4s ease-out, padding 0.4s ease-out;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   border: none;
-  box-shadow: none;
 }
-.close-button:hover {
-  background: var(--color-danger);
+.conditional-section.visible,
+.conditional-input.visible {
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1;
+  overflow: visible;
+  margin-top: var(--space-lg); /* Add space when shown */
+  padding: var(--space-md) 0;
+  border-top: 1px dashed var(--color-border); /* Separator */
+}
+.conditional-input.visible {
+  border-top: none;
+  padding: 0;
+} /* No border/padding for single input */
+.conditional-section .form-field.sub-field {
+  margin-bottom: var(--space-md);
+} /* Less margin for sub-fields */
+
+/* Rating Scales */
+.rating-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+}
+.rating-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+}
+.rating-item label {
+  grid-column: 1 / 3;
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: var(--space-xs);
+}
+.rating-item input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+  accent-color: var(--color-secondary);
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary) 0%,
+    var(--color-secondary) var(--value-percent, 50%),
+    var(--color-background-dark) var(--value-percent, 50%),
+    var(--color-background-dark) 100%
+  );
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  -webkit-appearance: none;
+  appearance: none;
+  grid-column: 1 / 2;
+}
+.rating-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--color-background-dark);
+  margin-top: -6px; /* Center thumb */
+}
+.rating-item input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--color-background-dark);
+}
+.rating-item .range-value {
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-align: right;
+  font-size: var(--font-size-lg);
+  grid-column: 2 / 3;
+  justify-self: end;
 }
 
-/* Responsive Adjustments for Survey */
-@media (max-width: 600px) {
-  .survey-section {
-    padding: var(--space-lg) var(--space-md);
-  }
-  #poll-container {
-    padding: var(--space-lg);
-  }
-  .poll-question h2 {
-    font-size: 1.15em;
-  }
-  .poll-question label {
-    padding: var(--space-sm) var(--space-md);
-  }
-  .rating-options {
-    gap: var(--space-xs);
-  }
-  .rating-option label {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    font-size: 0.85em;
-  }
+/* Final Submit Area */
+.form-submit-area {
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  /* ... */
+}
+@media (max-width: 768px) {
+  /* ... */
+}
+@media (max-width: 480px) {
+  /* ... */
 }

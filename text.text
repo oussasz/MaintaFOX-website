@@ -1,9 +1,55 @@
-Now, partner, let's add the magic touch to our website's design and content.
-I'll send you the complete website code. Improve the content, design, and spacing between objects, as well as the clarity of the text, as the main color is blue and the background image is dark. Also, improve the design and dynamism of the cards and quotes.
-Focus on the communication section, as its design is poor. Also, add a glowing demo button that calls for a call to action.
-What I don't want you to touch is just a part: <div class="laptop">
-Do the rest as you see fit.
-index.html :
-
-
-
+.survey-button {
+  /* Style both buttons similarly */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s var(--transition-timing),
+    box-shadow 0.3s var(--transition-timing);
+}
+.survey-nav-btn  {
+  background: var(--primary-color);
+}
+.survey-nav-btn :hover,
+.survey-nav-btn :focus-visible {
+  transform: scale(1.05);
+  background: var(--primary-darker);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+/* Survey Button Specific Style */
+.survey-button {
+  background: linear-gradient(
+    45deg,
+    var(--secondary-color),
+    #00a0b0
+  ); /* Teal gradient */
+}
+.survey-button:hover,
+.survey-button:focus-visible {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #00a0b0, var(--secondary-color));
+  box-shadow: 0 5px 15px rgba(0, 224, 196, 0.3);
+  outline: none;
+}
+.survey-nav-btn  span,
+.survey-button span {
+  margin-right: 0.5rem;
+}
+.survey-nav-btn  i,
+.survey-button i {
+  font-size: 1em;
+  transition: transform 0.3s var(--transition-timing);
+} /* Use Font Awesome */
+.survey-nav-btn :hover i,
+.survey-button:hover i {
+  transform: translateX(4px);
+}
