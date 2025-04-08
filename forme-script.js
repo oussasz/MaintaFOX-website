@@ -772,7 +772,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- Initial Setup for Survey Form ---
-    setupConditionalLogic(); // Sets initial visibility & required states
+    checkConditions(); // Sets initial visibility & required states
     setupRangeValueDisplay(); // Sets initial range values & styles
     updateProgressBar(); // Calculate initial progress
 
