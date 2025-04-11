@@ -31,12 +31,19 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="gradient-background">
+      <div class="gradient-sphere sphere-1"></div>
+      <div class="gradient-sphere sphere-2"></div>
+      <div class="gradient-sphere sphere-3"></div>
+      <div class="glow"></div>
+      <div class="grid-overlay"></div>
+      <div class="noise-overlay"></div>
+      <div class="particles-container" id="particles-container"></div>
+    </div>
     <!-- Loader -->
     <div class="loader"></div>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress"></div>
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"><div class="cursor-inner"></div></div>
 
     <header>
       <nav class="futuristic-nav" aria-label="Main Navigation">
@@ -479,51 +486,62 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-content">
-        <p>
-          © <span id="current-year">2024</span> Maintafox. All rights reserved.
-        </p>
-        <div class="social-links">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-          >
-            <i class="fab fa-youtube"></i>
-          </a>
+ <footer>
+        <div class="container">
+            <div class="col-1">
+                <img src="assets/logo.png" alt="">
+                <p>Follow my instagram channel named mubashar_dev to see more of such projects and other posts. Also
+                    Like and share these posts.Also follow me on Github and Linkedin. I hope you will like my content.
+                </p>
+            </div>
+            <div class="col-2">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">React</a></li>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">C++</a></li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <h3>Newsletter</h3>
+                <form>
+                    <i class="far fa-envelope"></i>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button><i class="fas fa-arrow-right"></i></button>
+                </form>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
         </div>
-        <p>
-          <a href="privacy.html">Privacy Policy</a> |
-          <a href="terms.html">Terms of Service</a>
-        </p>
-      </div>
-    </footer>
+        <div class="footer-2">
+            <p>© 2025 | MaintaFox</p>
+        </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 
     <!-- Vanilla Tilt JS -->
     <script
@@ -534,5 +552,6 @@
     ></script>
     <!-- Custom Script -->
     <script src="script.js"></script>
+    <script src="BG.js"></script>
   </body>
 </html>
