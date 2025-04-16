@@ -572,6 +572,7 @@
               id="current-challenges-section"
               data-condition-target="current_method"
               data-condition-value="CMMS Software,ERP Module (e.g., SAP PM),Spreadsheets (Excel, Google Sheets),Combination,Other"
+              data-group-required="true"
             >
               <label data-translate="q6_label"
                 >6. What are your biggest challenges with your current
@@ -713,6 +714,7 @@
               id="no-cmms-reasons-section"
               data-condition-target="current_method"
               data-condition-value="Paper Documents / Manual Tracking,No Structured System / Ad-hoc"
+              data-group-required="true"
             >
               <label data-translate="q7_label"
                 >7. What are the main reasons your company hasn't adopted a
@@ -828,7 +830,11 @@
             </legend>
 
             <!-- Question 8 -->
-            <div class="form-field" data-progress-step>
+            <div
+              class="form-field"
+              data-progress-step
+              data-group-required="true"
+            >
               <label data-translate="q8_label"
                 >8. Who is typically involved in the decision to acquire a new
                 CMMS? (Select all that apply)</label
@@ -1112,9 +1118,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1131,9 +1136,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1150,9 +1154,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1169,9 +1172,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1188,9 +1190,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1207,9 +1208,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <div class="rating-item">
                   <label
@@ -1226,9 +1226,8 @@
                     step="1"
                     list="tickmarks"
                     required
-                    value="3"
                   />
-                  <span class="range-value" aria-hidden="true">3</span>
+                  <span class="range-value" aria-hidden="true">1</span>
                 </div>
                 <!-- Datalist remains the same, purely functional -->
                 <datalist id="tickmarks">
@@ -1424,33 +1423,15 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-content container">
-        <p>
-          © <span id="current-year">2024</span> Maintafox.
-          <span data-translate="footer_rights">All rights reserved.</span>
-        </p>
-        <div class="social-links">
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <!-- Add other relevant links -->
-        </div>
-        <p class="footer-links">
-          <a href="privacy.html" data-translate="footer_privacy"
-            >Privacy Policy</a
-          >
-          |
-          <a href="terms.html" data-translate="footer_terms"
-            >Terms of Service</a
-          >
-        </p>
-      </div>
-    </footer>
+    <div id="footer"></div>
+
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
 
     <!-- Scripts -->
     <!-- Translation Data -->

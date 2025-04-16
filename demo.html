@@ -36,19 +36,21 @@
           />
           <span>Maintafox</span>
         </a>
+        <!-- Theme toggle removed -->
         <button
           class="menu-toggle"
           aria-label="Toggle navigation"
           aria-expanded="false"
         >
           <i class="fas fa-bars"></i>
+          <!-- Hamburger Icon -->
         </button>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="features.html">Features</a></li>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#features">Features</a></li>
           <li><a href="demo.html">Request a Demo</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#about-main">About Us</a></li>
+          <li><a href="index.html#contact-form">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -148,47 +150,15 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-content">
-        <p>
-          © <span id="current-year">2024</span> Maintafox. All rights reserved.
-        </p>
-        <div class="social-links">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-            ><i class="fab fa-youtube"></i
-          ></a>
-        </div>
-        <p>
-          <a href="privacy.html">Privacy Policy</a> |
-          <a href="terms.html">Terms of Service</a>
-        </p>
-      </div>
-    </footer>
+    <div id="footer"></div>
+
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
