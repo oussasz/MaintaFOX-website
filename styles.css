@@ -690,6 +690,8 @@ section {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px; /* Base font size */
 }
 
 .timeline::before {
@@ -699,11 +701,7 @@ section {
   left: 50%;
   width: 3px;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--primary-color),
-    var(--primary-darker)
-  );
+  background: linear-gradient(to bottom, #0011ff, #00286e, #08002c);
   transform: translateX(-50%);
   border-radius: 2px;
 }
@@ -726,7 +724,7 @@ section {
 .timeline-dot {
   width: 18px;
   height: 18px;
-  background: var(--primary-color);
+  background: #0011ff;
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -734,7 +732,7 @@ section {
   transform: translateX(-50%);
   z-index: 1;
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  border: 3px solid var(--background-dark);
+  border: 3px solid #29292c;
 }
 
 .timeline-item.visible .timeline-dot {
@@ -756,11 +754,35 @@ section {
 .timeline-content {
   width: calc(50% - 2rem);
   padding: 1.5rem;
-  background: var(--background-light);
+  background: #18181b;
   border-radius: 10px;
   box-shadow: var(--card-shadow);
   transition: transform 0.3s var(--transition-timing);
   border: 1px solid var(--border-color);
+  position: relative;
+  font-size: 16px; /* Consistent base font size */
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle closest-side at center,
+    white,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  z-index: -1;
+}
+
+.timeline-item:hover .timeline-content::before {
+  opacity: 0.1;
 }
 
 .timeline-item:hover .timeline-content {
@@ -780,14 +802,15 @@ section {
 }
 
 .timeline-content h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem; /* Matches the title size in "About Maintafox" */
+  font-weight: 500; /* Matches the font weight of the title */
   margin-bottom: 0.5rem;
-  color: var(--secondary-color);
+  color: white; /* Matches the title color */
 }
 
 .timeline-content p {
-  font-size: 0.9rem;
-  color: var(--text-medium);
+  font-size: 0.9rem; /* Slightly smaller for body text */
+  color: #99999d; /* Matches the body text color */
 }
 
 /* Future Glow Effect */
@@ -1856,4 +1879,114 @@ form button {
   .contact-body-item {
     padding: 0;
   }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width: 90%;
+  max-width: 1200px; /* اختياري لتحديد عرض أقصى */
+  margin: 0 auto; /* هذا يجعل العنصر في الوسط أفقياً */
+  height: auto;
+  background: #29292c;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #0011ff, #00286e, #08002c);
+  --color: #32a6ff;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.about:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: #18181b;
+  z-index: 2;
+}
+
+.about:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+}
+
+.about:hover:after {
+  transform: translateX(0.15rem);
+}
+
+.abouttitle {
+  color: white;
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.about:hover .abouttitle {
+  transform: translateX(0.15rem);
+}
+
+.aboutbody {
+  color: #99999d;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.about:hover .aboutbody {
+  transform: translateX(0.25rem);
+}
+
+.aboutglow,
+.aboutborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle closest-side at center,
+    white,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.aboutglow {
+  z-index: 3;
+}
+
+.aboutborderglow {
+  z-index: 1;
+}
+
+.about:hover .aboutglow {
+  opacity: 0.1;
+}
+
+.about:hover .aboutborderglow {
+  opacity: 0.1;
+}
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
 }
