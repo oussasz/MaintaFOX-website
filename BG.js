@@ -49,8 +49,17 @@ const Graph = ForceGraph3D()(document.getElementById("graph"))
   .linkColor("rgba(255,255,255,0.2)")
   .nodeColor((node) => (node.type === "dot" ? "white" : null))
   .backgroundColor("#e0a45600")
+  .backgroundColor("#e0a45600")
   .enableNavigationControls(false);
 
+// ---> ADD THIS: Set Initial Camera Position <---
+const distance = 300; // <-- Adjust this value! Try values between 150 and 500
+Graph.cameraPosition({
+  x: 0, // Center horizontally
+  y: 0, // Center vertically
+  z: distance, // Distance from the center (adjust for zoom)
+});
+// ---> END OF ADDITION <---
 // Add OrbitControls for rotation
 const controls = new THREE.OrbitControls(
   Graph.camera(),
@@ -59,14 +68,18 @@ const controls = new THREE.OrbitControls(
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.rotateSpeed = 0.1;
-controls.autoRotate = true; // Auto-rotate like planets
-controls.autoRotateSpeed = 1.5; // Faster rotation
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.5;
+
+// ---> ADD THIS: Ensure OrbitControls target is the center <---
+controls.target.set(0, 0, 0); // Make sure controls orbit around the scene origin
+// ---> END OF ADDITION <---
 
 // Update controls in animation loop
 const animate = () => {
   requestAnimationFrame(animate);
-  controls.update();
-  Graph.tickFrame();
+  controls.update(); // Important for damping and auto-rotate
+  Graph.tickFrame(); // Necessary for the graph simulation and rendering
 };
 animate();
 

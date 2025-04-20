@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="graph"></div>
-    <div id="node-label"></div>
+
     <div class="gradient-background">
         <div class="gradient-sphere sphere-1"></div>
         <div class="gradient-sphere sphere-2"></div>
@@ -79,42 +78,29 @@
     <main>
       <!-- Hero Section -->
       <section class="hero" id="home">
-        <!-- الجزء الأول: النص -->
-        <div class="hero-text-content">
-          <h1 class="hero-title">Take Control of Your Maintenance</h1>
-          <p class="hero-subtitle">
-            Streamline your operations, reduce downtime, and unlock full
-            equipment efficiency — all in one platform.
-          </p>
-        </div>
-
-        <!-- الجزء الثاني: اللابتوب + الأزرار -->
-        <div class="hero-content">
-          <div class="laptop">
-            <div class="screen">
-              <div class="laptop-header"></div>
-              <div class="text">MaintaFox</div>
-            </div>
-            <div class="keyboard"></div>
-          </div>
-
-          <div>
-            <a href="demo.html" class="cta-button">
-              <span>Request a Demo</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-
-            <a
-              href="forme.html"
-              class="survey-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Take a Quick Survey</span>
-              <i class="fas fa-poll"></i>
-            </a>
-          </div>
-        </div>
+ <!-- Part One: The Text -->
+<div class="hero-text-content">
+  <h1 class="hero-title">Take Control of Your Maintenance</h1>
+  <p class="hero-subtitle">
+    Streamline your operations, reduce downtime, and unlock full
+    equipment efficiency — all in one platform.
+  </p>
+</div>
+<div id="graph"></div>
+<div id="node-label"></div>
+<!-- Part Two: The Buttons -->
+<div class="hero-content">
+  <div>
+    <a href="demo.html" class="cta-button">
+      <span>Request a Demo</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+    <a href="forme.html" class="survey-button" target="_blank" rel="noopener noreferrer">
+      <span>Take a Quick Survey</span>
+      <i class="fas fa-poll"></i>
+    </a>
+  </div>
+</div>
       </section>
 
       <!-- Features Preview Section -->
@@ -122,42 +108,63 @@
 <section class="features-section">
   <h1>Our Core Features</h1>
   <p>Unleash the full potential of your maintenance operations with Maintafox.</p>
+  <div class="laptop">
+      <div class="screen">
+        <div class="laptop-header"></div>
+      </div>
+      <div class="keyboard"></div>
+  </div>
 
   <div class="card-row">
     <div class="feature-card">
-      <div class="icon-placeholder">[Icon]</div>
+      <div class="icon-placeholder">
+  <img src="assets/PR5.png" alt="Icon" />
+</div>
+
       <h3>Asset Management</h3>
       <p class="description">
         Gain visibility and control over all your company assets, from machinery to facilities.
       </p>
     </div>
 
+  <div class="card-row">
     <div class="feature-card">
-      <div class="icon-placeholder">[Icon]</div>
+      <div class="icon-placeholder">
+  <img src="assets/PR3.png" alt="Icon" />
+</div>
       <h3>Maintenance Scheduling</h3>
       <p class="description">
         Smart preventive and predictive maintenance scheduling to reduce downtime.
       </p>
     </div>
 
+  <div class="card-row">
     <div class="feature-card">
-      <div class="icon-placeholder">[Icon]</div>
+      <div class="icon-placeholder">
+  <img src="assets/PR4.png" alt="Icon" />
+</div>
       <h3>Work Orders</h3>
       <p class="description">
         Streamline requests, assignments, and progress tracking effortlessly.
       </p>
     </div>
 
+  <div class="card-row">
     <div class="feature-card">
-      <div class="icon-placeholder">[Icon]</div>
+      <div class="icon-placeholder">
+  <img src="assets/PR5.png" alt="Icon" />
+</div>
       <h3>Inventory</h3>
       <p class="description">
         Track parts, manage stock, and link inventory to assets and suppliers.
       </p>
     </div>
 
+  <div class="card-row">
     <div class="feature-card">
-      <div class="icon-placeholder">[Icon]</div>
+      <div class="icon-placeholder">
+  <img src="assets/PR1.png" alt="Icon" />
+</div>
       <h3>Analytics</h3>
       <p class="description">
         Generate KPIs and reports to drive performance and strategic planning.
@@ -332,7 +339,7 @@
 
     <div id="footer"></div>
 
-
+    <script src="https://d3js.org/d3.v5.min.js"></script>>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.0/dist/3d-force-graph.min.js"></script>

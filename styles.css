@@ -1240,6 +1240,7 @@ form button {
   height: 24px;
   position: relative;
   width: 620px;
+  margin: 0 auto;
   z-index: 9;
 }
 .keyboard::after {
@@ -1989,7 +1990,7 @@ form button {
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   padding: 10px 40px;
   max-width: 100%;
   overflow: hidden;
@@ -2040,8 +2041,15 @@ form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #f8f8f8;
   font-size: 0.9em;
+  overflow: hidden; /* لإخفاء أي زوائد من الصورة */
+}
+.icon-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* تملىء الدائرة وتُقص حسب الحاجة */
+  border-radius: 50%; /* نفس الشكل الدائري */
 }
 
 /* Hover Effect */
@@ -2056,15 +2064,27 @@ form button {
   opacity: 1;
   max-height: 200px;
 }
-#graph {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  pointer-events: auto;
+.graph-container {
+  width: 100%;
+  height: 25rem; /* يمكنك تغييره حسب رغبتك */
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+
+#graph {
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  margin-top: -13rem;
+  margin-bottom: -12rem;
+  margin-right: 18rem;
+
+  z-index: 2;
+}
+
 #node-label {
   position: absolute;
   display: none;
