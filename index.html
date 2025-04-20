@@ -31,15 +31,17 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="graph"></div>
+    <div id="node-label"></div>
     <div class="gradient-background">
-      <div class="gradient-sphere sphere-1"></div>
-      <div class="gradient-sphere sphere-2"></div>
-      <div class="gradient-sphere sphere-3"></div>
-      <div class="glow"></div>
-      <div class="grid-overlay"></div>
-      <div class="noise-overlay"></div>
-      <div class="particles-container" id="particles-container"></div>
+        <div class="gradient-sphere sphere-1"></div>
+        <div class="gradient-sphere sphere-2"></div>
+        <div class="gradient-sphere sphere-3"></div>
+        <div class="glow"></div>
+        <div class="grid-overlay"></div>
+        <div class="noise-overlay"></div>
     </div>
+   
     <!-- Loader -->
     <div class="loader"></div>
     <!-- Scroll Progress Bar -->
@@ -317,8 +319,6 @@
         </div>
       </div>
     </div>
-  </div>Take Control of Your Maintenance
-        </div>
 
         <!-- Optional Map Placeholder -->
         <!--
@@ -332,14 +332,10 @@
 
     <div id="footer"></div>
 
-    <script>
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
-    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.0/dist/3d-force-graph.min.js"></script>
     <!-- Vanilla Tilt JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
