@@ -1115,7 +1115,8 @@ section.contact-section-wrapper {
   font-size: 0.75rem; /* Smaller */
   color: var(--primary-color); /* Highlight color */
   /* Match the form background where label sits */
-  background-color: rgba(0, 17, 255, 0.08);
+  background-color: white;
+  border-radius: 5px; /* Match input radius */
   /* If form background is different, use that color:
      background-color: rgba(30, 30, 30, 0.8); */
   z-index: 3; /* Ensure label is above input border/shadow */
