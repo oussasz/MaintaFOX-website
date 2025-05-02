@@ -1,55 +1,74 @@
-.survey-button {
-  /* Style both buttons similarly */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  margin: 0.5rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    background 0.3s var(--transition-timing),
-    box-shadow 0.3s var(--transition-timing);
-}
-.survey-nav-btn  {
-  background: var(--primary-color);
-}
-.survey-nav-btn :hover,
-.survey-nav-btn :focus-visible {
-  transform: scale(1.05);
-  background: var(--primary-darker);
-  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-/* Survey Button Specific Style */
-.survey-button {
-  background: linear-gradient(
-    45deg,
-    var(--secondary-color),
-    #00a0b0
-  ); /* Teal gradient */
-}
-.survey-button:hover,
-.survey-button:focus-visible {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #00a0b0, var(--secondary-color));
-  box-shadow: 0 5px 15px rgba(0, 224, 196, 0.3);
-  outline: none;
-}
-.survey-nav-btn  span,
-.survey-button span {
-  margin-right: 0.5rem;
-}
-.survey-nav-btn  i,
-.survey-button i {
-  font-size: 1em;
-  transition: transform 0.3s var(--transition-timing);
-} /* Use Font Awesome */
-.survey-nav-btn :hover i,
-.survey-button:hover i {
-  transform: translateX(4px);
-}
+
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Let's get in touch</h3>
+          <p class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+            dolorum adipisci recusandae praesentium dicta!
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="img/location.png" class="icon" alt="" />
+              <p>92 Cherry Drive Uniondale, NY 11553</p>
+            </div>
+            <div class="information">
+              <img src="img/email.png" class="icon" alt="" />
+              <p>lorem@ipsum.com</p>
+            </div>
+            <div class="information">
+              <img src="img/phone.png" class="icon" alt="" />
+              <p>123-456-789</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="index.html" autocomplete="off">
+            <h3 class="title">Contact us</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" />
+              <label for="">Username</label>
+              <span>Username</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" />
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" />
+              <label for="">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input"></textarea>
+              <label for="">Message</label>
+              <span>Message</span>
+            </div>
+            <input type="submit" value="Send" class="btn" />
+          </form>
+        </div>
+      </div>
+
