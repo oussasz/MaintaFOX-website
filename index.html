@@ -304,6 +304,67 @@
                  <iframe src="YOUR_GOOGLE_MAPS_EMBED_LINK" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
              </div>
              -->
+ <div class="form">
+        <div class="contact-info">
+          <!-- Title encouraging connection -->
+          <h3 class="title">Let's Connect</h3>
+          <!-- Text explaining purpose or inviting questions -->
+          <p class="text">
+            Have questions about streamlining your maintenance operations with our CMMS platform? Or need support? 
+          </p>
+
+          <div class="info">
+            <!-- Placeholder Business Address -->
+
+<div class="information">
+  <i class="fas fa-map-marker-alt icon"></i>
+  <p>Targa Ouzemour, Bejaia, Bejaia, Algeria</p>
+</div>
+
+<div class="information">
+  <i class="fas fa-envelope icon"></i>
+  <p>contact@maintafox.systems</p>
+</div>
+
+<div class="information">
+  <i class="fas fa-phone icon"></i>
+  <p>+231 (540) 537-886</p>
+</div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <!-- Make sure the action attribute points to your form handler -->
+          <form action="your-form-handler-endpoint" method="POST" autocomplete="off">
+            <h3 class="title">Contact Us</h3>
+            <!-- Changed Username to Name -->
+            <div class="input-container">
+              <input type="text" name="name" class="input" required /> <!-- Added required attribute -->
+              <label for="">Name</label>
+              <span>Name</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" required /> <!-- Added required attribute -->
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <!-- Phone might be optional, so no 'required' unless necessary -->
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" />
+              <label for="">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <!-- Changed label/span for clarity -->
+              <textarea name="message" class="input" required></textarea> <!-- Added required attribute -->
+              <label for="">Your Message</label>
+              <span>Your Message</span>
+            </div>
+            <!-- Changed button text -->
+            <input type="submit" value="Send Message" class="contact-btn" />
+          </form>
+        </div>
+      </div>
       </section>
     </main>
 
