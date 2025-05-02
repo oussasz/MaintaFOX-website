@@ -39,8 +39,9 @@
         <div class="glow"></div>
         <div class="grid-overlay"></div>
         <div class="noise-overlay"></div>
+        
     </div>
-   
+   <div class="purple-bg"></div>
     <!-- Loader -->
     <div class="loader"></div>
     <!-- Scroll Progress Bar -->
@@ -76,101 +77,106 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
-      <section class="hero" id="home">
- <!-- Part One: The Text -->
-<div class="hero-text-content">
-  <h1 class="hero-title">Take Control of Your Maintenance</h1>
-  <p class="hero-subtitle">
-    Streamline your operations, reduce downtime, and unlock full
-    equipment efficiency — all in one platform.
-  </p>
-</div>
-<div id="graph"></div>
-<div id="node-label"></div>
-<!-- Part Two: The Buttons -->
-<div class="hero-content">
-  <div>
-    <a href="demo.html" class="cta-button">
-      <span>Request a Demo</span>
-      <i class="fas fa-arrow-right"></i>
-    </a>
-    <a href="forme.html" class="survey-button" target="_blank" rel="noopener noreferrer">
-      <span>Take a Quick Survey</span>
-      <i class="fas fa-poll"></i>
-    </a>
-  </div>
-</div>
-      </section>
 
-      <!-- Features Preview Section -->
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section class="hero" id="home">
 
-<section class="features-section">
-  <h1>Our Core Features</h1>
-  <p>Unleash the full potential of your maintenance operations with Maintafox.</p>
-  <div class="laptop">
+        <!-- === Column 1: Graph === -->
+          <div class="laptop">
       <div class="screen">
         <div class="laptop-header"></div>
       </div>
       <div class="keyboard"></div>
   </div>
 
-  <div class="card-row">
-    <div class="feature-card">
-      <div class="icon-placeholder">
-  <img src="assets/PR5.png" alt="Icon" />
-</div>
 
-      <h3>Asset Management</h3>
-      <p class="description">
-        Gain visibility and control over all your company assets, from machinery to facilities.
-      </p>
-    </div>
+        <!-- === Column 2: Text and Buttons (NEW CONTAINER) === -->
+        <div class="hero-right-content">
+            <!-- Text -->
+            <div class="hero-text-content">
+                <h1 class="hero-title">Take Control of Your Maintenance</h1>
+                <p class="hero-subtitle">
+                    Streamline your operations, reduce downtime, and unlock full
+                    equipment efficiency — all in one platform.
+                </p>
+            </div>
+            <!-- Buttons -->
+            <div class="hero-buttons">
+                <a href="demo.html" class="cta-button">
+                    <span>Request a Demo</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="forme.html" class="survey-button" target="_blank" rel="noopener noreferrer">
+                    <span>Take a Quick Survey</span>
+                    <i class="fas fa-poll"></i>
+                </a>
+            </div>
+        </div>
+        <!-- === End Column 2 === -->
 
-  <div class="card-row">
-    <div class="feature-card">
-      <div class="icon-placeholder">
-  <img src="assets/PR3.png" alt="Icon" />
-</div>
-      <h3>Maintenance Scheduling</h3>
-      <p class="description">
-        Smart preventive and predictive maintenance scheduling to reduce downtime.
-      </p>
-    </div>
+    </section>
+    <!-- End Hero Section -->
 
-  <div class="card-row">
-    <div class="feature-card">
-      <div class="icon-placeholder">
-  <img src="assets/PR4.png" alt="Icon" />
-</div>
-      <h3>Work Orders</h3>
-      <p class="description">
-        Streamline requests, assignments, and progress tracking effortlessly.
-      </p>
-    </div>
+      <!-- Features Preview Section -->
 
-  <div class="card-row">
-    <div class="feature-card">
-      <div class="icon-placeholder">
-  <img src="assets/PR5.png" alt="Icon" />
-</div>
-      <h3>Inventory</h3>
-      <p class="description">
-        Track parts, manage stock, and link inventory to assets and suppliers.
-      </p>
-    </div>
+<section class="features-section">
+  <h1>Our Core Features</h1>
+  <p>Unleash the full potential of your maintenance operations with Maintafox.</p>
 
-  <div class="card-row">
-    <div class="feature-card">
-      <div class="icon-placeholder">
-  <img src="assets/PR1.png" alt="Icon" />
-</div>
-      <h3>Analytics</h3>
-      <p class="description">
-        Generate KPIs and reports to drive performance and strategic planning.
-      </p>
+<!-- الحاوية التي تجمع كل البطاقات -->
+<div class="card-wrapper">
+  <div class="feature-card">
+    <div class="icon-placeholder">
+      <img src="assets/PR5.png" alt="Icon" />
     </div>
+    <h3>Asset Management</h3>
+    <p class="description">
+      Gain visibility and control over all your company assets, from machinery to facilities.
+    </p>
   </div>
+
+  <div class="feature-card">
+    <div class="icon-placeholder">
+      <img src="assets/PR3.png" alt="Icon" />
+    </div>
+    <h3>Maintenance Scheduling</h3>
+    <p class="description">
+      Smart preventive and predictive maintenance scheduling to reduce downtime.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <div class="icon-placeholder">
+      <img src="assets/PR4.png" alt="Icon" />
+    </div>
+    <h3>Work Orders</h3>
+    <p class="description">
+      Streamline requests, assignments, and progress tracking effortlessly.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <div class="icon-placeholder">
+      <img src="assets/PR5.png" alt="Icon" />
+    </div>
+    <h3>Inventory</h3>
+    <p class="description">
+      Track parts, manage stock, and link inventory to assets and suppliers.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <div class="icon-placeholder">
+      <img src="assets/PR1.png" alt="Icon" />
+    </div>
+    <h3>Analytics</h3>
+    <p class="description">
+      Generate KPIs and reports to drive performance and strategic planning.
+    </p>
+  </div>
+</div>
+
 </section>
 
 
@@ -291,42 +297,6 @@
           </div>
         </div>
 
-       <div class="container" id="contact">
-    <div class="contact">
-      <div class="contact-header">
-        <h2>Contact Us</h2>
-      </div>
-      <div class="contact-body">
-        <div class="contact-body-item left">
-          <div class="app-title">
-            <span>Contact</span>
-            <span>Us</span>
-          </div>
-          <div class="app-contact">CONTACT INFO: +62 81 314 928 595</div>
-        </div>
-        <div class="contact-body-item">
-          <div class="app-form">
-            <div class="app-form-group">
-              <input class="app-form-control" placeholder="NAME" value="Krisantus Wanandi" />
-            </div>
-            <div class="app-form-group">
-              <input class="app-form-control" placeholder="EMAIL" />
-            </div>
-            <div class="app-form-group">
-              <input class="app-form-control" placeholder="CONTACT NO" />
-            </div>
-            <div class="app-form-group message">
-              <input class="app-form-control" placeholder="MESSAGE" />
-            </div>
-            <div class="app-form-group buttons">
-              <button class="app-form-button">CANCEL</button>
-              <button class="app-form-button">SEND</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
         <!-- Optional Map Placeholder -->
         <!--
              <div class="map" data-scroll-section>
@@ -343,6 +313,10 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.0/dist/3d-force-graph.min.js"></script>
+        <!-- Include necessary libraries -->
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/three/examples/js/controls/OrbitControls.js"></script>
+    <script src="//unpkg.com/force-graph-3d"></script>
     <!-- Vanilla Tilt JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
@@ -352,6 +326,5 @@
     ></script>
     <!-- Custom Script -->
     <script src="script.js"></script>
-    <script src="BG.js"></script>
-  </body>
+    </body>
 </html>

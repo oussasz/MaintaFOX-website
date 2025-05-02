@@ -34,7 +34,7 @@ body {
   font-family: var(--font-family-main);
   position: relative;
   color: var(--text-light);
-  overflow-x: hidden;
+  overflow: visible !important;
   line-height: 1.6;
   background-color: #000011;
 }
@@ -215,24 +215,24 @@ section {
   padding: 5rem 2rem; /* Standardized padding */
   max-width: var(--max-width);
   margin: 0 auto;
-  overflow: hidden; /* Prevent content spillover */
 }
 
-/* --- Hero Section --- */
+/* --- Hero Section Layout --- */
 .hero {
-  position: relative;
-  min-height: calc(100vh - var(--header-height)); /* Adjust height for header */
+  display: flex;
   flex-direction: column;
   align-items: center;
-  display: flex;
-  justify-content: center;
+  padding: 60px 20px;
+  min-height: 80vh;
   text-align: center;
-  padding-top: 0;
-  padding-bottom: 0; /* Remove section padding */
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+  /* === ENSURE THIS IS NOT 'hidden' === */
+  overflow: visible; /* Explicitly allow children to overflow */
+  /* ================================== */
 }
-.hero-text-content {
-  width: 100%;
-}
+
 .particle-bg {
   /* Keep this for visual effect */
   position: absolute;
@@ -1097,7 +1097,7 @@ form button {
 
 .hero-title {
   font-size: 3rem;
-  color: var(--text-color);
+  color: black;
   font-weight: 800;
   pointer-events: none;
 }
@@ -1985,15 +1985,12 @@ form button {
 
 /* Card container: no scroll, wrap all cards in a single visible line */
 /* Container with cards in single row */
-.card-row {
+.card-wrapper {
   display: flex;
+  flex-wrap: wrap; /* حتى تظهر كلها بدون scroll */
   justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 10px 40px;
-  max-width: 100%;
-  overflow: hidden;
+  gap: 20px; /* مسافة بين البطاقات */
+  padding: 2rem; /* يمكنك تغييره حسب الحاجة */
 }
 
 /* Feature Card */
@@ -2003,7 +2000,7 @@ form button {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   width: 220px;
-  height: auto;
+  height: 320px;
   padding: 1rem;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -2071,27 +2068,149 @@ form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
+/* Graph container */
+/* --- Hero Section Layout (Side-by-Side) --- */
+.hero {
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: row; /* Arrange children side-by-side */
+  align-items: center; /* Vertically center the columns */
+  justify-content: space-between; /* Distribute space between columns */
+  padding: 40px 5%; /* Adjust padding (e.g., less top/bottom, more side) */
+  min-height: 80vh;
+  gap: 10px; /* Space between graph and right content */
+  position: relative;
+  z-index: 1;
+  /* Keep overflow visible for graph */
+  overflow: visible;
+}
+
+/* --- Graph Container (Left Column) --- */
 #graph {
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-  margin-top: -13rem;
-  margin-bottom: -12rem;
-  margin-right: 18rem;
-
-  z-index: 2;
+  flex: 1 1 50%; /* Allow graph to take up roughly half the space (grow, shrink, basis) */
+  /* flex-basis: 50%; */ /* Alternative way to set initial size */
+  max-width: 55%; /* Prevent it from getting too wide */
+  height: 50vh; /* Adjust height as needed */
+  width: 10%; /* Full width of the column */
+  min-height: 350px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: visible; /* CRITICAL: Keep visible */
+  cursor: grab;
+  position: relative;
+  z-index: 1;
+  margin: 0; /* Remove previous vertical margins */
 }
 
+/* --- Right Content Column (NEW) --- */
+.hero-right-content {
+  flex: 1 1 45%; /* Allow text/buttons to take up the remaining space */
+  /* flex-basis: 45%; */
+  max-width: 50%;
+  display: flex;
+  flex-direction: column; /* Stack text and buttons vertically */
+  align-items: flex-start; /* Align items to the left */
+  justify-content: center; /* Vertically center content within this column */
+  text-align: left; /* Align text to the left */
+  gap: 25px; /* Space between text block and button block */
+}
+
+/* --- Text Content Styling (Adjustments) --- */
+.hero-text-content {
+  width: 100%; /* Take full width of the right column */
+  /* Remove any previous max-width or centering margins */
+  margin-bottom: 0; /* Let the parent gap handle spacing */
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem); /* Slightly adjust size if needed */
+  color: var(--primary-color); /* Ensure color is set */
+  font-weight: 700; /* Ensure weight is set */
+  pointer-events: auto; /* Re-enable pointer events if they were off */
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Adjust size */
+  color: var(--text-medium);
+  margin-bottom: 0; /* Let parent gap handle spacing */
+  opacity: 1; /* Ensure visible */
+  transform: none; /* Reset any previous transforms */
+  transition: none; /* Reset transitions if any */
+  pointer-events: auto; /* Re-enable pointer events */
+  line-height: 1.6;
+}
+
+/* --- Button Container Styling (Adjustments) --- */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens if needed */
+  justify-content: flex-start; /* Align buttons to the left */
+  gap: 15px;
+  width: 100%; /* Take full width */
+}
+
+/* --- Node Label (Keep Absolute) --- */
 #node-label {
   position: absolute;
   display: none;
   color: white;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 5px;
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 5px 8px;
+  border-radius: 4px;
   font-family: "Arial", sans-serif;
+  font-size: 12px;
   transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.purple-bg {
+  position: absolute; /* بدل fixed */
+  top: 20rem;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background: whitesmoke;
+  transform: skewY(-5deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+    text-align: center; /* Center align everything again */
+    padding: 40px 5%; /* Adjust padding */
+    gap: 30px; /* Adjust gap for vertical stacking */
+  }
+
+  #graph {
+    flex-basis: auto; /* Reset flex basis */
+    width: 95%; /* Take most of the width */
+    max-width: 600px; /* Limit max width */
+    height: 40vh; /* Adjust height for mobile */
+    min-height: 280px;
+    margin-bottom: 20px; /* Add margin below graph */
+  }
+
+  .hero-right-content {
+    flex-basis: auto; /* Reset flex basis */
+    width: 95%; /* Take most of the width */
+    max-width: 600px;
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+  }
+
+  .hero-buttons {
+    justify-content: center; /* Center buttons */
+  }
+
+  .hero-subtitle {
+    font-size: 1rem; /* Adjust font size */
+  }
 }
