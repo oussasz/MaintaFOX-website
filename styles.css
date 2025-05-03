@@ -145,18 +145,6 @@ body {
   z-index: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
-.purple-bg {
-  position: absolute;
-  top: 20rem;
-  left: 0;
-  width: 100%;
-  height: 350px;
-  background: #f0f0f0;
-  transform: skewY(-5deg);
-  transform-origin: top left;
-  z-index: -1;
-  opacity: 0.1;
-}
 
 /* --- Loader --- */
 .loader {
@@ -1044,7 +1032,8 @@ section.contact-section-wrapper {
   top: -0.6rem;
   font-size: 0.75rem;
   color: var(--primary-color);
-  background-color: rgba(0, 17, 255, 0.08); /* Match form background */
+  background-color: white;
+  border-radius: 5px; /* Match form background */
   z-index: 3;
 }
 .form .input-container span {
@@ -1485,7 +1474,7 @@ footer ul li a:focus-visible {
     width: 90%;
     max-width: 400px;
     /* FIX: Adjust scale value */
-    transform: scale(0.7);
+    transform: scale(1);
     margin-bottom: 1rem; /* Added margin */
     order: 1;
   }
@@ -1721,10 +1710,6 @@ footer ul li a:focus-visible {
     width: 70vw;
     height: 30vh;
   }
-  .purple-bg {
-    height: 250px;
-    transform: skewY(-3deg);
-  }
 }
 
 /* --- Smaller Mobile Phones (<= 480px) --- */
@@ -1863,4 +1848,20 @@ footer ul li a:focus-visible {
 }
 @keyframes pulse {
   /* ... */
+}
+
+.hero-background-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* يمكنك التعديل حسب ما يناسب الشكل */
+  z-index: 0;
+  pointer-events: none; /* لمنع تداخل مع الماوس */
+}
+
+.hero-background-wave svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
