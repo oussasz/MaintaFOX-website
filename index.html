@@ -1,398 +1,1680 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Maintafox - Revolutionize maintenance management with cutting-edge GMAO software."
-    />
-    <meta
-      name="keywords"
-      content="GMAO, CMMS, maintenance management, Maintafox, software, asset management, preventive maintenance"
-    />
-    <title>Maintafox</title>
+    <title>Maintafox - Algeria's Leading CMMS Solution</title>
+
     <!-- Favicon -->
-    <link rel="icon" href="assets/logo.webp" type="image/png" />
-    <!-- Font Awesome -->
+    <link rel="icon" href="assets/logo.webp" type="image/webp" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration (Keep for CDN usage with custom theme values) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary-light": "#ffffff", // White
+              "secondary-light": "#f8fafc", // Slate 50 (Very Light Gray)
+              "card-light": "#ffffff", // White for cards
+              "accent-orange": "#f97316", // Orange 500 (Primary Accent)
+              "accent-blue": "#3b82f6", // Blue 500 (Secondary Accent)
+              "accent-green": "#10b981", // Emerald 500 (Subtle Accent)
+              "dark-text": "#1f2937", // Gray 800 (Primary Text)
+              "medium-text": "#4b5563", // Gray 600 (Secondary Text)
+              "light-border": "#e5e7eb", // Gray 200 (Borders)
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"], // Using Inter font
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+              "pulse-slow": "pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
-
-    <div class="gradient-background">
-        <div class="gradient-sphere sphere-1"></div>
-        <div class="gradient-sphere sphere-2"></div>
-        <div class="gradient-sphere sphere-3"></div>
-        <div class="glow"></div>
-        <div class="grid-overlay"></div>
-        <div class="noise-overlay"></div>
-        
-    </div>
-    <!-- Loader -->
-    <div class="loader"></div>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
-
-    <header>
-      <nav class="futuristic-nav" aria-label="Main Navigation">
-        <a href="index.html" class="logo">
+  <body class="bg-primary-light text-dark-text">
+    <!-- === Header === -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+      <nav
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center transition-all duration-300 ease-in-out h-[70px]"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-dark-text hover:opacity-80 transition-opacity duration-200 ease-in-out flex items-center gap-2 flex-shrink-0"
+        >
           <img
-            src="assets/logo-white.png"
+            src="assets/logo.png"
             alt="Maintafox Logo"
-            loading="lazy"
+            class="h-8 w-8 object-contain"
           />
-          <span>Maintafox</span>
+          <span class="tracking-tight"
+            >Mainta<span class="text-accent-orange">fox</span></span
+          >
         </a>
-        <!-- Theme toggle removed -->
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#benefits" class="nav-link">Benefits</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li>
+            <a
+              href="demo.html"
+              class="flex justify-center gap-2 items-center mx-auto text-sm bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#3b82f6] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-3 py-1.5 overflow-hidden border-2 rounded-full group"
+              style="font-family: 'Inter', sans-serif"
+            >
+              book a demo
+              <svg
+                class="w-6 h-6 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                viewBox="0 0 16 19"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                  class="fill-gray-800 group-hover:fill-gray-800"
+                ></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Mobile Menu Button -->
         <button
-          class="menu-toggle"
-          aria-label="Toggle navigation"
+          id="mobile-menu-button"
+          class="md:hidden text-dark-text focus:outline-none p-2 -mr-2 relative z-50"
+          aria-label="Toggle menu"
           aria-expanded="false"
         >
-          <i class="fas fa-bars"></i>
           <!-- Hamburger Icon -->
+          <svg
+            id="hamburger-icon"
+            class="w-6 h-6 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+            <!-- Adjusted bottom line -->
+          </svg>
+          <!-- Close Icon (Initially Hidden) -->
+          <svg
+            id="close-icon"
+            class="w-6 h-6 absolute top-2 left-0 opacity-0 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
         </button>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="demo.html">Request a Demo</a></li>
-          <li><a href="#about-main">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
       </nav>
+
+      <!-- Mobile Menu Panel -->
+      <div
+        id="mobile-menu"
+        class="md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-light-border transition-transform duration-300 ease-in-out transform -translate-y-full -z-10 pt-[70px]"
+      >
+        <!-- pt-[70px] to offset for header height -->
+        <ul class="flex flex-col items-center py-8 space-y-6">
+          <li><a href="#features" class="mobile-nav-link">Features</a></li>
+          <li><a href="#benefits" class="mobile-nav-link">Benefits</a></li>
+          <li>
+            <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+          </li>
+          <li><a href="#pricing" class="mobile-nav-link">Pricing</a></li>
+          <li>
+            <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+          </li>
+          <li class="pt-4">
+            <a href="#demo" class="nav-cta-button mobile-cta">
+              Request a Demo
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
+    <!-- === End Header === -->
 
     <main>
+      <!-- === Hero Section === -->
 
-    <!-- Hero Section -->
- <!-- Hero Section -->
-<section class="hero" id="home">
+      <section
+        id="home"
+        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat pt-28 md:pt-24 pb-16 overflow-hidden"
+        style="
+          background-image: linear-gradient(
+              rgba(255, 255, 255, 0.7),
+              rgba(255, 255, 255, 0.7)
+            ),
+            url('assets/BG1.jpg');
+        "
+      >
+        <div class="container mx-auto px-6 text-center">
+          <!-- Algerian Origin Badge -->
+          <div class="mb-4 animate-on-scroll animate-fade-in-up">
+            <span
+              class="inline-flex items-center gap-x-1.5 rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-accent-orange ring-1 ring-inset ring-orange-300"
+            >
+              <svg class="h-1.5 w-1.5 fill-blue-500 animate-led-pulse">
+                viewBox="0 0 6 6" aria-hidden="true" >
+                <circle cx="3" cy="3" r="3" />
+              </svg>
+              Algeria's First Locally Developed CMMS Solution
+            </span>
+          </div>
 
-    <!-- === Column 1: Graph === -->
-    <div class="laptop">
-      <div class="screen">
-        <div class="laptop-header"></div>
-      </div>
-      <div class="keyboard"></div>
-    </div>
-
-    <!-- === Column 2: Text and Buttons (NEW CONTAINER) === -->
-    <div class="hero-right-content">
-        <!-- Text -->
-        <div class="hero-text-content">
-            <h1 class="hero-title">Take Control of Your Maintenance</h1>
-            <p class="hero-subtitle">
-                Streamline your operations, reduce downtime, and unlock full
-                equipment efficiency — all in one platform.
-            </p>
-        </div>
-        <!-- Buttons -->
-        <div class="hero-buttons">
-            <a href="demo.html" class="cta-button">
-                <span>Request a Demo</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="forme.html" class="survey-button" target="_blank" rel="noopener noreferrer">
-                <span>Take a Quick Survey</span>
-                <i class="fas fa-poll"></i>
-            </a>
-        </div>
-    </div>
-    <!-- === End Column 2 === -->
-<div class="hero-background-wave">
-  <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-    <path fill="#0e0e2c" fill-opacity="1"
-      d="M0,160L60,154.7C120,149,240,139,360,138.7C480,139,600,149,720,154.7C840,160,960,160,1080,170.7C1200,181,1320,203,1380,213.3L1440,224L1440,320L0,320Z">
-    </path>
-  </svg>
-</div>
-
-
-</section>
-
-<!-- End Hero Section -->
-
-      <!-- Features Preview Section -->
-
-<section class="features-section">
-  <h1>Our Core Features</h1>
-  <p>Unleash the full potential of your maintenance operations with Maintafox.</p>
-
-<!-- الحاوية التي تجمع كل البطاقات -->
-<div class="card-wrapper">
-  <div class="feature-card">
-    <div class="icon-placeholder">
-      <img src="assets/PR5.png" alt="Icon" />
-    </div>
-    <h3>Asset Management</h3>
-    <p class="description">
-      Gain visibility and control over all your company assets, from machinery to facilities.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <div class="icon-placeholder">
-      <img src="assets/PR3.png" alt="Icon" />
-    </div>
-    <h3>Maintenance Scheduling</h3>
-    <p class="description">
-      Smart preventive and predictive maintenance scheduling to reduce downtime.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <div class="icon-placeholder">
-      <img src="assets/PR4.png" alt="Icon" />
-    </div>
-    <h3>Work Orders</h3>
-    <p class="description">
-      Streamline requests, assignments, and progress tracking effortlessly.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <div class="icon-placeholder">
-      <img src="assets/PR5.png" alt="Icon" />
-    </div>
-    <h3>Inventory</h3>
-    <p class="description">
-      Track parts, manage stock, and link inventory to assets and suppliers.
-    </p>
-  </div>
-
-  <div class="feature-card">
-    <div class="icon-placeholder">
-      <img src="assets/PR1.png" alt="Icon" />
-    </div>
-    <h3>Analytics</h3>
-    <p class="description">
-      Generate KPIs and reports to drive performance and strategic planning.
-    </p>
-  </div>
-</div>
-
-</section>
-
-
-
-<div class="about" id="about-main" data-scroll-section>
-    <div class="aboutglow"></div>
-    <div class="aboutborderglow"></div>
-    <div class="abouttitle">About Maintafox</div>
-    <div class="aboutbody"><p class="about-subtitle">
-          Pioneering the future of maintenance management with innovative
-          GMAO/CMMS solutions.
-        </p>
-        <div class="about-content">
-          <p>
-            Our mission is to empower businesses with cutting-edge technology
-            that streamlines maintenance operations, boosts productivity, and
-            maximizes asset lifespan. We believe that efficient maintenance is
-            the cornerstone of operational excellence.
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-dark-text leading-tight mb-4 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            Stop Fighting Fires. <br class="hidden md:block" />
+            <span class="text-accent-blue">Start Optimizing Maintenance.</span>
+          </h1>
+          <p
+            class="text-lg md:text-xl text-medium-text max-w-3xl mx-auto mb-8 lg:mb-0 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.3s"
+          >
+            Maintafox is the intelligent, locally-supported CMMS. Simplify
+            workflows, predict failures, and maximize your operational uptime.
           </p>
-          <p>
-            Founded on the principle that data drives efficiency, Maintafox
-            delivers real-time insights and intelligent automation to keep your
-            critical assets performing optimally. We combine deep industry
-            knowledge with advanced software engineering to create a platform
-            that is powerful, intuitive, and adaptable to your unique needs.
-          </p></div>
-    </div>
-</div>
 
+          <!-- Laptop Animation Container -->
+          <div
+            class="laptop animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.5s"
+          >
+            <div class="screen">
+              <div class="laptop-header"></div>
+            </div>
+            <div class="keyboard"></div>
+          </div>
 
-
-        <!-- Optional Team Section Placeholder -->
-        <!--
-             <div class="team-section">
-                 <h2>Our Team</h2>
-                 <p>Meet the passionate individuals driving Maintafox forward.</p>
-                 <div class="team-grid"> -->
-        <!-- Add team member cards here -->
-        <!-- </div>
-             </div>
-             -->
+          <!-- CTA Buttons -->
+          <div class="hero-buttons">
+            <a href="demo.html" class="cta-button">
+              <span>Request a Demo</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a
+              href="forme.html"
+              class="survey-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Take a Quick Survey</span>
+              <i class="fas fa-poll"></i>
+            </a>
+          </div>
+        </div>
       </section>
 
-      <!-- Timeline with Future Highlights -->
-      <section class="timeline" id="journey" data-scroll-section>
-        <h2>Our Journey</h2>
-        <div class="timeline-container">
-          <div class="timeline-item" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>2023 - Birth of VibraFox</h3>
-              <p>
-                The idea began as VibraFox, a vibration analysis software for
-                industrial rotating equipment, aiming to enhance predictive
-                maintenance.
+      <!-- === Problem/Solution Section === -->
+      <section id="problem" class="py-16 md:py-24 bg-secondary-light">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-dark-text mb-12 animate-on-scroll animate-fade-in-up"
+          >
+            Is Reactive Maintenance Holding You Back?
+          </h2>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16"
+          >
+            <!-- Pain Point Card 1: Unexpected Downtime -->
+            <div class="pain-point-card animate-on-scroll animate-fade-in-up">
+              <div class="pain-point-icon-wrapper">
+                <svg
+                  class="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-orange-800 mb-2 mt-3">
+                Unexpected Downtime
+              </h3>
+              <p class="text-sm text-orange-700">
+                Costly interruptions disrupt production and hurt your bottom
+                line.
+              </p>
+            </div>
+
+            <!-- Pain Point Card 2: Complex Scheduling -->
+            <div
+              class="pain-point-card animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.1s"
+            >
+              <div class="pain-point-icon-wrapper">
+                <svg
+                  class="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-orange-800 mb-2 mt-3">
+                Complex Scheduling
+              </h3>
+              <p class="text-sm text-orange-700">
+                Lost work orders and inefficient planning lead to chaos.
+              </p>
+            </div>
+
+            <!-- Pain Point Card 3: Lack of Data Insights -->
+            <div
+              class="pain-point-card animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.2s"
+            >
+              <div class="pain-point-icon-wrapper">
+                <svg
+                  class="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-orange-800 mb-2 mt-3">
+                Lack of Data Insights
+              </h3>
+              <p class="text-sm text-orange-700">
+                Difficulty tracking KPIs and making informed decisions.
+              </p>
+            </div>
+
+            <!-- Pain Point Card 4: Inefficient Inventory -->
+            <div
+              class="pain-point-card animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.3s"
+            >
+              <div class="pain-point-icon-wrapper">
+                <svg
+                  class="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-orange-800 mb-2 mt-3">
+                Inefficient Inventory
+              </h3>
+              <p class="text-sm text-orange-700">
+                Stockouts or overstocking waste time and money.
               </p>
             </div>
           </div>
 
-          <div class="timeline-item" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>2024 - Recognized as an Innovative Project</h3>
-              <p>
-                The project received the “Innovative Project” label from the
-                Ministry of Knowledge Economy and Startups, validating its
-                potential impact.
-              </p>
-            </div>
+          <div class="text-center my-12 animate-on-scroll animate-fade-in-up">
+            <hr class="w-24 mx-auto border-t-2 border-accent-blue mb-4" />
+            <p class="text-xl font-semibold text-dark-text">
+              There's a Smarter Way.
+            </p>
           </div>
 
-          <div class="timeline-item" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>2025 - Evolution into MaintaFox</h3>
-              <p>
-                The concept evolved into MaintaFox, transforming from a
-                vibration analysis tool into a fully integrated CMMS
-                (Computerized Maintenance Management System).
-              </p>
-            </div>
-          </div>
+          <div
+            class="max-w-3xl mx-auto text-center animate-on-scroll animate-fade-in-up"
+          >
+            <h2 class="text-3xl font-bold text-dark-text mb-4">
+              Meet Mainta<span class="text-accent-orange">fox</span>: Your
+              Proactive Maintenance Partner
+            </h2>
+            <p class="text-lg text-medium-text mb-10">
+              Maintafox centralizes your maintenance operations with a locally
+              installed and supported solution. Automate tasks, gain real-time
+              visibility, and shift from reactive fixes to proactive strategies.
+            </p>
 
-          <div class="timeline-item future" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>June 1, 2025 - Official Launch</h3>
-              <p>
-                The first official version of MaintaFox will be released,
-                providing advanced maintenance management solutions for
-                industries worldwide.
-              </p>
-            </div>
-          </div>
+            <!-- CSS Diagram: Chaos to Order -->
+            <!-- === Enhanced CMMS Impact Visualization === -->
+            <div
+              class="cmms-impact-container max-w-4xl mx-auto mt-10 mb-12 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.3s"
+            >
+              <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+                <!-- BEFORE Panel -->
+                <div
+                  class="impact-panel before-panel flex-1 bg-white border border-gray-200 rounded-lg p-6 shadow-md text-center relative overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-lg"
+                >
+                  <h4
+                    class="panel-title text-red-700 font-semibold mb-5 text-sm uppercase tracking-widest border-b border-red-200 pb-2"
+                  >
+                    Before Maintafox
+                  </h4>
+                  <!-- Chart Area -->
+                  <div
+                    class="chart-area relative h-32 flex items-end justify-around gap-1.5 mb-6 px-2 flex-grow-0"
+                  >
+                    <!-- Grid Background -->
+                    <div class="chart-grid"></div>
+                    <!-- Jagged Bars -->
+                    <div
+                      class="bar h-[65%] w-3 bg-gradient-to-t from-red-300 to-red-400 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar h-[85%] w-3 bg-gradient-to-t from-red-400 to-red-500 rounded-t-sm bar-pulse"
+                    ></div>
+                    <div
+                      class="bar h-[55%] w-3 bg-gradient-to-t from-red-300 to-red-400 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar h-[95%] w-3 bg-gradient-to-t from-red-400 to-red-500 rounded-t-sm bar-pulse"
+                    ></div>
+                    <div
+                      class="bar h-[75%] w-3 bg-gradient-to-t from-red-300 to-red-400 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar h-[60%] w-3 bg-gradient-to-t from-red-400 to-red-500 rounded-t-sm bar-pulse"
+                    ></div>
+                  </div>
+                  <!-- Stats Area -->
+                  <div class="stats-area mt-auto space-y-4 pt-4">
+                    <div class="stat-item">
+                      <div
+                        class="flex items-center justify-center text-red-600 mb-1"
+                      >
+                        <svg
+                          class="w-5 h-5 mr-2 flex-shrink-0 opacity-80"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                          />
+                        </svg>
+                        <span
+                          class="stat-value-number font-bold text-2xl text-red-700"
+                          >~28%</span
+                        >
+                      </div>
+                      <span
+                        class="stat-description block text-xs text-medium-text"
+                        >Unplanned Equipment Downtime</span
+                      >
+                    </div>
+                    <div class="stat-item">
+                      <div
+                        class="flex items-center justify-center text-red-600 mb-1"
+                      >
+                        <svg
+                          class="w-5 h-5 mr-2 flex-shrink-0 opacity-80"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
+                          />
+                        </svg>
+                        <span
+                          class="stat-value-number font-bold text-2xl text-red-700"
+                          >~15-20%</span
+                        >
+                      </div>
+                      <span
+                        class="stat-description block text-xs text-medium-text"
+                        >Reactive Maintenance Costs</span
+                      >
+                    </div>
+                  </div>
+                </div>
 
-          <div class="timeline-item future" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>2026 - AI-Powered Predictive Maintenance</h3>
-              <p>
-                MaintaFox will integrate AI-driven predictive maintenance
-                features, leveraging machine learning to optimize asset
-                performance and reduce downtime.
-              </p>
-            </div>
-          </div>
+                <!-- Transition Arrow -->
+                <div
+                  class="flex items-center justify-center my-4 lg:my-0 mx-auto lg:mx-0"
+                >
+                  <div
+                    class="bg-gradient-to-r from-blue-500 to-blue-700 p-2 rounded-full shadow-md"
+                  >
+                    <svg
+                      class="w-6 h-6 lg:w-8 lg:h-8 text-white transform lg:rotate-0 rotate-90"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
 
-          <div class="timeline-item future" data-scroll-item>
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>2028 - Expansion into Global Markets</h3>
-              <p>
-                MaintaFox plans to expand internationally, forming partnerships
-                with major industrial clients and setting new standards in
-                maintenance technology.
+                <!-- AFTER Panel -->
+                <div
+                  class="impact-panel after-panel flex-1 bg-white border border-gray-200 rounded-lg p-6 shadow-md text-center relative overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-lg hover:border-green-300"
+                >
+                  <h4
+                    class="panel-title text-green-700 font-semibold mb-5 text-sm uppercase tracking-widest border-b border-green-200 pb-2"
+                  >
+                    After Implementing Mainta<span class="text-accent-orange"
+                      >fox</span
+                    >
+                  </h4>
+                  <!-- Chart Area -->
+                  <div
+                    class="chart-area relative h-32 flex items-end justify-around gap-1.5 mb-6 px-2 flex-grow-0"
+                  >
+                    <!-- Grid Background -->
+                    <div class="chart-grid"></div>
+                    <!-- Stable Bars with Data Points -->
+                    <div
+                      class="bar data-point h-[30%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar data-point h-[28%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar data-point h-[32%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar data-point h-[29%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar data-point h-[31%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                    <div
+                      class="bar data-point h-[30%] w-3 bg-gradient-to-t from-green-400 to-green-500 rounded-t-sm"
+                    ></div>
+                  </div>
+                  <!-- Stats Area -->
+                  <div class="stats-area mt-auto space-y-4 pt-4">
+                    <div class="stat-item">
+                      <div
+                        class="flex items-center justify-center text-green-600 mb-1"
+                      >
+                        <svg
+                          class="w-5 h-5 mr-2 flex-shrink-0 opacity-80"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                          />
+                          <!-- Arrow Down Simple -->
+                        </svg>
+                        <span
+                          class="stat-value-number font-bold text-2xl text-green-700"
+                          >~75%</span
+                        >
+                      </div>
+                      <span
+                        class="stat-description block text-xs text-medium-text"
+                        >Reduction in Unplanned Downtime</span
+                      >
+                    </div>
+                    <div class="stat-item">
+                      <div
+                        class="flex items-center justify-center text-green-600 mb-1"
+                      >
+                        <svg
+                          class="w-5 h-5 mr-2 flex-shrink-0 opacity-80"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.75A.75.75 0 0 1 3 4.5h.75m-1.5 0A.75.75 0 0 0 3 3.75h.75A3.75 3.75 0 0 1 7.5 0v1.5M3.75 16.5v1.5a60.069 60.069 0 0 1-1.797 2.101c-.727.198-1.453-.342-1.453-1.096V16.5m19.5 0v1.5a60.069 60.069 0 0 0-1.797 2.101c-.727.198-1.453-.342-1.453-1.096V16.5m0 0h.75a.75.75 0 0 1 .75.75v.75h-.75a.75.75 0 0 1-.75-.75V16.5m-1.5 0A.75.75 0 0 0 21 15.75h-.75a3.75 3.75 0 0 1-3.75-3.75V9m-9 12V9a3.75 3.75 0 0 0-3.75-3.75H5.25V3.75A3.75 3.75 0 0 1 9 0v1.5"
+                          />
+                          <!-- Wrench/Settings like -->
+                        </svg>
+                        <span
+                          class="stat-value-number font-bold text-2xl text-green-700"
+                          >~20%</span
+                        >
+                      </div>
+                      <span
+                        class="stat-description block text-xs text-medium-text"
+                        >Improvement in Maint. Efficiency</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-center text-xs text-gray-400 mt-6">
+                * Statistics represent typical results observed by CMMS users.
               </p>
             </div>
+            <!-- === End Enhanced CMMS Impact Visualization === -->
+            <!-- End CSS Diagram -->
           </div>
         </div>
+      </section>
 
-        <!-- Optional Map Placeholder -->
-        <!--
-             <div class="map" data-scroll-section>
-                 <h2>Our Location</h2>
-                 <iframe src="YOUR_GOOGLE_MAPS_EMBED_LINK" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-             </div>
-             -->
- <div class="form">
-        <div class="contact-info">
-          <!-- Title encouraging connection -->
-          <h3 class="title">Let's Connect</h3>
-          <!-- Text explaining purpose or inviting questions -->
-          <p class="text">
-            Have questions about streamlining your maintenance operations with our CMMS platform? Or need support? 
+      <!-- === Key Features Section === -->
+      <section id="features" class="py-16 md:py-24 bg-primary-light">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-dark-text mb-4 animate-on-scroll animate-fade-in-up"
+          >
+            Powerful Features, Intuitively Designed
+          </h2>
+          <p
+            class="text-lg text-center text-medium-text mb-12 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            Everything you need to manage maintenance effectively.
           </p>
 
-          <div class="info">
-            <!-- Placeholder Business Address -->
-
-<div class="information">
-  <i class="fas fa-map-marker-alt icon"></i>
-  <p>Targa Ouzemour, Bejaia, Bejaia, Algeria</p>
-</div>
-
-<div class="information">
-  <i class="fas fa-envelope icon"></i>
-  <p>contact@maintafox.systems</p>
-</div>
-
-<div class="information">
-  <i class="fas fa-phone icon"></i>
-  <p>+231 (540) 537-886</p>
-</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature Card -->
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.2s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Work Order Management
+              </h3>
+              <p class="text-medium-text">
+                Effortlessly create, assign, track, and close work orders –
+                digital, accessible, accountable.
+              </p>
+            </div>
+            <!-- Repeat for other features with increasing animation-delay -->
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.3s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Preventive Maintenance
+              </h3>
+              <p class="text-medium-text">
+                Automate PM scheduling based on time, usage, or condition to
+                prevent failures before they happen.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.4s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Asset Tracking & History
+              </h3>
+              <p class="text-medium-text">
+                Centralize asset information, maintenance logs, documentation,
+                and costs in one place.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.5s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Inventory Control
+              </h3>
+              <p class="text-medium-text">
+                Manage spare parts, track usage, set reorder points, and reduce
+                stockouts effectively.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.6s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Reporting & Analytics
+              </h3>
+              <p class="text-medium-text">
+                Customizable dashboards and reports for data-driven decisions on
+                costs, labor, and performance.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-8 rounded-lg shadow-lg hover:shadow-xl border border-light-border hover:border-accent-blue/30 transition duration-300 transform hover:-translate-y-1 animate-on-scroll animate-fade-in-up ease-in-out"
+              style="animation-delay: 0.7s"
+            >
+              <svg
+                class="w-10 h-10 mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                Mobile CMMS App
+              </h3>
+              <p class="text-medium-text">
+                Empower technicians with on-the-go access to work orders, asset
+                data, and reporting.
+              </p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="contact-form">
-          <!-- Make sure the action attribute points to your form handler -->
-          <form action="your-form-handler-endpoint" method="POST" autocomplete="off">
-            <h3 class="title">Contact Us</h3>
-            <!-- Changed Username to Name -->
-            <div class="input-container">
-              <input type="text" name="name" class="input" required /> <!-- Added required attribute -->
-              <label for="">Name</label>
-              <span>Name</span>
+      <!-- === Benefits Section === -->
+      <section id="benefits" class="py-16 md:py-24 bg-secondary-light">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-dark-text mb-12 animate-on-scroll animate-fade-in-up"
+          >
+            Unlock Tangible Results with Mainta<span class="text-accent-orange"
+              >fox</span
+            >
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+          >
+            <!-- Benefit Item -->
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.1s"
+            >
+              <div class="flex-shrink-0 bg-orange-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Reduce Downtime
+                </h4>
+                <p class="text-medium-text">
+                  Minimize costly interruptions and maximize asset availability
+                  through proactive maintenance.
+                </p>
+              </div>
             </div>
-            <div class="input-container">
-              <input type="email" name="email" class="input" required /> <!-- Added required attribute -->
-              <label for="">Email</label>
-              <span>Email</span>
+            <!-- Repeat for other benefits with increasing animation-delay -->
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.2s"
+            >
+              <div class="flex-shrink-0 bg-orange-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Boost Productivity
+                </h4>
+                <p class="text-medium-text">
+                  Streamline workflows, simplify tasks, and improve overall
+                  technician efficiency.
+                </p>
+              </div>
             </div>
-            <!-- Phone might be optional, so no 'required' unless necessary -->
-            <div class="input-container">
-              <input type="tel" name="phone" class="input" />
-              <label for="">Phone</label>
-              <span>Phone</span>
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.3s"
+            >
+              <div class="flex-shrink-0 bg-orange-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Lower Maintenance Costs
+                </h4>
+                <p class="text-medium-text">
+                  Optimize resource allocation, reduce waste, and control spare
+                  parts spending.
+                </p>
+              </div>
             </div>
-            <div class="input-container textarea">
-              <!-- Changed label/span for clarity -->
-              <textarea name="message" class="input" required></textarea> <!-- Added required attribute -->
-              <label for="">Your Message</label>
-              <span>Your Message</span>
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.4s"
+            >
+              <div class="flex-shrink-0 bg-blue-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Enhance Safety & Compliance
+                </h4>
+                <p class="text-medium-text">
+                  Easily manage safety procedures, track compliance tasks, and
+                  maintain audit trails.
+                </p>
+              </div>
             </div>
-            <!-- Changed button text -->
-            <input type="submit" value="Send Message" class="contact-btn" />
-          </form>
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.5s"
+            >
+              <div class="flex-shrink-0 bg-blue-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Improve Decision Making
+                </h4>
+                <p class="text-medium-text">
+                  Leverage real-time data and insightful analytics for strategic
+                  maintenance planning.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-start space-x-4 animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.6s"
+            >
+              <div class="flex-shrink-0 bg-blue-100 p-3 rounded-full">
+                <svg
+                  class="w-7 h-7 text-accent-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-dark-text mb-1">
+                  Dedicated Local Support
+                </h4>
+                <p class="text-medium-text">
+                  Benefit from responsive, accessible support based right here
+                  in Algeria.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- === How It Works Section === -->
+      <section id="how-it-works" class="py-16 md:py-24 bg-primary-light">
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-dark-text mb-12 animate-on-scroll animate-fade-in-up"
+          >
+            Our On-Premise Implementation Process
+          </h2>
+          <p
+            class="text-lg text-center text-medium-text mb-16 max-w-3xl mx-auto animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            We provide a complete, hands-on approach to get Maintafox running
+            optimally within your organization, ensuring data security and
+            tailored performance.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 relative"
+          >
+            <!-- Connecting lines -->
+            <div
+              class="hidden md:block absolute top-12 left-0 right-0 h-0.5 border-t-2 border-dashed border-accent-blue/30 mt-1"
+              style="
+                margin-left: calc(16.66% + 1rem);
+                margin-right: calc(16.66% + 1rem);
+                z-index: 0;
+              "
+            ></div>
+
+            <!-- Step Item -->
+            <div
+              class="relative text-center animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.2s"
+            >
+              <div
+                class="relative z-10 inline-block bg-accent-blue text-white p-4 rounded-full mb-5 ring-4 ring-white shadow-md"
+              >
+                <svg
+                  class="w-9 h-9"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                1. On-Premise Installation
+              </h3>
+              <p class="text-medium-text">
+                We install Maintafox directly onto a dedicated server within
+                your company's infrastructure, ensuring maximum data control and
+                security.
+              </p>
+            </div>
+            <!-- Repeat Step Items -->
+            <div
+              class="relative text-center animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.3s"
+            >
+              <div
+                class="relative z-10 inline-block bg-accent-blue text-white p-4 rounded-full mb-5 ring-4 ring-white shadow-md"
+              >
+                <svg
+                  class="w-9 h-9"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                2. Data Migration & Setup
+              </h3>
+              <p class="text-medium-text">
+                Our team works with you to securely import your existing
+                maintenance data or transfer it smoothly from your previous
+                systems into Maintafox.
+              </p>
+            </div>
+            <div
+              class="relative text-center animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.4s"
+            >
+              <div
+                class="relative z-10 inline-block bg-accent-blue text-white p-4 rounded-full mb-5 ring-4 ring-white shadow-md"
+              >
+                <svg
+                  class="w-9 h-9"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-dark-text mb-2">
+                3. Training & Local Support
+              </h3>
+              <p class="text-medium-text">
+                We provide specialized training for your company’s staff in
+                CMMS, with a focus on effectively using Maintafox, to empower
+                your teams with the skills they need
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === Target Audience / Use Cases Section === -->
+      <section id="use-cases" class="py-16 md:py-24 bg-secondary-light">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-dark-text mb-4 animate-on-scroll animate-fade-in-up"
+          >
+            The Right Fit For Your Industry
+          </h2>
+          <p
+            class="text-lg text-center text-medium-text mb-12 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            Maintafox adapts to the unique demands of various industrial
+            environments in Algeria and beyond.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Use Case Card -->
+            <div
+              class="bg-card-light p-6 rounded-lg text-center shadow-md border border-light-border hover:shadow-lg transition duration-300 ease-in-out animate-on-scroll animate-fade-in-up transform hover:scale-[1.02]"
+            >
+              <svg
+                class="w-12 h-12 mx-auto mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+              <h4 class="text-lg font-semibold text-dark-text mb-2">
+                Manufacturing
+              </h4>
+              <p class="text-sm text-medium-text">
+                Optimize production line uptime, manage complex machinery, and
+                track MRO inventory.
+              </p>
+            </div>
+            <!-- Repeat Use Case Cards -->
+            <div
+              class="bg-card-light p-6 rounded-lg text-center shadow-md border border-light-border hover:shadow-lg transition duration-300 ease-in-out animate-on-scroll animate-fade-in-up transform hover:scale-[1.02]"
+              style="animation-delay: 0.1s"
+            >
+              <svg
+                class="w-12 h-12 mx-auto mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+                <!-- Different Icon -->
+              </svg>
+              <h4 class="text-lg font-semibold text-dark-text mb-2">
+                Facilities Management
+              </h4>
+              <p class="text-sm text-medium-text">
+                Maintain buildings, HVAC, plumbing, and electrical systems
+                efficiently across sites.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-6 rounded-lg text-center shadow-md border border-light-border hover:shadow-lg transition duration-300 ease-in-out animate-on-scroll animate-fade-in-up transform hover:scale-[1.02]"
+              style="animation-delay: 0.2s"
+            >
+              <svg
+                class="w-12 h-12 mx-auto mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+              <h4 class="text-lg font-semibold text-dark-text mb-2">
+                Energy & Utilities
+              </h4>
+              <p class="text-sm text-medium-text">
+                Ensure reliability, manage critical infrastructure, and meet
+                stringent compliance standards.
+              </p>
+            </div>
+            <div
+              class="bg-card-light p-6 rounded-lg text-center shadow-md border border-light-border hover:shadow-lg transition duration-300 ease-in-out animate-on-scroll animate-fade-in-up transform hover:scale-[1.02]"
+              style="animation-delay: 0.3s"
+            >
+              <svg
+                class="w-12 h-12 mx-auto mb-4 text-accent-blue"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10h10m0-10l4 6h3l-4-6z"
+                ></path>
+              </svg>
+              <h4 class="text-lg font-semibold text-dark-text mb-2">
+                Fleet & Equipment
+              </h4>
+              <p class="text-sm text-medium-text">
+                Schedule vehicle maintenance, track usage, manage parts, and
+                ensure operational readiness.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === About Us & Timeline Section === -->
+      <section
+        class="about-us-timeline py-16 md:py-24 bg-secondary-light"
+        id="about"
+        data-scroll-section
+      >
+        <div class="container mx-auto px-4 sm:px-6">
+          <!-- About Us Introduction -->
+          <div
+            class="about-intro max-w-3xl mx-auto text-center mb-12 md:mb-16 animate-on-scroll animate-fade-in-up"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-4">
+              About Mainta<span class="text-accent-orange">fox</span>
+            </h2>
+            <p class="about-subtitle text-lg md:text-xl text-medium-text mb-6">
+              Pioneering the future of maintenance management with innovative,
+              locally-supported CMMS solutions.
+            </p>
+            <div
+              class="about-content text-base text-medium-text space-y-4 text-left md:text-center"
+            >
+              <p>
+                Our mission is to empower Algerian businesses with cutting-edge
+                technology that streamlines maintenance operations, boosts
+                productivity, and maximizes asset lifespan. We believe that
+                efficient maintenance is the cornerstone of operational
+                excellence.
+              </p>
+              <p>
+                Founded on the principle that data drives efficiency, Maintafox
+                delivers real-time insights and intelligent automation to keep
+                your critical assets performing optimally. We combine deep
+                industry knowledge with advanced software engineering to create
+                a platform that is powerful, intuitive, and adaptable to your
+                unique needs, backed by dedicated local support.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Container -->
+          <div
+            class="timeline-container relative max-w-3xl mx-auto animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.2s"
+          >
+            <!-- The Vertical Line (Styled via CSS ::before) -->
+
+            <div class="timeline-item" data-scroll>
+              <!-- Removed data-scroll-item if not used -->
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2023 - Birth of VibraFox</h3>
+                <p>
+                  The idea began as VibraFox, a vibration analysis software for
+                  industrial rotating equipment, aiming to enhance predictive
+                  maintenance.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item" data-scroll>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2024 - Recognized as an Innovative Project</h3>
+                <p>
+                  The project received the “Innovative Project” label from the
+                  Ministry of Knowledge Economy and Startups, validating its
+                  potential impact in Algeria.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item" data-scroll>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2025 - Evolution into MaintaFox</h3>
+                <p>
+                  The concept evolved into MaintaFox, transforming from a
+                  specialized tool into a fully integrated CMMS tailored for
+                  local industry needs.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item future" data-scroll>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>June 1, 2025 - Official Launch</h3>
+                <p>
+                  The first official version of MaintaFox will be released,
+                  providing advanced, locally-supported maintenance management
+                  solutions.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item future" data-scroll>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2026 - AI-Powered Predictive Maintenance</h3>
+                <p>
+                  MaintaFox plans to integrate AI-driven predictive maintenance
+                  features, leveraging machine learning to further optimize
+                  asset performance.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item future" data-scroll>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2028 - Expansion & Partnerships</h3>
+                <p>
+                  Focusing on expanding within Algeria and potentially forming
+                  partnerships to enhance the ecosystem of maintenance
+                  technology.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- End timeline-container -->
+        </div>
+        <!-- End container -->
+      </section>
+      <!-- === End About Us & Timeline Section === -->
+
+      <!-- === Pricing Section === -->
+      <section id="pricing" class="py-16 md:py-24 bg-secondary-light">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-dark-text mb-4 animate-on-scroll animate-fade-in-up"
+          >
+            Tailored Solutions & Pricing
+          </h2>
+          <p
+            class="text-lg text-medium-text mb-10 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            Get a plan designed for your specific operational needs.
+          </p>
+
+          <div
+            class="bg-card-light p-10 rounded-lg shadow-xl border border-light-border animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.2s"
+          >
+            <svg
+              class="w-16 h-16 mx-auto mb-6 text-accent-blue"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <p class="text-xl text-dark-text mb-6">
+              Our on-premise solution is customized for your environment.
+              Pricing depends on your team size, asset count, and specific
+              feature requirements.
+            </p>
+            <p class="text-medium-text mb-8">
+              Contact us to discuss your needs and receive a personalized quote.
+            </p>
+            <a
+              href="#demo"
+              class="bg-accent-orange text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-orange-600 transition duration-300 transform hover:scale-105 inline-block shadow-md hover:shadow-lg ease-in-out"
+            >
+              Request Custom Pricing
+            </a>
+            <p class="text-sm text-gray-500 mt-4">
+              Includes full installation, data migration & ongoing local
+              support.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- === Final Call to Action (CTA) Section === -->
+      <section
+        id="demo"
+        class="py-16 md:py-24 bg-gradient-to-r from-blue-50 via-white to-orange-50"
+      >
+        <div class="container mx-auto px-6 text-center">
+          <h2
+            class="text-3xl md:text-5xl font-extrabold text-dark-text leading-tight mb-6 animate-on-scroll animate-fade-in-up"
+          >
+            Ready to Optimize Your Maintenance with Local Expertise?
+          </h2>
+          <p
+            class="text-lg md:text-xl text-medium-text max-w-3xl mx-auto mb-10 animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.2s"
+          >
+            See Maintafox in action. Schedule a personalized demo today and
+            discover how Algeria's leading CMMS can increase efficiency, reduce
+            costs, and give you complete control.
+          </p>
+          <div
+            class="animate-on-scroll animate-fade-in-up"
+            style="animation-delay: 0.4s"
+          >
+            <a
+              href="#"
+              class="bg-accent-orange text-white px-10 py-4 rounded-md text-xl font-bold hover:bg-orange-600 transition duration-300 transform hover:scale-105 inline-block shadow-lg hover:shadow-xl animate-pulse-slow ease-in-out"
+            >
+              Schedule Your Free Demo Now
+            </a>
+            <p
+              class="mt-6 text-medium-text animate-on-scroll animate-fade-in-up"
+              style="animation-delay: 0.6s"
+            >
+              Have questions?
+              <a
+                href="#footer"
+                class="text-accent-blue hover:underline font-semibold"
+                >Contact our team</a
+              >.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
 
-    <div id="footer"></div>
+    <!-- === Footer === -->
+    <footer
+      id="footer"
+      class="bg-secondary-light border-t border-light-border py-12"
+    >
+      <div class="container mx-auto px-6">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-medium-text text-sm"
+        >
+          <!-- Column 1: Logo & Copyright -->
+          <div class="mb-6 md:mb-0">
+            <a
+              href="#home"
+              class="text-2xl font-bold text-dark-text hover:text-accent-blue transition duration-200 ease-in-out mb-2 block"
+            >
+              Mainta<span class="text-accent-orange">fox</span>
+            </a>
+            <p class="mb-2">Algeria's Intelligent CMMS Solution.</p>
+            <p class="text-xs">© 2024 Maintafox. All rights reserved.</p>
+          </div>
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.0/dist/3d-force-graph.min.js"></script>
-        <!-- Include necessary libraries -->
-    <script src="//unpkg.com/three"></script>
-    <script src="//unpkg.com/three/examples/js/controls/OrbitControls.js"></script>
-    <script src="//unpkg.com/force-graph-3d"></script>
-    <!-- Vanilla Tilt JS -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
-      integrity="sha512-VvkEU+wPY1rcLR8w5jPKQG3MWXLFVpkEfuKx257mbtF0H0Q71HQx2oTVRoxb6l/A5kELFW4EBbGYbpkbwVbU4PQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <!-- Custom Script -->
-    <script src="script.js"></script>
-    </body>
+          <!-- Column 2: Quick Links -->
+          <div>
+            <h5 class="text-lg font-semibold text-dark-text mb-4">
+              Quick Links
+            </h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#features"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#benefits"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Benefits</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#how-it-works"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >How It Works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#pricing"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Testimonials</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#demo"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Request Demo</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Legal -->
+          <div>
+            <h5 class="text-lg font-semibold text-dark-text mb-4">Legal</h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms-of-service.html"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Contact -->
+          <div>
+            <h5 class="text-lg font-semibold text-dark-text mb-4">
+              Contact Us (Algeria)
+            </h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="mailto:sales.dz@maintafox.com"
+                  class="hover:text-dark-text transition duration-200 ease-in-out block break-words"
+                  >sales.dz@maintafox.com</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tel:+213xxxxxxxxx"
+                  class="hover:text-dark-text transition duration-200 ease-in-out"
+                  >+213 (XXX) XXX-XXX</a
+                >
+              </li>
+              <!-- Add Real Phone -->
+              <!-- Social Icons -->
+              <li class="flex space-x-4 pt-2">
+                <a
+                  href="#"
+                  class="text-gray-500 hover:text-dark-text transition duration-200 ease-in-out"
+                  aria-label="Maintafox on Facebook"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-500 hover:text-dark-text transition duration-200 ease-in-out"
+                  aria-label="Maintafox on LinkedIn"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.498 9.763H6.5v-8.59H3.507v8.59zM17.668 1H6.328C5.051 1 4 2.051 4 3.328v17.344C4 21.948 5.051 23 6.328 23h11.34C18.948 23 20 21.948 20 20.672V3.328C20 2.051 18.948 1 17.668 1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+                <!-- Add other relevant social links -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Link External JavaScript -->
+    <script src="js/script.js" defer></script>
+  </body>
 </html>

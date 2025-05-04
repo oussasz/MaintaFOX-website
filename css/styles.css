@@ -1,0 +1,1032 @@
+:root {
+  --primary-color: #3b82f6; /* Bright Blue */
+  --primary-darker: #2c60b3;
+  --secondary-color: #e0a556; /* Teal Accent */
+  --background-dark: #121212; /* Very Dark Gray */
+  --background-medium: #1e1e1e; /* Medium Dark Gray */
+  --background-light: #2a2a2a; /* Lighter Dark Gray */
+  --text-light: #f0f0f0; /* Light Gray Text */
+  --text-medium: #a0a0a0; /* Medium Gray Text */
+  --text-dark: #333333; /* Used for contrast on light elements if needed */
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --border-color: #444;
+  --font-family-main: "Poppins", sans-serif;
+  --transition-speed: 0.3s;
+  --transition-timing: ease-out;
+  --max-width: 90%; /* Max content width relative to viewport */
+  --max-width-absolute: 1300px; /* Absolute max content width */
+  --header-height: 70px; /* Define header height */
+
+  /* Responsive Font Sizes */
+  --font-size-base: 1rem; /* Approx 16px */
+  --font-size-sm: 0.875rem; /* Approx 14px */
+  --font-size-lg: 1.125rem; /* Approx 18px */
+  --font-size-xl: 1.5rem; /* Approx 24px */
+  --font-size-xxl: 2.5rem; /* Approx 40px */
+  --font-size-xxxl: 3rem; /* Approx 48px */
+}
+
+/* === Base Styles & Font Smoothing === */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #ffffff; /* primary-light from Tailwind config */
+  color: #1f2937; /* dark-text from Tailwind config */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+/* === Scroll Animations === */
+/* Initial state */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-fade-in-up {
+  transform: translateY(20px);
+}
+/* Visible state */
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Sticky Header Styling === */
+#main-header {
+  /* Base transition for smooth background/shadow changes */
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+.sticky-nav-scrolled {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly less transparent for better readability */
+  backdrop-filter: blur(10px); /* Increased blur */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02); /* Adjusted subtle shadow */
+  border-bottom: 1px solid #e5e7eb; /* light-border from Tailwind config */
+}
+
+/* === Hero Section Laptop Animation === */
+.laptop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem; /* Adjust as needed */
+  margin-bottom: 2rem; /* Adjust as needed */
+}
+
+/* Responsive adjustments for Laptop Animation */
+@media (max-width: 1024px) {
+  /* Tablet */
+  .laptop {
+    transform: scale(0.85); /* Slightly larger than mobile */
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile (using 767px to avoid conflict with md: breakpoint) */
+  .laptop {
+    transform: scale(0.7); /* Adjusted scale for better visibility */
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+  }
+}
+@keyframes led-pulse {
+  0%,
+  100% {
+    fill: #3b82f6; /* blue-500 */
+    filter: drop-shadow(0 0 0px #3b82f6);
+  }
+  50% {
+    fill: #3b82f6;
+    filter: drop-shadow(0 0 6px #3b82f6); /* glowing effect */
+  }
+}
+
+.animate-led-pulse {
+  animation: led-pulse 1.5s infinite ease-in-out;
+}
+
+.glow-button {
+  position: relative;
+  z-index: 0;
+}
+
+.glow-button::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: radial-gradient(circle, #a0c4ff 0%, transparent 70%);
+  border-radius: inherit;
+  z-index: -1;
+  animation: glowPulse 2s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+.screen {
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 2px #c8cacb, inset 0 0 0 10px #000;
+  height: 318px;
+  width: 518px;
+  max-width: 90vw; /* Prevent overflow on very small screens */
+  margin: 0 auto;
+  padding: 9px 9px 23px 9px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2937; /* Darker background for contrast */
+  /* Ensure the image path is correct relative to the CSS file or use absolute path */
+  background-image: url("../assets/interface.png");
+  background-size: contain;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  transform: perspective(1900px) rotateX(-88.5deg);
+  transform-origin: 50% 100%;
+  animation: openScreenAnimation 4s infinite alternate ease-in-out; /* Smoother easing */
+}
+
+@keyframes openScreenAnimation {
+  /* Renamed for clarity */
+  0% {
+    transform: perspective(1900px) rotateX(-88.5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg);
+  }
+}
+
+.screen::before {
+  content: "";
+  width: 100%; /* Make relative to screen width */
+  height: 12px;
+  position: absolute;
+  background: linear-gradient(#979899, transparent);
+  top: -3px;
+  left: 0;
+  transform: rotateX(90deg);
+  border-radius: 5px 5px 0 0; /* Adjusted border radius */
+}
+
+.laptop-header {
+  width: 100px;
+  height: 12px;
+  position: absolute;
+  background-color: #000;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 0 0 6px 6px;
+  z-index: 10; /* Ensure it's above the screen content */
+}
+
+.screen::after {
+  background: linear-gradient(to bottom, #272727, #0d0d0d);
+  border-radius: 0 0 20px 20px;
+  bottom: 2px;
+  content: "";
+  height: 24px;
+  left: 2px;
+  position: absolute;
+  width: calc(100% - 4px); /* Adjust width based on padding/border */
+}
+
+.keyboard {
+  background: radial-gradient(circle at center, #e2e3e4 85%, #a9abac 100%);
+  border: solid #a0a3a7;
+  border-radius: 2px 2px 12px 12px;
+  border-width: 1px 2px 0 2px;
+  box-shadow: inset 0 -2px 8px 0 #6c7074;
+  height: 24px;
+  position: relative;
+  width: 620px;
+  max-width: calc(90vw + 102px); /* Allow keyboard to be wider than screen */
+  z-index: 9; /* Ensure it's below the screen fold */
+  margin-top: -1px; /* Slight overlap */
+}
+
+.keyboard::after {
+  /* Touchpad area */
+  background: #d1d3d4; /* Slightly different shade */
+  border-radius: 0 0 10px 10px;
+  box-shadow: inset 0 0 4px 1px #babdbf; /* Adjusted shadow */
+  content: "";
+  height: 10px;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  top: 0;
+  width: 120px;
+}
+
+.keyboard::before {
+  /* Keyboard base feet/shadow */
+  background: transparent; /* No background needed */
+  border-radius: 0 0 3px 3px;
+  bottom: -2px;
+  /* Simplified shadow using left/right positioning */
+  box-shadow: -270px 0 0 0px #3f444a, /* Left shadow */ 270px 0 0 0px #3f444a; /* Right shadow */
+  content: "";
+  height: 2px;
+  left: 50%;
+  margin-left: -10px; /* Centered relative to the 40px width */
+  position: absolute;
+  width: 40px; /* Width of the gap between feet */
+}
+
+/* === Hero button === */
+.cta-button,
+.survey-button {
+  display: inline-flex;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.8rem 2rem; /* زيادة الحجم */
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem; /* زيادة حجم الخط */
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s var(--transition-timing),
+    box-shadow 0.3s var(--transition-timing);
+}
+
+.cta-button {
+  background: var(--primary-color);
+  z-index: 10;
+}
+.cta-button:hover,
+.cta-button:focus-visible {
+  transform: translateY(-3px);
+  background: var(--primary-darker);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.35);
+  outline: none;
+}
+.survey-button {
+  background: linear-gradient(45deg, var(--secondary-color), #00a0b0);
+}
+.survey-button:hover,
+.survey-button:focus-visible {
+  transform: translateY(-3px);
+  background: linear-gradient(45deg, #00a0b0, var(--secondary-color));
+  box-shadow: 0 6px 18px rgba(0, 224, 196, 0.35);
+  outline: none;
+}
+.cta-button span,
+.survey-button span {
+  margin-right: 0.5rem;
+}
+.cta-button i,
+.survey-button i {
+  font-size: 1em;
+  transition: transform 0.3s var(--transition-timing);
+}
+.cta-button:hover i,
+.survey-button:hover i {
+  transform: translateX(4px);
+}
+
+@keyframes open {
+  0% {
+    transform: perspective(1900px) rotateX(-88.5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg);
+  }
+}
+
+/* === Utility === */
+/* Ensure SVG icons inherit text color correctly and align well */
+svg {
+  display: inline-block; /* Prevents extra space below */
+  vertical-align: middle;
+}
+/* === Add these styles to your existing styles.css === */
+
+/* === Header & Navigation Specific Styles === */
+
+#main-header {
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    border-color 0.3s ease-in-out, height 0.3s ease-in-out;
+  height: 70px; /* Default height */
+}
+
+#main-header.sticky-nav-scrolled {
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
+  backdrop-filter: blur(12px); /* Increased blur */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.04); /* Slightly stronger shadow */
+  border-bottom: 1px solid #e5e7eb;
+  /* Optional: Slightly shrink header height when sticky */
+  /* height: 65px;  */
+}
+/* Adjust nav padding when sticky if header height changes */
+/* #main-header.sticky-nav-scrolled nav {
+  height: 65px;
+} */
+
+/* Desktop Navigation Link Hover Effect */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0.1rem; /* Add slight padding for hover area */
+  color: #4b5563; /* medium-text */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  font-weight: 500; /* Slightly bolder */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #f97316; /* accent-orange */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover {
+  color: #1f2937; /* dark-text */
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Mobile Menu Panel Styling & Animation */
+#mobile-menu {
+  transform: translateY(-100%); /* Start hidden above */
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s ease-out, visibility 0s linear 0.4s; /* Smooth cubic bezier for transform */
+  z-index: 40; /* Needs to be higher than content but lower than button if button icon changes */
+}
+
+#mobile-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s ease-in, visibility 0s linear 0s;
+}
+
+/* Mobile Navigation Link Styling */
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem; /* lg text */
+  font-weight: 600;
+  color: #4b5563; /* medium-text */
+  text-align: center;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  border-radius: 0.375rem; /* rounded-md */
+  width: 80%; /* Limit width slightly */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+  color: #1f2937; /* dark-text */
+  background-color: #f3f4f6; /* gray-100 */
+  outline: none;
+}
+
+/* Mobile CTA Button Adjustments */
+.mobile-cta {
+  display: block; /* Make it block for centering/width */
+  width: 75%; /* Adjust width as needed */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 0.75rem 1.25rem; /* Slightly larger padding */
+}
+
+/* Mobile Menu Icon Transitions */
+#mobile-menu-button #hamburger-icon {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+#mobile-menu-button #close-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#mobile-menu-button[aria-expanded="true"] #hamburger-icon {
+  opacity: 0;
+}
+#mobile-menu-button[aria-expanded="true"] #close-icon {
+  opacity: 1;
+}
+
+/* === End Header Styles === */
+
+/* --- Keep your existing styles below --- */
+/* ... (body, scroll animations, laptop animation, etc.) ... */
+
+/* === Add these styles to your existing styles.css === */
+
+/* === Demo Page Specific Styles === */
+
+/* Form Field Base */
+.form-field {
+  position: relative;
+  margin-bottom: 0.75rem; /* Add space below each field group */
+}
+
+/* Input & Textarea Base Styles */
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem; /* py-3 px-4 */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #1f2937; /* dark-text */
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #d1d5db; /* gray-300 */
+  appearance: none; /* Remove default styling */
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Prevent Autocomplete Background Color Change (optional but common) */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #1f2937 !important; /* Ensure text color stays dark */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6; /* accent-blue */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Subtle focus ring */
+}
+
+/* Specific style for textarea height */
+textarea.form-input {
+  min-height: 100px; /* Ensure textarea has a decent minimum height */
+  resize: vertical; /* Allow vertical resize */
+}
+
+/* Floating Label Styles */
+.form-label {
+  position: absolute;
+  top: 0.85rem; /* Adjust vertical position */
+  left: 1rem; /* Adjust horizontal position */
+  font-size: 1rem;
+  color: #6b7280; /* gray-500 */
+  pointer-events: none; /* Label doesn't block clicks on input */
+  transition: all 0.2s ease-in-out;
+  background-color: #ffffff; /* Match form background to cover input border */
+  padding: 0 0.25rem; /* Add slight horizontal padding */
+  white-space: nowrap;
+}
+
+/* State when input has content OR is focused */
+.form-input:not(:placeholder-shown) + .form-label,
+.form-input:focus + .form-label {
+  top: -0.6rem; /* Move label up */
+  left: 0.75rem; /* Adjust left position */
+  font-size: 0.75rem; /* Smaller font */
+  color: #3b82f6; /* accent-blue when active */
+}
+
+/* Error State Styles (to be added by JS) */
+.form-input.input-error {
+  border-color: #dc2626; /* error-red */
+}
+.form-input.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25); /* Red focus ring */
+}
+.form-field .input-error + .form-label {
+  color: #dc2626; /* Red label text on error */
+}
+
+/* Error Message Styling */
+.error-message {
+  display: none; /* Hidden by default */
+  margin-top: 0.25rem; /* space above */
+  font-size: 0.75rem; /* text-xs */
+  color: #dc2626; /* error-red */
+  text-align: left; /* Align text left */
+}
+.error-message.visible {
+  display: block; /* Shown by JS */
+}
+
+/* Form Submit Button Specifics (Loading State) */
+.form-submit-button {
+  /* Inherits .nav-cta-button styles */
+  display: inline-flex; /* Needed for aligning text/spinner */
+  align-items: center;
+  justify-content: center;
+  min-width: 150px; /* Give button a minimum width */
+}
+
+.form-submit-button .spinner-icon {
+  display: none; /* Hidden by default */
+}
+.form-submit-button .submit-icon {
+  display: inline-block; /* Shown by default */
+}
+.form-submit-button .submit-text {
+  display: inline-block; /* Shown by default */
+}
+
+/* Loading State (add .is-loading class via JS) */
+.form-submit-button.is-loading {
+  cursor: wait;
+  background-color: #fb923c; /* Lighter orange for loading */
+  color: rgba(255, 255, 255, 0.8);
+}
+.form-submit-button.is-loading .spinner-icon {
+  display: block;
+}
+.form-submit-button.is-loading .submit-text,
+.form-submit-button.is-loading .submit-icon {
+  display: none; /* Hide text and icon */
+}
+
+/* Disabled State */
+.form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none; /* Prevent scale on hover */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Reset shadow */
+  background-color: #fdba74; /* Even lighter orange */
+}
+
+/* General Form Feedback Message (Success/General Error) */
+.form-feedback-message {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  display: none; /* Hidden by default */
+}
+.form-feedback-message.success {
+  display: block;
+  background-color: #dcfce7; /* green-100 */
+  color: #15803d; /* green-700 */
+  border: 1px solid #86efac; /* green-300 */
+}
+.form-feedback-message.error {
+  display: block;
+  background-color: #fee2e2; /* red-100 */
+  color: #b91c1c; /* red-700 */
+  border: 1px solid #fecaca; /* red-300 */
+}
+
+/* === End Demo Page Styles === */
+/* === Add these styles to your existing styles.css === */
+/* === Add these styles to your existing styles.css === */
+
+/* === Pain Point Card Styles === */
+
+.pain-point-card {
+  background-color: #ff000013; /* orange-50 */
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  text-align: center;
+  border: 1px solid #ff0000; /* orange-200 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03),
+    0 1px 2px -1px rgba(0, 0, 0, 0.03); /* Adjusted shadow-sm */
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  /* Inherits animation classes from HTML */
+}
+
+.pain-point-card:hover {
+  border-color: #580000; /* orange-400 */
+  background-color: #ff00005d; /* orange-100 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05); /* Adjusted shadow-md */
+}
+
+.pain-point-icon-wrapper {
+  display: inline-flex; /* Allows centering */
+  align-items: center;
+  justify-content: center;
+  width: 64px; /* w-16 */
+  height: 64px; /* h-16 */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.75rem; /* mb-3 */
+  background-color: #fd080060; /* orange-200 */
+  border-radius: 50%; /* Make it a circle */
+  border: 1px solid #ff0000; /* orange-400 */
+}
+
+/* SVG inside the wrapper uses text-accent-orange from HTML */
+/* .pain-point-icon-wrapper svg {} */
+
+/* Heading and Paragraph text colors are set via Tailwind in HTML */
+/* .pain-point-card h3 {} */
+/* .pain-point-card p {} */
+
+/* === End Pain Point Card Styles === */
+
+/* === Add/Modify these styles in your existing styles.css === */
+
+/* === Enhanced CMMS Impact Visualization Styles === */
+
+.after-panel:hover {
+  border-color: #a7f3d0; /* lighter green-200 */
+}
+
+.chart-area {
+  /* Height, flex, items-end, justify-around, gap, mb, px via Tailwind */
+  flex-shrink: 0;
+  min-height: 8rem; /* h-32 */
+}
+
+/* Chart Grid Background */
+.chart-grid {
+  position: absolute;
+  inset: 0; /* Cover the entire chart area */
+  z-index: 0; /* Behind the bars */
+  /* Faint grid lines using repeating gradients */
+  background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+    /* Vertical lines */
+      linear-gradient(to bottom, #e5e7eb 1px, transparent 1px); /* Horizontal lines */
+  background-size: 20px 20px; /* Adjust grid spacing */
+  opacity: 0.3; /* Make grid very faint */
+  border-radius: 0.25rem; /* Slight rounding */
+  mask-image: linear-gradient(
+    to top,
+    white 80%,
+    transparent 100%
+  ); /* Optional: Fade grid top */
+}
+
+.chart-area .bar {
+  /* Base styling via Tailwind (w, bg-gradient, rounded-t) */
+  transition: transform 0.3s ease-in-out, height 0.4s ease-in-out;
+  position: relative; /* Needed for data point */
+  z-index: 1; /* Above grid */
+}
+
+/* Data Point marker for 'After' bars */
+.after-panel .bar.data-point::after {
+  content: "";
+  position: absolute;
+  top: -4px; /* Position above the bar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #059669; /* Darker green-600 */
+  border-radius: 50%;
+  border: 1px solid white; /* Optional white border */
+  box-shadow: 0 0 3px rgba(5, 150, 105, 0.5); /* Subtle glow */
+}
+
+/* Subtle pulse animation for 'Before' bars */
+.bar-pulse {
+  animation: barPulseAnimation 2.2s infinite alternate ease-in-out;
+}
+@keyframes barPulseAnimation {
+  0% {
+    transform: scaleY(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleY(1.03);
+    opacity: 1;
+  }
+}
+.before-panel .bar-pulse:nth-of-type(odd) {
+  animation-delay: 0.2s;
+}
+
+/* Stats Area Styling */
+.stats-area {
+  flex-shrink: 0;
+  /* Base styling via Tailwind */
+}
+
+.stat-value-number {
+  /* Font styling via Tailwind */
+  line-height: 1.1; /* Tighten line height for large font */
+}
+
+.stat-description {
+  /* Font styling via Tailwind */
+  line-height: 1.4;
+  color: #4b5563; /* medium-text - Ensure consistency */
+}
+
+/* === End Enhanced CMMS Impact Visualization Styles === */
+/* === Add these styles to your existing styles.css === */
+/* ========================================== */
+/* === About Section Styles (#about)      === */
+/* ========================================== */
+
+/* Styles for the About section are primarily handled by Tailwind classes in the HTML */
+/* You can add specific overrides or adjustments here if needed */
+
+.about-subtitle {
+  color: #3b82f6; /* Ensure accent-blue is applied */
+}
+.about-content p {
+  color: #4b5563; /* Ensure medium-text is applied */
+  line-height: 1.65; /* Slightly more spacing for readability */
+}
+
+/* ========================================== */
+/* === Timeline Section Styles (#journey) === */
+/* ========================================== */
+
+.timeline {
+  /* Corresponds to py-16 md:py-24 bg-secondary-light */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #f8fafc; /* secondary-light */
+  overflow: hidden; /* Prevent potential horizontal overflow */
+  position: relative; /* For pseudo-elements if needed later */
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.timeline-title {
+  /* Corresponds to text-3xl md:text-4xl font-bold text-center text-dark-text mb-12 md:mb-16 */
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+  font-weight: 700;
+  text-align: center;
+  color: #1f2937; /* dark-text */
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .timeline-title {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+    margin-bottom: 4rem;
+  }
+}
+
+/* --- Timeline Container & Line --- */
+
+.timeline-container {
+  position: relative;
+  max-width: 48rem; /* max-w-3xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* Consistent padding */
+  padding-right: 1.5rem;
+}
+
+/* The Vertical Line */
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 10px; /* Start slightly below the first dot */
+  bottom: 10px; /* End slightly above the last dot */
+  left: 12px; /* Position for mobile view (aligned with dot center) */
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    #d1d5db,
+    #9ca3af,
+    #d1d5db
+  ); /* Subtle gray gradient */
+  border-radius: 2px;
+  z-index: 0; /* Behind items */
+}
+
+/* Center the line on medium screens and up */
+@media (min-width: 768px) {
+  .timeline-container::before {
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+  }
+}
+
+/* --- Timeline Item Styling --- */
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem; /* mb-10 */
+  padding-left: 2.5rem; /* Space for dot/line on mobile (dot width + gap) */
+  z-index: 1; /* Above the line */
+}
+
+/* Remove bottom margin from the last item */
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Desktop alternating layout */
+@media (min-width: 768px) {
+  .timeline-item {
+    padding-left: 0; /* Reset mobile padding */
+    width: 50%;
+    margin-bottom: 3rem; /* Slightly less margin on desktop */
+  }
+
+  /* Odd items - Content on the right */
+  .timeline-item:nth-child(odd) {
+    left: 50%;
+    padding-left: 2.5rem; /* Space from center line */
+  }
+
+  /* Even items - Content on the left */
+  .timeline-item:nth-child(even) {
+    left: 0;
+    padding-right: 2.5rem; /* Space from center line */
+    /* Content block alignment is handled by margin below */
+  }
+}
+
+/* --- Timeline Dot Styling --- */
+
+.timeline-dot {
+  position: absolute;
+  /* Vertically align with the top of the title, adjust as needed */
+  top: 0.3rem;
+  left: 12px; /* Align with the vertical line */
+  transform: translateX(-50%); /* Center on the line */
+  width: 18px;
+  height: 18px;
+  background-color: #f97316; /* accent-orange */
+  border-radius: 50%;
+  z-index: 3; /* Above line and content */
+  border: 3px solid #f8fafc; /* Match timeline section bg */
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+}
+
+/* Desktop dot positioning */
+@media (min-width: 768px) {
+  .timeline-dot {
+    left: 50%;
+  }
+}
+
+/* --- Timeline Content Box Styling --- */
+
+.timeline-content {
+  background-color: #ffffff; /* card-light */
+  padding: 1rem 1.25rem; /* p-4 md:p-5 */
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #e5e7eb; /* light-border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .timeline-content {
+    padding: 1.25rem 1.5rem;
+  }
+  /* Push even items' content block to the right edge */
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: auto; /* Aligns block itself */
+  }
+}
+
+/* Optional hover effect for content */
+.timeline-item:hover .timeline-content {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.08),
+    0 4px 8px -4px rgba(0, 0, 0, 0.05); /* Increased shadow */
+}
+
+.timeline-item-title {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  color: #1f2937; /* dark-text */
+  margin-bottom: 0.375rem; /* mb-1.5 */
+}
+
+.timeline-item-desc {
+  font-size: 0.9rem; /* Slightly larger than text-sm */
+  line-height: 1.6;
+  color: #4b5563; /* medium-text */
+}
+
+/* Desktop text alignment for even items */
+@media (min-width: 768px) {
+  .timeline-item:nth-child(even) .timeline-content {
+    text-align: right;
+  }
+}
+
+/* --- Future Item Styling --- */
+
+.timeline-item.future .timeline-content {
+  border-color: #dbeafe; /* blue-200 */
+  background-color: #eff6ff; /* blue-50 */
+  /* Keep shadow subtle */
+  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.04),
+    0 1px 2px rgba(59, 130, 246, 0.05);
+}
+
+.timeline-item.future .timeline-dot {
+  background: #3b82f6; /* accent-blue */
+  border-color: #f8fafc; /* Match timeline bg */
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.timeline-item.future .timeline-item-title {
+  color: #1e40af; /* blue-800 */
+}
+
+/* --- Pointer Arrow (Connects content to dot) --- */
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 0.6rem; /* Align vertically with dot */
+  width: 0;
+  height: 0;
+  border-style: solid;
+  z-index: 1; /* Behind content, above item background */
+}
+
+/* Mobile Arrow (points left) */
+.timeline-content::before {
+  left: -8px; /* Position outside the left edge */
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #ffffff transparent transparent; /* Match content bg */
+  filter: drop-shadow(-1px 0px 0px #e5e7eb); /* Match border */
+}
+.timeline-item.future .timeline-content::before {
+  border-color: transparent #eff6ff transparent transparent; /* Match future bg */
+  filter: drop-shadow(-1px 0px 0px #dbeafe); /* Match future border */
+}
+
+/* Desktop Arrows */
+@media (min-width: 768px) {
+  /* Arrow pointing left (for odd items - content on right) */
+  .timeline-item:nth-child(odd) .timeline-content::before {
+    left: -8px;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #ffffff transparent transparent;
+    filter: drop-shadow(-1px 0px 0px #e5e7eb);
+  }
+  .timeline-item.future:nth-child(odd) .timeline-content::before {
+    border-color: transparent #eff6ff transparent transparent;
+    filter: drop-shadow(-1px 0px 0px #dbeafe);
+  }
+
+  /* Arrow pointing right (for even items - content on left) */
+  .timeline-item:nth-child(even) .timeline-content::before {
+    left: auto; /* Remove left positioning */
+    right: -8px; /* Position outside the right edge */
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent #ffffff;
+    filter: drop-shadow(1px 0px 0px #e5e7eb);
+  }
+  .timeline-item.future:nth-child(even) .timeline-content::before {
+    border-color: transparent transparent transparent #eff6ff;
+    filter: drop-shadow(1px 0px 0px #dbeafe);
+  }
+}
+
+/* ========================================== */
+/* === End Timeline Section Styles        === */
+/* ========================================== */

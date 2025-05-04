@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Maintafox</title>
+    <meta
+      name="description"
+      content="Maintafox Privacy Policy detailing how we collect, use, and protect your data."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.webp" type="image/webp" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary-light": "#ffffff",
+              "secondary-light": "#f8fafc",
+              "card-light": "#ffffff",
+              "accent-orange": "#f97316",
+              "accent-blue": "#3b82f6",
+              "accent-green": "#10b981",
+              "dark-text": "#1f2937",
+              "medium-text": "#4b5563",
+              "light-border": "#e5e7eb",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Specific styles for legal pages -->
+    <style>
+      .legal-content h2 {
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1f2937;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+      }
+      .legal-content h3 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .legal-content p,
+      .legal-content li {
+        margin-bottom: 1rem;
+        color: #4b5563;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+      .legal-content ul,
+      .legal-content ol {
+        list-style-position: outside;
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .legal-content ul {
+        list-style: disc;
+      }
+      .legal-content ol {
+        list-style: decimal;
+      }
+      .legal-content strong {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .legal-content a {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+      .legal-content a:hover {
+        color: #2563eb;
+      }
+      .legal-container {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #ffffff;
+        padding: 2rem 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07),
+          0 2px 4px -2px rgba(0, 0, 0, 0.07);
+        border: 1px solid #e5e7eb;
+      }
+      .legal-disclaimer {
+        background-color: #fef3c7;
+        border-left-width: 4px;
+        border-color: #f59e0b;
+        color: #a16207;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+      }
+      @media (min-width: 640px) {
+        .legal-container {
+          padding: 2.5rem 3rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .legal-container {
+          padding: 3rem 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-secondary-light text-dark-text">
+    <!-- === PASTE YOUR HEADER CODE HERE === -->
+    <header
+      id="main-header"
+      class="sticky top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-light-border"
+    >
+      <!-- Replace this comment with your actual header code -->
+      <nav
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center h-[70px]"
+      >
+        <a
+          href="/"
+          class="text-2xl font-bold text-dark-text hover:opacity-80 transition-opacity duration-200 ease-in-out flex-shrink-0"
+        >
+          Mainta<span class="text-accent-orange">fox</span>
+        </a>
+        <!-- ... rest of your nav items ... -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-dark-text focus:outline-none p-2 -mr-2 relative z-50"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg
+            id="hamburger-icon"
+            class="w-6 h-6 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+          <svg
+            id="close-icon"
+            class="w-6 h-6 absolute top-2 left-0 opacity-0 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <!-- Mobile Menu Panel -->
+      <div
+        id="mobile-menu"
+        class="md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-light-border transition-transform duration-300 ease-in-out transform -translate-y-full -z-10 pt-[70px]"
+      >
+        <!-- ... rest of your mobile menu items ... -->
+      </div>
+    </header>
+    <!-- === END HEADER PASTE AREA === -->
+
+    <main class="pt-[70px] pb-16 md:pb-24">
+      <!-- Adjust padding-top to match header height -->
+      <div class="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <article class="legal-container">
+          <div class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-dark-text">
+              Privacy Policy
+            </h1>
+            <p class="text-sm text-medium-text mt-2">
+              Last Updated: [October 27, 2023]
+            </p>
+            <!-- UPDATE THIS DATE -->
+          </div>
+
+          <div class="legal-content">
+            <p>
+              <strong>Introduction:</strong> [Your Company Full Legal Name],
+              operating as Maintafox ("Maintafox," "we," "us," or "our"), is
+              committed to protecting your privacy. This Privacy Policy explains
+              how we collect, use, disclose, and safeguard your information when
+              you visit our website [Your Website URL], including any other
+              media form, media channel, mobile website, or mobile application
+              related or connected thereto (collectively, the "Site") and use
+              our Computerized Maintenance Management System (CMMS) software and
+              related services (the "Service"). Please read this privacy policy
+              carefully. If you do not agree with the terms of this privacy
+              policy, please do not access the site or use the service.
+            </p>
+
+            <div class="legal-disclaimer" role="alert">
+              <strong>Important Disclaimer:</strong> This document is a template
+              and does not constitute legal advice. You must consult with a
+              qualified legal professional to ensure this policy is accurate,
+              complete, and compliant with all applicable laws, including
+              Algerian Law No. 18-07 and other relevant data protection
+              regulations (e.g., GDPR if applicable).
+            </div>
+
+            <h2>1. Collection of Your Information</h2>
+            <p>
+              We may collect information about you in a variety of ways. The
+              information we may collect via the Site and Service includes:
+            </p>
+            <h3>Personal Data</h3>
+            <p>
+              Personally identifiable information, such as your name, work email
+              address, telephone number, company name, job title, and address,
+              that you voluntarily give to us when you register for the Service,
+              request a demo, contact support, or when you choose to participate
+              in various activities related to the Site and Service.
+            </p>
+            <h3>Derivative Data (Usage Data)</h3>
+            <p>
+              Information our servers automatically collect when you access the
+              Site or Service, such as your IP address, your browser type, your
+              operating system, your access times, and the pages you have viewed
+              directly before and after accessing the Site. If you are using our
+              mobile application, this information may also include your device
+              name and type, your operating system, your phone number, your
+              country, your likes and replies to a post, and other interactions
+              with the application and other users via server log files, as well
+              as any other information you choose to provide.
+            </p>
+            <h3>Customer Data</h3>
+            <p>
+              Data, information, and materials submitted or uploaded by you or
+              your authorized users to the Service in the course of using
+              Maintafox. This includes, but is not limited to, asset details,
+              maintenance schedules, work order information, inventory levels,
+              user permissions, reports generated, and associated documentation.
+              We process this Customer Data on your behalf as a data processor,
+              according to your instructions and our Terms of Service.
+            </p>
+            <h3>Financial Data [If Applicable]</h3>
+            <p>
+              Financial information, such as data related to your payment method
+              (e.g., valid credit card number, card brand, expiration date) that
+              we may collect when you purchase, order, return, or exchange
+              services from the Site or Service. [If you use a third-party
+              payment processor like Stripe or Gumroad, state that clearly and
+              link to their privacy policy, e.g., "We store only very limited,
+              if any, financial information. Otherwise, all financial
+              information is stored by our payment processor, [Payment Processor
+              Name], and you are encouraged to review their privacy policy and
+              contact them directly for responses to your questions."]
+            </p>
+            <h3>Data From Cookies and Similar Technologies</h3>
+            <p>
+              We may use cookies, web beacons, tracking pixels, and other
+              tracking technologies on the Site and Service to help customize
+              the experience and improve the Site and Service. We may collect
+              information like pages visited, links clicked, session duration,
+              etc. For more information on how we use cookies, please refer to
+              our Cookie Policy [Link to Cookie Policy if separate, otherwise
+              detail here].
+            </p>
+
+            <h2>2. Use of Your Information</h2>
+            <p>
+              Having accurate information about you permits us to provide you
+              with a smooth, efficient, and customized experience. Specifically,
+              we may use information collected about you via the Site or Service
+              to:
+            </p>
+            <ul>
+              <li>Create and manage your account.</li>
+              <li>Provide, operate, and maintain the Service.</li>
+              <li>
+                Process your transactions and send you related information,
+                including purchase confirmations and invoices [If applicable].
+              </li>
+              <li>
+                Respond to your customer service requests and support needs.
+              </li>
+              <li>
+                Send you technical notices, updates, security alerts, and
+                administrative messages.
+              </li>
+              <li>
+                Communicate with you about products, services, offers,
+                promotions, and events offered by Maintafox and others, and
+                provide news and information we think will be of interest to you
+                (subject to your communication preferences).
+              </li>
+              <li>
+                Monitor and analyze trends, usage, and activities in connection
+                with our Site and Service to improve them.
+              </li>
+              <li>
+                Detect, investigate, and prevent fraudulent transactions and
+                other illegal activities and protect the rights and property of
+                Maintafox and others.
+              </li>
+              <li>
+                Personalize and improve the Site and Service and provide content
+                or features that match user profiles or interests.
+              </li>
+              <li>Comply with legal and regulatory requirements.</li>
+              <li>
+                Fulfill any other purpose for which the information was
+                collected.
+              </li>
+            </ul>
+
+            <h2>3. Disclosure of Your Information</h2>
+            <p>
+              We may share information we have collected about you in certain
+              situations. Your information may be disclosed as follows:
+            </p>
+            <h3>By Law or to Protect Rights</h3>
+            <p>
+              If we believe the release of information about you is necessary to
+              respond to legal process, to investigate or remedy potential
+              violations of our policies, or to protect the rights, property,
+              and safety of others, we may share your information as permitted
+              or required by any applicable law, rule, or regulation.
+            </p>
+            <h3>Third-Party Service Providers</h3>
+            <p>
+              We may share your information with third parties that perform
+              services for us or on our behalf, including data analysis, hosting
+              services, customer service, email delivery, and marketing
+              assistance. These providers are contractually obligated to protect
+              your data.
+            </p>
+            <h3>Business Transfers</h3>
+            <p>
+              We may share or transfer your information in connection with, or
+              during negotiations of, any merger, sale of company assets,
+              financing, or acquisition of all or a portion of our business to
+              another company.
+            </p>
+            <h3>Affiliates</h3>
+            <p>
+              We may share your information with our affiliates, in which case
+              we will require those affiliates to honor this Privacy Policy.
+            </p>
+            <h3>With Your Consent</h3>
+            <p>
+              We may disclose your personal information for any other purpose
+              with your consent.
+            </p>
+            <h3>Aggregated/Anonymized Data</h3>
+            <p>
+              We may share aggregated or anonymized information which cannot
+              reasonably be used to identify you.
+            </p>
+
+            <h2>4. Tracking Technologies (Cookies)</h2>
+            <p>
+              We use cookies and similar tracking technologies (like web beacons
+              and pixels) to access or store information. Specific information
+              about how we use such technologies and how you can refuse certain
+              cookies is set out in our Cookie Policy [Link to Cookie Policy or
+              detail here]. You can typically remove or reject cookies via your
+              browser settings. If you do so, it could affect the availability
+              and functionality of our Service.
+            </p>
+
+            <h2>5. Security of Your Information</h2>
+            <p>
+              We use administrative, technical, and physical security measures
+              to help protect your personal information and Customer Data. These
+              include [Mention general measures like encryption (at rest/in
+              transit), access controls, firewalls, regular security audits - Be
+              specific but consult lawyer]. While we have taken reasonable steps
+              to secure the information you provide to us, please be aware that
+              despite our efforts, no security measures are perfect or
+              impenetrable, and no method of data transmission can be guaranteed
+              against any interception or other type of misuse.
+            </p>
+
+            <h2>6. Data Retention</h2>
+            <p>
+              We will only keep your personal information for as long as it is
+              necessary for the purposes set out in this privacy policy, unless
+              a longer retention period is required or permitted by law (such as
+              tax, accounting, or other legal requirements). When we have no
+              ongoing legitimate business need to process your personal
+              information, we will either delete or anonymize it, or, if this is
+              not possible (for example, because your personal information has
+              been stored in backup archives), then we will securely store your
+              personal information and isolate it from any further processing
+              until deletion is possible.
+            </p>
+            <p>
+              Customer Data retention is governed by the agreement between
+              Maintafox and the Customer.
+            </p>
+
+            <h2>7. Your Data Protection Rights</h2>
+            <p>
+              In accordance with Algerian Law No. 18-07 and other applicable
+              data protection laws (like GDPR, if applicable), you may have the
+              following rights:
+            </p>
+            <ul>
+              <li>
+                <strong>Right of Access:</strong> You can request copies of your
+                personal information.
+              </li>
+              <li>
+                <strong>Right to Rectification:</strong> You can ask us to
+                correct inaccurate information or complete incomplete
+                information.
+              </li>
+              <li>
+                <strong>Right to Erasure ('Right to be Forgotten'):</strong> You
+                can ask us to delete your personal information in certain
+                circumstances.
+              </li>
+              <li>
+                <strong>Right to Restrict Processing:</strong> You can ask us to
+                restrict the processing of your personal information in certain
+                circumstances.
+              </li>
+              <li>
+                <strong>Right to Object to Processing:</strong> You can object
+                to the processing of your personal information in certain
+                circumstances (e.g., for direct marketing).
+              </li>
+              <li>
+                <strong>Right to Data Portability:</strong> You can ask that we
+                transfer the personal information you gave us to another
+                organization, or to you, in certain circumstances.
+              </li>
+              <li>
+                <strong>Right to Withdraw Consent:</strong> If we are processing
+                your information based on your consent, you have the right to
+                withdraw it at any time.
+              </li>
+            </ul>
+            <p>
+              To exercise any of these rights, please contact us using the
+              contact details provided below. We will respond to your request in
+              accordance with applicable law.
+            </p>
+
+            <h2>8. Policy for Children</h2>
+            <p>
+              We do not knowingly solicit information from or market to children
+              under the age of [16 or 18 - Check applicable law]. If you become
+              aware of any data we have collected from children under this age,
+              please contact us using the contact information provided below.
+            </p>
+
+            <h2>9. International Transfers [If Applicable]</h2>
+            <p>
+              Your information, including personal data, may be transferred to —
+              and maintained on — computers located outside of your state,
+              province, country, or other governmental jurisdiction where the
+              data protection laws may differ from those in your jurisdiction.
+              If you are located outside [Algeria] and choose to provide
+              information to us, please note that we transfer the data,
+              including Personal Data, to [Location(s) where data is
+              processed/stored, e.g., Algeria, EU, USA] and process it there. We
+              will take all steps reasonably necessary to ensure that your data
+              is treated securely and in accordance with this Privacy Policy and
+              applicable law, using appropriate safeguards like [Mention
+              safeguards, e.g., Standard Contractual Clauses].
+            </p>
+
+            <h2>10. Changes to This Privacy Policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time in order to
+              reflect, for example, changes to our practices or for other
+              operational, legal, or regulatory reasons. We will notify you of
+              any changes by posting the new Privacy Policy on this page and
+              updating the "Last Updated" date. You are advised to review this
+              Privacy Policy periodically for any changes.
+            </p>
+
+            <h2>11. Contact Us</h2>
+            <p>
+              If you have questions or comments about this Privacy Policy, or if
+              you would like to exercise one of your data protection rights,
+              please contact us at:
+            </p>
+            <p>
+              [Your Company Full Legal Name]<br />
+              [Your Company Address, City, Postal Code, Algeria]<br />
+              Email: [privacy@maintafox.com] <br />
+              <!-- Use a dedicated privacy email -->
+              Phone: [Your Phone Number]
+            </p>
+            <p>
+              [If applicable, mention contact details for your Data Protection
+              Officer (DPO) or EU/UK Representative].
+            </p>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- === PASTE YOUR FOOTER CODE HERE === -->
+    <footer
+      id="footer"
+      class="bg-secondary-light border-t border-light-border py-12"
+    >
+      <!-- Replace this comment with your actual footer code -->
+      <div class="container mx-auto px-6 text-center text-sm text-medium-text">
+        © 2024 Maintafox. All rights reserved. |
+        <a href="/privacy-policy.html" class="hover:text-dark-text"
+          >Privacy Policy</a
+        >
+        |
+        <a href="/terms-of-service.html" class="hover:text-dark-text"
+          >Terms of Service</a
+        >
+      </div>
+    </footer>
+    <!-- === END FOOTER PASTE AREA === -->
+
+    <!-- Link External JavaScript -->
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
