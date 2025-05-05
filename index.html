@@ -1288,129 +1288,218 @@
         </div>
       </section>
 
-      <!-- === About Us & Timeline Section === -->
+      <!-- === About Us Section === -->
+      <!-- === Redesigned About Us & Journey Section === -->
       <section
-        class="about-us-timeline py-16 md:py-24 bg-secondary-light"
-        id="about"
-        data-scroll-section
+        id="about-journey"
+        class="bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-900 dark:to-gray-950/90 py-20 md:py-28 lg:py-32 overflow-hidden"
       >
-        <div class="container mx-auto px-4 sm:px-6">
-          <!-- About Us Introduction -->
+        <div class="container mx-auto px-6 lg:px-8">
+          <!-- Section Header -->
           <div
-            class="about-intro max-w-3xl mx-auto text-center mb-12 md:mb-16 animate-on-scroll animate-fade-in-up"
+            class="max-w-3xl mx-auto text-center mb-16 md:mb-20 lg:mb-24"
+            data-aos="fade-up"
           >
-            <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-4">
-              About Mainta<span class="text-accent-orange">fox</span>
+            <h2
+              class="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-gray-900 dark:text-white mb-4 tracking-tight"
+            >
+              Our Journey: Building
+              <span class="text-orange-500">Maintafox</span>
             </h2>
-            <p class="about-subtitle text-lg md:text-xl text-medium-text mb-6">
-              Pioneering the future of maintenance management with innovative,
-              locally-supported CMMS solutions.
+            <p
+              class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+            >
+              Pioneering smarter maintenance management, designed for Algeria,
+              supported locally.
             </p>
             <div
-              class="about-content text-base text-medium-text space-y-4 text-left md:text-center"
+              class="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-4 text-left md:text-center mx-auto"
             >
               <p>
-                Our mission is to empower Algerian businesses with cutting-edge
-                technology that streamlines maintenance operations, boosts
-                productivity, and maximizes asset lifespan. We believe that
-                efficient maintenance is the cornerstone of operational
-                excellence.
-              </p>
-              <p>
-                Founded on the principle that data drives efficiency, Maintafox
-                delivers real-time insights and intelligent automation to keep
-                your critical assets performing optimally. We combine deep
-                industry knowledge with advanced software engineering to create
-                a platform that is powerful, intuitive, and adaptable to your
-                unique needs, backed by dedicated local support.
+                Founded on data-driven principles, Maintafox delivers real-time
+                insights and intelligent automation. We blend deep industry
+                knowledge with advanced software engineering to create a
+                powerful, intuitive platform backed by dedicated local support.
               </p>
             </div>
           </div>
 
-          <!-- Timeline Container -->
+          <!-- Timeline Wrapper -->
           <div
-            class="timeline-container relative max-w-3xl mx-auto animate-on-scroll animate-fade-in-up"
-            style="animation-delay: 0.2s"
+            class="relative max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="100"
           >
-            <!-- The Vertical Line (Styled via CSS ::before) -->
+            <!-- The Vertical Line -->
+            <div
+              class="absolute left-4 md:left-1/2 top-2 bottom-2 w-1 bg-gradient-to-b from-orange-200 via-orange-400 to-blue-300 dark:from-orange-700/50 dark:via-orange-500 dark:to-blue-600/50 rounded-full transform -translate-x-1/2"
+              aria-hidden="true"
+            ></div>
 
-            <div class="timeline-item" data-scroll>
-              <!-- Removed data-scroll-item if not used -->
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>2023 - Birth of VibraFox</h3>
-                <p>
-                  The idea began as VibraFox, a vibration analysis software for
-                  industrial rotating equipment, aiming to enhance predictive
-                  maintenance.
-                </p>
+            <!-- Timeline Items -->
+            <div class="space-y-12 md:space-y-0">
+              <!-- Timeline Item 1: 2023 -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-marker md:w-1/2 md:pr-8 lg:pr-12">
+                  <div class="timeline-dot bg-orange-500"></div>
+                  <div class="timeline-content-wrapper md:text-right">
+                    <div class="timeline-card">
+                      <h3 class="timeline-title">2023 - Birth of VibraFox</h3>
+                      <p class="timeline-description">
+                        The idea sparked as VibraFox, focusing on vibration
+                        analysis for predictive maintenance in industrial
+                        rotating equipment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-spacer md:w-1/2 md:pl-8 lg:pl-12"></div>
+              </div>
+
+              <!-- Timeline Item 2: 2024 -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-spacer md:w-1/2 md:pr-8 lg:pr-12"></div>
+                <div class="timeline-marker md:w-1/2 md:pl-8 lg:pl-12">
+                  <div class="timeline-dot bg-orange-500"></div>
+                  <div class="timeline-content-wrapper">
+                    <div class="timeline-card">
+                      <h3 class="timeline-title">
+                        2024 - Innovative Project Label
+                      </h3>
+                      <p class="timeline-description">
+                        Recognized with the "Innovative Project" label by the
+                        Ministry of Knowledge Economy and Startups, validating
+                        its potential in Algeria.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Timeline Item 3: 2025 Evolution -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-marker md:w-1/2 md:pr-8 lg:pr-12">
+                  <div class="timeline-dot bg-orange-500"></div>
+                  <div class="timeline-content-wrapper md:text-right">
+                    <div class="timeline-card">
+                      <h3 class="timeline-title">
+                        2025 - Evolution into MaintaFox
+                      </h3>
+                      <p class="timeline-description">
+                        The concept broadened into MaintaFox, a comprehensive,
+                        integrated CMMS tailored specifically for local industry
+                        demands.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-spacer md:w-1/2 md:pl-8 lg:pl-12"></div>
+              </div>
+
+              <!-- Timeline Item 4: June 2025 Launch (Future) -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-spacer md:w-1/2 md:pr-8 lg:pr-12"></div>
+                <div class="timeline-marker md:w-1/2 md:pl-8 lg:pl-12">
+                  <div class="timeline-dot bg-blue-500"></div>
+                  <div class="timeline-content-wrapper">
+                    <div
+                      class="timeline-card border-blue-200 dark:border-blue-700/60 bg-blue-50/30 dark:bg-blue-900/20"
+                    >
+                      <h3
+                        class="timeline-title text-blue-800 dark:text-blue-300"
+                      >
+                        June 1, 2025 - Official Launch
+                      </h3>
+                      <p class="timeline-description">
+                        The first official version release, offering advanced,
+                        locally-supported maintenance management solutions to
+                        the Algerian market.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Timeline Item 5: 2026 AI (Future) -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-marker md:w-1/2 md:pr-8 lg:pr-12">
+                  <div class="timeline-dot bg-blue-500"></div>
+                  <div class="timeline-content-wrapper md:text-right">
+                    <div
+                      class="timeline-card border-blue-200 dark:border-blue-700/60 bg-blue-50/30 dark:bg-blue-900/20"
+                    >
+                      <h3
+                        class="timeline-title text-blue-800 dark:text-blue-300"
+                      >
+                        2026 - AI-Powered Predictions
+                      </h3>
+                      <p class="timeline-description">
+                        Planning to integrate AI-driven predictive maintenance
+                        features, leveraging machine learning for optimized
+                        asset performance.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-spacer md:w-1/2 md:pl-8 lg:pl-12"></div>
+              </div>
+
+              <!-- Timeline Item 6: 2028 Expansion (Future) -->
+              <div
+                class="timeline-item relative md:flex md:items-start group"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <div class="timeline-spacer md:w-1/2 md:pr-8 lg:pr-12"></div>
+                <div class="timeline-marker md:w-1/2 md:pl-8 lg:pl-12">
+                  <div class="timeline-dot bg-blue-500"></div>
+                  <div class="timeline-content-wrapper">
+                    <div
+                      class="timeline-card border-blue-200 dark:border-blue-700/60 bg-blue-50/30 dark:bg-blue-900/20"
+                    >
+                      <h3
+                        class="timeline-title text-blue-800 dark:text-blue-300"
+                      >
+                        2028 - Expansion & Partnerships
+                      </h3>
+                      <p class="timeline-description">
+                        Focusing on expanding reach within Algeria and exploring
+                        strategic partnerships to enhance the maintenance tech
+                        ecosystem.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="timeline-item" data-scroll>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>2024 - Recognized as an Innovative Project</h3>
-                <p>
-                  The project received the “Innovative Project” label from the
-                  Ministry of Knowledge Economy and Startups, validating its
-                  potential impact in Algeria.
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-item" data-scroll>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>2025 - Evolution into MaintaFox</h3>
-                <p>
-                  The concept evolved into MaintaFox, transforming from a
-                  specialized tool into a fully integrated CMMS tailored for
-                  local industry needs.
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-item future" data-scroll>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>June 1, 2025 - Official Launch</h3>
-                <p>
-                  The first official version of MaintaFox will be released,
-                  providing advanced, locally-supported maintenance management
-                  solutions.
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-item future" data-scroll>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>2026 - AI-Powered Predictive Maintenance</h3>
-                <p>
-                  MaintaFox plans to integrate AI-driven predictive maintenance
-                  features, leveraging machine learning to further optimize
-                  asset performance.
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-item future" data-scroll>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>2028 - Expansion & Partnerships</h3>
-                <p>
-                  Focusing on expanding within Algeria and potentially forming
-                  partnerships to enhance the ecosystem of maintenance
-                  technology.
-                </p>
-              </div>
-            </div>
+            <!-- End space-y container -->
           </div>
-          <!-- End timeline-container -->
+          <!-- End Timeline Wrapper -->
         </div>
-        <!-- End container -->
+        <!-- End Container -->
       </section>
+      <!-- === End Redesigned About Us & Journey Section === -->
+
       <!-- === End About Us & Timeline Section === -->
 
       <!-- === Pricing Section === -->

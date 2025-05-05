@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Update Title and Description -->
+    <title>Maintafox CMMS Survey - Shape the Future of Maintenance</title>
+    <meta
+      name="description"
+      content="Help Maintafox build the best CMMS for your needs. Take our short survey and share your insights on maintenance practices and software requirements."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.webp" type="image/webp" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary-light": "#ffffff",
+              "secondary-light": "#f8fafc",
+              "card-light": "#ffffff",
+              "accent-orange": "#f97316",
+              "accent-blue": "#3b82f6",
+              "accent-green": "#10b981",
+              "dark-text": "#1f2937",
+              "medium-text": "#4b5563",
+              "light-border": "#e5e7eb",
+              "error-red": "#dc2626", // Added error color
+              "success-green": "#16a34a", // Added success color
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            animation: {
+              spin: "spin 1s linear infinite",
+            },
+            keyframes: {
+              spin: {
+                from: { transform: "rotate(0deg)" },
+                to: { transform: "rotate(360deg)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="bg-secondary-light text-dark-text">
+    <!-- =========================================== -->
+    <!-- === PASTE YOUR FINAL HEADER CODE HERE === -->
+    <!-- =========================================== -->
+    <header
+      id="main-header"
+      class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-light-border"
+    >
+      <!-- Start Replaceable Header -->
+      <nav
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center h-[70px]"
+      >
+        <a
+          href="/"
+          class="text-2xl font-bold text-dark-text hover:opacity-80 transition-opacity duration-200 ease-in-out flex-shrink-0"
+        >
+          Mainta<span class="text-accent-orange">fox</span>
+        </a>
+        <ul class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <li><a href="/#features" class="nav-link">Features</a></li>
+          <li><a href="/#benefits" class="nav-link">Benefits</a></li>
+          <li><a href="/#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="/#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="/#testimonials" class="nav-link">Testimonials</a></li>
+          <li>
+            <a href="/demo.html" class="nav-cta-button">Request a Demo</a>
+          </li>
+        </ul>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-dark-text focus:outline-none p-2 -mr-2 relative z-50"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg
+            id="hamburger-icon"
+            class="w-6 h-6 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+          <svg
+            id="close-icon"
+            class="w-6 h-6 absolute top-2 left-0 opacity-0 transition-opacity duration-300 ease-in-out"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-0 left-0 w-full bg-white shadow-xl border-t border-light-border transition-transform duration-300 ease-in-out transform -translate-y-full -z-10 pt-[70px]"
+      >
+        <ul class="flex flex-col items-center py-8 space-y-6">
+          <li><a href="/#features" class="mobile-nav-link">Features</a></li>
+          <li><a href="/#benefits" class="mobile-nav-link">Benefits</a></li>
+          <li>
+            <a href="/#how-it-works" class="mobile-nav-link">How It Works</a>
+          </li>
+          <li><a href="/#pricing" class="mobile-nav-link">Pricing</a></li>
+          <li>
+            <a href="/#testimonials" class="mobile-nav-link">Testimonials</a>
+          </li>
+          <li class="pt-4">
+            <a href="/demo.html" class="nav-cta-button mobile-cta"
+              >Request a Demo</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- End Replaceable Header -->
+    </header>
+    <!-- =========================================== -->
+    <!-- === END HEADER PASTE AREA             === -->
+    <!-- =========================================== -->
+
+    <main class="survey-main pt-[70px]">
+      <!-- Add padding-top equal to header height -->
+      <section class="survey-container">
+        <div class="survey-header">
+          <h1 data-translate="survey_main_title">
+            Help Us Shape the Future of Maintenance!
+          </h1>
+          <p data-translate="survey_intro">
+            Welcome to the Maintafox survey. Your feedback is crucial in
+            developing a CMMS that truly meets your needs. This should only take
+            5-7 minutes.
+          </p>
+          <div class="progress-container">
+            <div class="progress-bar" id="survey-progress-bar"></div>
+            <!-- Text will be updated by JS -->
+            <span
+              class="progress-text"
+              id="survey-progress-text"
+              data-translate="progress_text"
+              data-translate-value="0"
+              >0% Complete</span
+            >
+          </div>
+        </div>
+
+        <!-- Basin Form Endpoint -->
+        <form
+          id="cmms-survey-form"
+          action="https://usebasin.com/f/da715687b44f"
+          <!--
+          UPDATE
+          YOUR
+          BASIN
+          ENDPOINT
+          --
+        >
+          method="POST" class="interactive-form survey-form-layout" novalidate >
+          <fieldset>
+            <legend data-translate="fieldset_about_you">
+              About You & Your Company
+            </legend>
+
+            <!-- Question 1 -->
+            <div class="form-field" data-progress-step>
+              <label for="role" data-translate="q1_label"
+                >1. What is your primary role related to maintenance?</label
+              >
+              <select
+                id="role"
+                name="role"
+                required
+                aria-describedby="role_error"
+              >
+                <option value="" disabled selected data-translate="select_role">
+                  -- Select your role --
+                </option>
+                <option
+                  value="Maintenance Manager/Lead"
+                  data-translate="role_manager"
+                >
+                  Maintenance Manager/Lead
+                </option>
+                <option
+                  value="Maintenance Technician"
+                  data-translate="role_technician"
+                >
+                  Maintenance Technician
+                </option>
+                <option
+                  value="Plant/Technical Director"
+                  data-translate="role_director"
+                >
+                  Plant/Technical Director
+                </option>
+                <option
+                  value="Operations Manager"
+                  data-translate="role_operations"
+                >
+                  Operations Manager
+                </option>
+                <option
+                  value="Purchasing/Procurement"
+                  data-translate="role_purchasing"
+                >
+                  Purchasing/Procurement
+                </option>
+                <option value="IT Department" data-translate="role_it">
+                  IT Department
+                </option>
+                <option
+                  value="General Management/Owner"
+                  data-translate="role_owner"
+                >
+                  General Management/Owner
+                </option>
+                <option value="Consultant" data-translate="role_consultant">
+                  Consultant
+                </option>
+                <option value="Other" data-translate="role_other">Other</option>
+              </select>
+              <input
+                type="text"
+                id="role_other"
+                name="role_other"
+                class="conditional-input"
+                data-condition-target="role"
+                data-condition-value="Other"
+                data-translate-placeholder="specify_role_placeholder"
+                placeholder="Please specify your role"
+                aria-describedby="role_other_error"
+              />
+              <span
+                class="error-message"
+                id="role_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="role_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="form-field" data-progress-step>
+              <label for="industry" data-translate="q2_label"
+                >2. In which industry does your company primarily
+                operate?</label
+              >
+              <select
+                id="industry"
+                name="industry"
+                required
+                aria-describedby="industry_error"
+              >
+                <option
+                  value=""
+                  disabled
+                  selected
+                  data-translate="select_industry"
+                >
+                  -- Select industry --
+                </option>
+                <option
+                  value="Manufacturing (General)"
+                  data-translate="industry_mfg_general"
+                >
+                  Manufacturing (General)
+                </option>
+                <option
+                  value="Manufacturing (Food & Beverage)"
+                  data-translate="industry_mfg_food"
+                >
+                  Manufacturing (Food & Beverage)
+                </option>
+                <option
+                  value="Manufacturing (Automotive)"
+                  data-translate="industry_mfg_auto"
+                >
+                  Manufacturing (Automotive)
+                </option>
+                <option
+                  value="Energy (Oil, Gas, Renewables)"
+                  data-translate="industry_energy"
+                >
+                  Energy (Oil, Gas, Renewables)
+                </option>
+                <option
+                  value="Utilities (Water, Electricity)"
+                  data-translate="industry_utilities"
+                >
+                  Utilities (Water, Electricity)
+                </option>
+                <option
+                  value="Facilities Management/Real Estate"
+                  data-translate="industry_facilities"
+                >
+                  Facilities Management/Real Estate
+                </option>
+                <option
+                  value="Transportation & Logistics"
+                  data-translate="industry_transport"
+                >
+                  Transportation & Logistics
+                </option>
+                <option
+                  value="Construction"
+                  data-translate="industry_construction"
+                >
+                  Construction
+                </option>
+                <option
+                  value="Pharmaceutical / Chemical"
+                  data-translate="industry_pharma"
+                >
+                  Pharmaceutical / Chemical
+                </option>
+                <option
+                  value="Heavy Industry (Steel, Cement, Mining)"
+                  data-translate="industry_heavy"
+                >
+                  Heavy Industry (Steel, Cement, Mining)
+                </option>
+                <option value="Healthcare" data-translate="industry_healthcare">
+                  Healthcare
+                </option>
+                <option
+                  value="Hospitality"
+                  data-translate="industry_hospitality"
+                >
+                  Hospitality
+                </option>
+                <option
+                  value="Services / Tertiary"
+                  data-translate="industry_services"
+                >
+                  Services / Tertiary
+                </option>
+                <option value="Other" data-translate="industry_other">
+                  Other
+                </option>
+              </select>
+              <input
+                type="text"
+                id="industry_other"
+                name="industry_other"
+                class="conditional-input"
+                data-condition-target="industry"
+                data-condition-value="Other"
+                data-translate-placeholder="specify_industry_placeholder"
+                placeholder="Please specify industry"
+                aria-describedby="industry_other_error"
+              />
+              <span
+                class="error-message"
+                id="industry_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="industry_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q3_label"
+                >3. What is the approximate size of your company (number of
+                employees)?</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="company_size_error"
+              >
+                <legend class="sr-only" data-translate="q3_legend_sr">
+                  Company Size Options
+                </legend>
+                <div class="radio-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="company_size"
+                      value="1-9"
+                      required
+                    />
+                    1-9
+                  </label>
+                  <label>
+                    <input type="radio" name="company_size" value="10-49" />
+                    10-49
+                  </label>
+                  <label>
+                    <input type="radio" name="company_size" value="50-199" />
+                    50-199
+                  </label>
+                  <label>
+                    <input type="radio" name="company_size" value="200-499" />
+                    200-499
+                  </label>
+                  <label>
+                    <input type="radio" name="company_size" value="500+" /> 500+
+                  </label>
+                </div>
+              </fieldset>
+              <span
+                class="error-message"
+                id="company_size_error"
+                aria-live="polite"
+              ></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend data-translate="fieldset_current_practices">
+              Current Maintenance Practices
+            </legend>
+
+            <!-- Question 4 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q4_label"
+                >4. How do you currently manage maintenance activities?</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="current_method_error"
+              >
+                <legend class="sr-only" data-translate="q4_legend_sr">
+                  Current Method Options
+                </legend>
+                <div class="radio-group-vertical" id="current-method-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="CMMS Software"
+                      required
+                    /><span data-translate="method_cmms"
+                      >Dedicated CMMS Software</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="ERP Module (e.g., SAP PM)"
+                    /><span data-translate="method_erp"
+                      >ERP Module (e.g., SAP PM)</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="Spreadsheets (Excel, Google Sheets)"
+                    /><span data-translate="method_sheets"
+                      >Spreadsheets (Excel, Google Sheets)</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="Paper Documents / Manual Tracking"
+                    /><span data-translate="method_paper"
+                      >Paper Documents / Manual Tracking</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="Combination"
+                    /><span data-translate="method_combination"
+                      >Combination of Methods</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="No Structured System"
+                    /><span data-translate="method_none"
+                      >No Structured System / Ad-hoc</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="current_method"
+                      value="Other"
+                    /><span data-translate="method_other">Other</span></label
+                  >
+                </div>
+              </fieldset>
+              <input
+                type="text"
+                id="current_method_combination"
+                name="current_method_combination"
+                class="conditional-input"
+                data-condition-target="current_method"
+                data-condition-value="Combination"
+                data-translate-placeholder="specify_combination_placeholder"
+                placeholder="Specify combination (e.g., Excel + Paper)"
+                aria-describedby="current_method_combination_error"
+              />
+              <input
+                type="text"
+                id="current_method_other"
+                name="current_method_other"
+                class="conditional-input"
+                data-condition-target="current_method"
+                data-condition-value="Other"
+                data-translate-placeholder="specify_other_method_placeholder"
+                placeholder="Please specify other method"
+                aria-describedby="current_method_other_error"
+              />
+              <span
+                class="error-message"
+                id="current_method_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="current_method_combination_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="current_method_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Conditional Question 5 -->
+            <div
+              class="form-field conditional-section"
+              id="cmms-used-section"
+              data-condition-target="current_method"
+              data-condition-value="CMMS Software,ERP Module (e.g., SAP PM),Combination"
+            >
+              <label for="cmms_used" data-translate="q5_label"
+                >5. If you use a CMMS or ERP Module, which one(s)
+                primarily?</label
+              >
+              <select
+                id="cmms_used"
+                name="cmms_used"
+                aria-describedby="cmms_used_error"
+              >
+                <option
+                  value=""
+                  disabled
+                  selected
+                  data-translate="select_cmms_used"
+                >
+                  -- Select software (if applicable) --
+                </option>
+                <option value="SAP PM / EAM">SAP PM / EAM</option>
+                <option value="IBM Maximo">IBM Maximo</option>
+                <option value="Infor EAM">Infor EAM</option>
+                <option value="Fiix">Fiix by Rockwell Automation</option>
+                <option value="UpKeep">UpKeep</option>
+                <option value="MaintainX">MaintainX</option>
+                <option value="eMaint">eMaint (Fluke)</option>
+                <option value="IFS Ultimo">IFS Ultimo</option>
+                <option value="Carl Source (Berger-Levrault)">
+                  Carl Source (Berger-Levrault)
+                </option>
+                <option value="Coswin (Siveco)">Coswin (Siveco)</option>
+                <option
+                  value="Developed In-house"
+                  data-translate="cmms_inhouse"
+                >
+                  Developed In-house
+                </option>
+                <option
+                  value="Other Specific CMMS"
+                  data-translate="cmms_other_specific"
+                >
+                  Other Specific CMMS
+                </option>
+              </select>
+              <input
+                type="text"
+                id="cmms_used_other"
+                name="cmms_used_other"
+                class="conditional-input"
+                data-condition-target="cmms_used"
+                data-condition-value="Other Specific CMMS"
+                data-translate-placeholder="specify_cmms_placeholder"
+                placeholder="Please specify CMMS name"
+                aria-describedby="cmms_used_other_error"
+              />
+              <span
+                class="error-message"
+                id="cmms_used_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="cmms_used_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Conditional Question 6 -->
+            <div
+              class="form-field conditional-section"
+              id="current-challenges-section"
+              data-condition-target="current_method"
+              data-condition-value="CMMS Software,ERP Module (e.g., SAP PM),Spreadsheets (Excel, Google Sheets),Combination,Other"
+            >
+              <!-- removed data-group-required -->
+              <label data-translate="q6_label"
+                >6. What are your biggest challenges with your current
+                maintenance management method? (Select all that apply)</label
+              >
+              <fieldset
+                class="checkbox-group-fieldset"
+                aria-describedby="challenges_error"
+              >
+                <legend class="sr-only" data-translate="q6_legend_sr">
+                  Challenges Options
+                </legend>
+                <div class="checkbox-group">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Lack of asset visibility/history"
+                    /><span data-translate="challenge_visibility"
+                      >Lack of asset visibility/history</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Difficulty planning preventive maintenance"
+                    /><span data-translate="challenge_planning"
+                      >Difficulty planning preventive maintenance</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Inefficient work order tracking/completion"
+                    /><span data-translate="challenge_wo_tracking"
+                      >Inefficient work order tracking/completion</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Poor spare parts inventory management"
+                    /><span data-translate="challenge_inventory"
+                      >Poor spare parts inventory management</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="High or unpredictable maintenance costs"
+                    /><span data-translate="challenge_costs"
+                      >High or unpredictable maintenance costs</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Insufficient reporting and analysis"
+                    /><span data-translate="challenge_reporting"
+                      >Insufficient reporting and analysis</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="System is too complex or difficult to use"
+                    /><span data-translate="challenge_complexity"
+                      >System is too complex or difficult to use</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Lack of mobile access for technicians"
+                    /><span data-translate="challenge_mobile"
+                      >Lack of mobile access for technicians</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Poor communication between teams"
+                    /><span data-translate="challenge_communication"
+                      >Poor communication between teams</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Difficulty tracking compliance"
+                    /><span data-translate="challenge_compliance"
+                      >Difficulty tracking compliance</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="challenges[]"
+                      value="Challenge_Other"
+                    /><span data-translate="challenge_other">Other</span></label
+                  >
+                </div>
+              </fieldset>
+              <input
+                type="text"
+                id="challenges_other"
+                name="challenges_other"
+                class="conditional-input"
+                data-condition-target="challenges[]"
+                data-condition-value="Challenge_Other"
+                data-translate-placeholder="specify_challenge_placeholder"
+                placeholder="Please specify other challenges"
+                aria-describedby="challenges_other_error"
+              />
+              <span
+                class="error-message"
+                id="challenges_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="challenges_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Conditional Question 7 -->
+            <div
+              class="form-field conditional-section"
+              id="no-cmms-reasons-section"
+              data-condition-target="current_method"
+              data-condition-value="Paper Documents / Manual Tracking,No Structured System"
+            >
+              <!-- removed data-group-required -->
+              <label data-translate="q7_label"
+                >7. What are the main reasons your company hasn't adopted a
+                dedicated CMMS? (Select all that apply)</label
+              >
+              <fieldset
+                class="checkbox-group-fieldset"
+                aria-describedby="no_cmms_reasons_error"
+              >
+                <legend class="sr-only" data-translate="q7_legend_sr">
+                  Reasons for No CMMS Options
+                </legend>
+                <div class="checkbox-group">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Perceived high cost"
+                    /><span data-translate="reason_cost"
+                      >Perceived high cost</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Complexity of implementation/setup"
+                    /><span data-translate="reason_complexity"
+                      >Complexity of implementation/setup</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Lack of time or internal resources"
+                    /><span data-translate="reason_resources"
+                      >Lack of time or internal resources</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Current system (e.g., Excel) seems sufficient"
+                    /><span data-translate="reason_sufficient"
+                      >Current system seems sufficient for now</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="No clear need identified / Low priority"
+                    /><span data-translate="reason_no_need"
+                      >No clear need identified / Low priority</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Resistance to change from personnel"
+                    /><span data-translate="reason_resistance"
+                      >Resistance to change from personnel</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="Lack of awareness of suitable options"
+                    /><span data-translate="reason_awareness"
+                      >Lack of awareness of suitable options</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="no_cmms_reasons[]"
+                      value="NoCMMS_Other"
+                    /><span data-translate="reason_other">Other</span></label
+                  >
+                </div>
+              </fieldset>
+              <input
+                type="text"
+                id="no_cmms_reasons_other"
+                name="no_cmms_reasons_other"
+                class="conditional-input"
+                data-condition-target="no_cmms_reasons[]"
+                data-condition-value="NoCMMS_Other"
+                data-translate-placeholder="specify_reason_placeholder"
+                placeholder="Please specify other reasons"
+                aria-describedby="no_cmms_reasons_other_error"
+              />
+              <span
+                class="error-message"
+                id="no_cmms_reasons_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="no_cmms_reasons_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend data-translate="fieldset_decision_budget">
+              Decision Making & Budget
+            </legend>
+
+            <!-- Question 8 -->
+            <div class="form-field" data-progress-step>
+              <!-- removed data-group-required -->
+              <label data-translate="q8_label"
+                >8. Who is typically involved in the decision to acquire a new
+                CMMS? (Select all that apply)</label
+              >
+              <fieldset
+                class="checkbox-group-fieldset"
+                aria-describedby="decision_makers_error"
+              >
+                <legend class="sr-only" data-translate="q8_legend_sr">
+                  Decision Makers Options
+                </legend>
+                <div class="checkbox-group">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="Maintenance Department Head"
+                    /><span data-translate="decision_maint_head"
+                      >Maintenance Department Head</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="Technical / Production Director"
+                    /><span data-translate="decision_tech_director"
+                      >Technical / Production Director</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="Plant / Site Manager"
+                    /><span data-translate="decision_plant_manager"
+                      >Plant / Site Manager</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="General Management (CEO/GM/Owner)"
+                    /><span data-translate="decision_gen_manager"
+                      >General Management (CEO/GM/Owner)</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="IT Department"
+                    /><span data-translate="decision_it"
+                      >IT Department</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="Purchasing / Finance Department"
+                    /><span data-translate="decision_finance"
+                      >Purchasing / Finance Department</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="End Users (Technicians/Planners)"
+                    /><span data-translate="decision_users"
+                      >End Users (Technicians/Planners)</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="External Consultant"
+                    /><span data-translate="decision_consultant"
+                      >External Consultant</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="decision_makers[]"
+                      value="Decision_Other"
+                    /><span data-translate="decision_other">Other</span></label
+                  >
+                </div>
+              </fieldset>
+              <input
+                type="text"
+                id="decision_makers_other"
+                name="decision_makers_other"
+                class="conditional-input"
+                data-condition-target="decision_makers[]"
+                data-condition-value="Decision_Other"
+                data-translate-placeholder="specify_decision_placeholder"
+                placeholder="Please specify others involved"
+                aria-describedby="decision_makers_other_error"
+              />
+              <span
+                class="error-message"
+                id="decision_makers_error"
+                aria-live="polite"
+              ></span>
+              <span
+                class="error-message"
+                id="decision_makers_other_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="form-field" data-progress-step>
+              <label for="budget" data-translate="q9_label"
+                >9. What is your company's approximate annual budget (or range)
+                for a CMMS solution (Software license/subscription)? (Estimation
+                in DZD)</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="budget_error"
+              >
+                <legend class="sr-only" data-translate="q9_legend_sr">
+                  Budget Options
+                </legend>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="budget"
+                      value="<50k DZD"
+                      required
+                    />
+                    <span data-translate="budget_lt_50k"
+                      >< 50,000 DZD</span
+                    ></label
+                  >
+                  <label
+                    ><input type="radio" name="budget" value="50k-150k DZD" />
+                    50,000 - 150,000 DZD</label
+                  >
+                  <label
+                    ><input type="radio" name="budget" value="150k-300k DZD" />
+                    150,000 - 300,000 DZD</label
+                  >
+                  <label
+                    ><input type="radio" name="budget" value="300k-600k DZD" />
+                    300,000 - 600,000 DZD</label
+                  >
+                  <label
+                    ><input type="radio" name="budget" value=">600k DZD" />
+                    <span data-translate="budget_gt_600k"
+                      >> 600,000 DZD</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="budget"
+                      value="Not Defined/Flexible"
+                    />
+                    <span data-translate="budget_flexible"
+                      >Budget Not Defined / Flexible</span
+                    ></label
+                  >
+                  <label
+                    ><input type="radio" name="budget" value="Confidential" />
+                    <span data-translate="budget_confidential"
+                      >Prefer not to say</span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <span
+                class="error-message"
+                id="budget_error"
+                aria-live="polite"
+              ></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend data-translate="fieldset_needs_interests">
+              Your Needs & Interests
+            </legend>
+
+            <!-- Question 10 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q10_label"
+                >10. How interested would you be in a locally developed CMMS
+                solution potentially offering strong local support and features
+                suited to the regional context?</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="interest_local_error"
+              >
+                <legend class="sr-only" data-translate="q10_legend_sr">
+                  Interest in Local Solution Options
+                </legend>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_local"
+                      value="Very Interested"
+                      required
+                    /><span data-translate="interest_very"
+                      >Very Interested</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_local"
+                      value="Interested"
+                    /><span data-translate="interest_interested"
+                      >Interested</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_local"
+                      value="Somewhat Interested"
+                    /><span data-translate="interest_somewhat"
+                      >Somewhat Interested</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_local"
+                      value="Neutral"
+                    /><span data-translate="interest_neutral"
+                      >Neutral</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_local"
+                      value="Not Interested"
+                    /><span data-translate="interest_not"
+                      >Not Interested</span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <span
+                class="error-message"
+                id="interest_local_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q11_label"
+                >11. Please rate the importance of these potential CMMS features
+                for your operations (1 = Not Important, 5 = Essential):</label
+              >
+              <div class="rating-group" aria-describedby="rating_error">
+                <div class="rating-item">
+                  <label
+                    for="rating_assets"
+                    data-translate="rating_assets_label"
+                    >Asset & Work Order Management:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_assets"
+                    name="rating_assets"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_preventive"
+                    data-translate="rating_preventive_label"
+                    >Preventive / Predictive Maintenance:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_preventive"
+                    name="rating_preventive"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_inventory"
+                    data-translate="rating_inventory_label"
+                    >Inventory & Purchasing:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_inventory"
+                    name="rating_inventory"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_reports"
+                    data-translate="rating_reports_label"
+                    >Dashboards & KPI Reports:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_reports"
+                    name="rating_reports"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_mobile"
+                    data-translate="rating_mobile_label"
+                    >Technician Mobile App:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_mobile"
+                    name="rating_mobile"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_ease_of_use"
+                    data-translate="rating_ease_label"
+                    >Ease of Use / Intuitive Interface:</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_ease_of_use"
+                    name="rating_ease_of_use"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <div class="rating-item">
+                  <label
+                    for="rating_integration"
+                    data-translate="rating_integration_label"
+                    >Integration with other systems (ERP, etc.):</label
+                  >
+                  <input
+                    type="range"
+                    id="rating_integration"
+                    name="rating_integration"
+                    min="1"
+                    max="5"
+                    step="1"
+                    list="tickmarks"
+                    required
+                  />
+                  <span class="range-value" aria-hidden="true">1</span>
+                </div>
+                <!-- Datalist remains the same, purely functional -->
+                <datalist id="tickmarks">
+                  <option value="1" label="1"></option>
+                  <option value="2"></option>
+                  <option value="3" label="3"></option>
+                  <option value="4"></option>
+                  <option value="5" label="5"></option>
+                </datalist>
+              </div>
+              <span
+                class="error-message"
+                id="rating_error"
+                aria-live="polite"
+              ></span>
+              <!-- General error for rating group -->
+            </div>
+
+            <!-- Question 12 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q12_label"
+                >12. Would you be interested in participating in a free Beta
+                program for Maintafox (early access in exchange for
+                feedback)?</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="interest_beta_error"
+              >
+                <legend class="sr-only" data-translate="q12_legend_sr">
+                  Beta Program Interest Options
+                </legend>
+                <div class="radio-group" id="beta-interest-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_beta"
+                      value="Yes, very"
+                      required
+                    /><span data-translate="beta_yes_very"
+                      >Yes, very interested</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_beta"
+                      value="Yes, maybe"
+                    /><span data-translate="beta_yes_maybe"
+                      >Yes, maybe</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_beta"
+                      value="No, thank you"
+                    /><span data-translate="beta_no">No, thank you</span></label
+                  >
+                </div>
+              </fieldset>
+              <span
+                class="error-message"
+                id="interest_beta_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="form-field" data-progress-step>
+              <label data-translate="q13_label"
+                >13. Would you like to be contacted for a free, personalized
+                demo of Maintafox when available?</label
+              >
+              <fieldset
+                class="radio-group-fieldset"
+                aria-describedby="interest_demo_error"
+              >
+                <legend class="sr-only" data-translate="q13_legend_sr">
+                  Demo Interest Options
+                </legend>
+                <div class="radio-group" id="demo-interest-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_demo"
+                      value="Yes, absolutely"
+                      required
+                    /><span data-translate="demo_yes_abs"
+                      >Yes, absolutely!</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_demo"
+                      value="Yes, keep me informed"
+                    /><span data-translate="demo_yes_inform"
+                      >Yes, keep me informed</span
+                    ></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="interest_demo"
+                      value="No, not right now"
+                    /><span data-translate="demo_no"
+                      >No, not right now</span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <span
+                class="error-message"
+                id="interest_demo_error"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <!-- Conditional Contact Info -->
+            <div
+              class="form-field conditional-section"
+              id="contact-info-section"
+              data-condition-target="interest_beta,interest_demo"
+              data-condition-value="Yes, very,Yes, maybe,Yes, absolutely,Yes, keep me informed"
+            >
+              <label data-translate="contact_info_label"
+                >Please provide your contact details so we can reach out about
+                the Beta/Demo:</label
+              >
+              <!-- Use floating label structure for these specific inputs -->
+              <div class="form-field sub-field floating-label-field">
+                <input
+                  type="text"
+                  id="contact_name"
+                  name="contact_name"
+                  placeholder=" "
+                  autocomplete="name"
+                  aria-describedby="contact_name_error"
+                  class="survey-form-layout"
+                  <!--
+                  Apply
+                  base
+                  input
+                  style
+                  --
+                />
+                />
+                <label for="contact_name" data-translate="contact_name_label"
+                  >Your Name</label
+                >
+                <span
+                  class="error-message"
+                  id="contact_name_error"
+                  aria-live="polite"
+                ></span>
+              </div>
+              <div class="form-field sub-field floating-label-field">
+                <input
+                  type="email"
+                  id="contact_email"
+                  name="contact_email"
+                  placeholder=" "
+                  autocomplete="email"
+                  aria-describedby="contact_email_error"
+                  class="survey-form-layout"
+                  <!--
+                  Apply
+                  base
+                  input
+                  style
+                  --
+                />
+                />
+                <label for="contact_email" data-translate="contact_email_label"
+                  >Your Email</label
+                >
+                <span
+                  class="error-message"
+                  id="contact_email_error"
+                  aria-live="polite"
+                ></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-submit-area">
+            <button type="submit" class="form-submit cta-button nav-cta-button">
+              <!-- Re-use button styles -->
+              <!-- Text updated by JS -->
+              <span data-translate="submit_button">Submit Survey</span>
+              <!-- Spinner Icon (from demo form) -->
+              <svg
+                class="spinner-icon hidden w-5 h-5 text-white animate-spin ml-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              <!-- Check Icon -->
+              <svg
+                class="success-icon hidden w-5 h-5 text-white ml-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+            <!-- Success message container -->
+            <div
+              class="form-message success"
+              id="form-success-message"
+              aria-live="polite"
+            ></div>
+            <!-- General error message container -->
+            <div
+              class="form-message error"
+              id="form-general-error"
+              aria-live="polite"
+            ></div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- =========================================== -->
+    <!-- === PASTE YOUR FINAL FOOTER CODE HERE === -->
+    <!-- =========================================== -->
+    <footer
+      id="footer"
+      class="bg-secondary-light border-t border-light-border py-12"
+    >
+      <!-- Start Replaceable Footer -->
+      <div class="container mx-auto px-6 text-center text-sm text-medium-text">
+        © 2024 Maintafox. All rights reserved. |
+        <a href="/privacy-policy.html" class="hover:text-dark-text"
+          >Privacy Policy</a
+        >
+        |
+        <a href="/terms-of-service.html" class="hover:text-dark-text"
+          >Terms of Service</a
+        >
+      </div>
+      <!-- End Replaceable Footer -->
+    </footer>
+    <!-- =========================================== -->
+    <!-- === END FOOTER PASTE AREA             === -->
+    <!-- =========================================== -->
+
+    <!-- Link General Script -->
+    <script src="js/script.js" defer></script>
+    <!-- Link Translations & Form Specific Script -->
+    <script src="js/translations.js" defer></script>
+    <!-- Your translations file -->
+    <script src="js/forme-script.js" defer></script>
+    <!-- The survey JS logic -->
+  </body>
+</html>
