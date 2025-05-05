@@ -24,6 +24,11 @@
   --font-size-xl: 1.5rem; /* Approx 24px */
   --font-size-xxl: 2.5rem; /* Approx 40px */
   --font-size-xxxl: 3rem; /* Approx 48px */
+
+  /* Mobile specific adjustments */
+  --mobile-padding: 1rem; /* Standard padding for mobile containers */
+  --mobile-padding-sm: 0.75rem;
+  --mobile-padding-lg: 1.5rem;
 }
 
 /* === Base Styles & Font Smoothing === */
@@ -33,11 +38,11 @@ body {
   color: #1f2937; /* dark-text from Tailwind config */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Prevent horizontal scrollbars */
+  overflow-x: hidden; /* Crucial: Prevent horizontal scrollbars */
+  line-height: 1.6; /* Improve base readability */
 }
 
 /* === Scroll Animations === */
-/* Initial state */
 .animate-on-scroll {
   opacity: 0;
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -45,7 +50,6 @@ body {
 .animate-fade-in-up {
   transform: translateY(20px);
 }
-/* Visible state */
 .is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -53,49 +57,142 @@ body {
 
 /* === Sticky Header Styling === */
 #main-header {
-  /* Base transition for smooth background/shadow changes */
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
+    border-color 0.3s ease-in-out, height 0.3s ease-in-out; /* Added height transition */
+  height: var(--header-height); /* Use variable */
+  position: fixed; /* Assuming fixed header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Ensure header is above everything */
 }
 .sticky-nav-scrolled {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.9
-  ); /* Slightly less transparent for better readability */
-  backdrop-filter: blur(10px); /* Increased blur */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02); /* Adjusted subtle shadow */
-  border-bottom: 1px solid #e5e7eb; /* light-border from Tailwind config */
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid #e5e7eb;
+  /* Optional: Slightly shrink header height when sticky */
+  /* height: 65px; */
 }
+
+/* Adjust nav padding if header height changes when sticky */
+/* #main-header.sticky-nav-scrolled nav {
+  height: 65px;
+} */
 
 /* === Hero Section Laptop Animation === */
 .laptop {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.5rem; /* Adjust as needed */
-  margin-bottom: 2rem; /* Adjust as needed */
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  /* Base scale for desktop */
+  transform: scale(1);
+  transition: transform 0.3s ease-out;
 }
 
-/* Responsive adjustments for Laptop Animation */
-@media (max-width: 1024px) {
-  /* Tablet */
-  .laptop {
-    transform: scale(0.85); /* Slightly larger than mobile */
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-  }
+.screen {
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 2px #c8cacb, inset 0 0 0 10px #000;
+  height: 318px;
+  width: 518px;
+  max-width: 90vw; /* Prevent overflow on very small screens */
+  margin: 0 auto;
+  padding: 9px 9px 23px 9px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2937;
+  background-image: url("../assets/interface.png"); /* Ensure path is correct */
+  background-size: contain; /* Changed from cover for potentially better mobile scaling */
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  transform: perspective(1900px) rotateX(-88.5deg); /* Initial state */
+  transform-origin: 50% 100%;
+  animation: openScreenAnimation 4s infinite alternate ease-in-out;
 }
 
-@media (max-width: 767px) {
-  /* Mobile (using 767px to avoid conflict with md: breakpoint) */
-  .laptop {
-    transform: scale(0.7); /* Adjusted scale for better visibility */
-    margin-top: 0rem;
-    margin-bottom: 2rem;
-  }
+.keyboard {
+  background: radial-gradient(circle at center, #e2e3e4 85%, #a9abac 100%);
+  border: solid #a0a3a7;
+  border-radius: 2px 2px 12px 12px;
+  border-width: 1px 2px 0 2px;
+  box-shadow: inset 0 -2px 8px 0 #6c7074;
+  height: 24px;
+  position: relative;
+  width: 620px; /* Base width for desktop */
+  max-width: 90vw; /* Ensure it doesn't overflow on mobile initially */
+  z-index: 9;
+  margin-top: -1px;
 }
+
+/* Screen pseudo-elements */
+.screen::before {
+  content: "";
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  background: linear-gradient(#979899, transparent);
+  top: -3px;
+  left: 0;
+  transform: rotateX(90deg);
+  border-radius: 5px 5px 0 0;
+}
+.screen::after {
+  background: linear-gradient(to bottom, #272727, #0d0d0d);
+  border-radius: 0 0 20px 20px;
+  bottom: 2px;
+  content: "";
+  height: 24px;
+  left: 2px;
+  position: absolute;
+  width: calc(100% - 4px);
+}
+
+.laptop-header {
+  width: 100px;
+  height: 12px;
+  position: absolute;
+  background-color: #000;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 0 0 6px 6px;
+  z-index: 10;
+}
+
+/* Keyboard pseudo-elements */
+.keyboard::after {
+  /* Touchpad */
+  background: #d1d3d4;
+  border-radius: 0 0 10px 10px;
+  box-shadow: inset 0 0 4px 1px #babdbf;
+  content: "";
+  height: 10px;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  top: 0;
+  width: 120px;
+}
+.keyboard::before {
+  /* Feet/Shadow */
+  background: transparent;
+  border-radius: 0 0 3px 3px;
+  bottom: -2px;
+  box-shadow: -270px 0 0 0px #3f444a, 270px 0 0 0px #3f444a;
+  content: "";
+  height: 2px;
+  left: 50%;
+  margin-left: -10px;
+  position: absolute;
+  width: 40px;
+}
+
+/* Keyframes */
 @keyframes led-pulse {
   0%,
   100% {
@@ -107,7 +204,6 @@ body {
     filter: drop-shadow(0 0 6px #3b82f6); /* glowing effect */
   }
 }
-
 .animate-led-pulse {
   animation: led-pulse 1.5s infinite ease-in-out;
 }
@@ -116,7 +212,6 @@ body {
   position: relative;
   z-index: 0;
 }
-
 .glow-button::before {
   content: "";
   position: absolute;
@@ -146,30 +241,6 @@ body {
   }
 }
 
-.screen {
-  border-radius: 20px;
-  box-shadow: inset 0 0 0 2px #c8cacb, inset 0 0 0 10px #000;
-  height: 318px;
-  width: 518px;
-  max-width: 90vw; /* Prevent overflow on very small screens */
-  margin: 0 auto;
-  padding: 9px 9px 23px 9px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1f2937; /* Darker background for contrast */
-  /* Ensure the image path is correct relative to the CSS file or use absolute path */
-  background-image: url("../assets/interface.png");
-  background-size: contain;
-  background-position: center 40%;
-  background-repeat: no-repeat;
-  transform-style: preserve-3d;
-  transform: perspective(1900px) rotateX(-88.5deg);
-  transform-origin: 50% 100%;
-  animation: openScreenAnimation 4s infinite alternate ease-in-out; /* Smoother easing */
-}
-
 @keyframes openScreenAnimation {
   /* Renamed for clarity */
   0% {
@@ -180,108 +251,28 @@ body {
   }
 }
 
-.screen::before {
-  content: "";
-  width: 100%; /* Make relative to screen width */
-  height: 12px;
-  position: absolute;
-  background: linear-gradient(#979899, transparent);
-  top: -3px;
-  left: 0;
-  transform: rotateX(90deg);
-  border-radius: 5px 5px 0 0; /* Adjusted border radius */
-}
-
-.laptop-header {
-  width: 100px;
-  height: 12px;
-  position: absolute;
-  background-color: #000;
-  top: 10px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-radius: 0 0 6px 6px;
-  z-index: 10; /* Ensure it's above the screen content */
-}
-
-.screen::after {
-  background: linear-gradient(to bottom, #272727, #0d0d0d);
-  border-radius: 0 0 20px 20px;
-  bottom: 2px;
-  content: "";
-  height: 24px;
-  left: 2px;
-  position: absolute;
-  width: calc(100% - 4px); /* Adjust width based on padding/border */
-}
-
-.keyboard {
-  background: radial-gradient(circle at center, #e2e3e4 85%, #a9abac 100%);
-  border: solid #a0a3a7;
-  border-radius: 2px 2px 12px 12px;
-  border-width: 1px 2px 0 2px;
-  box-shadow: inset 0 -2px 8px 0 #6c7074;
-  height: 24px;
-  position: relative;
-  width: 620px;
-  max-width: calc(90vw + 102px); /* Allow keyboard to be wider than screen */
-  z-index: 9; /* Ensure it's below the screen fold */
-  margin-top: -1px; /* Slight overlap */
-}
-
-.keyboard::after {
-  /* Touchpad area */
-  background: #d1d3d4; /* Slightly different shade */
-  border-radius: 0 0 10px 10px;
-  box-shadow: inset 0 0 4px 1px #babdbf; /* Adjusted shadow */
-  content: "";
-  height: 10px;
-  left: 50%;
-  margin-left: -60px;
-  position: absolute;
-  top: 0;
-  width: 120px;
-}
-
-.keyboard::before {
-  /* Keyboard base feet/shadow */
-  background: transparent; /* No background needed */
-  border-radius: 0 0 3px 3px;
-  bottom: -2px;
-  /* Simplified shadow using left/right positioning */
-  box-shadow: -270px 0 0 0px #3f444a, /* Left shadow */ 270px 0 0 0px #3f444a; /* Right shadow */
-  content: "";
-  height: 2px;
-  left: 50%;
-  margin-left: -10px; /* Centered relative to the 40px width */
-  position: absolute;
-  width: 40px; /* Width of the gap between feet */
-}
-
 /* === Hero button === */
 .cta-button,
 .survey-button {
   display: inline-flex;
-  z-index: 10;
   align-items: center;
   justify-content: center;
   color: #fff;
-  padding: 0.8rem 2rem; /* زيادة الحجم */
+  padding: 0.8rem 2rem;
   border-radius: 60px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem; /* زيادة حجم الخط */
+  font-size: 1.1rem;
   border: none;
   cursor: pointer;
-  margin: 0;
+  margin: 0.5rem 0.25rem; /* Add small margin for spacing if buttons wrap */
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s var(--transition-timing),
     box-shadow 0.3s var(--transition-timing);
+  z-index: 10; /* Ensure buttons are above laptop animation */
 }
-
 .cta-button {
   background: var(--primary-color);
-  z-index: 10;
 }
 .cta-button:hover,
 .cta-button:focus-visible {
@@ -300,6 +291,8 @@ body {
   box-shadow: 0 6px 18px rgba(0, 224, 196, 0.35);
   outline: none;
 }
+
+/* Button Icon/Text styling - Generally OK for mobile */
 .cta-button span,
 .survey-button span {
   margin-right: 0.5rem;
@@ -314,55 +307,22 @@ body {
   transform: translateX(4px);
 }
 
-@keyframes open {
-  0% {
-    transform: perspective(1900px) rotateX(-88.5deg);
-  }
-  100% {
-    transform: perspective(1000px) rotateX(0deg);
-  }
-}
-
 /* === Utility === */
-/* Ensure SVG icons inherit text color correctly and align well */
 svg {
-  display: inline-block; /* Prevents extra space below */
+  display: inline-block;
   vertical-align: middle;
 }
-/* === Add these styles to your existing styles.css === */
 
-/* === Header & Navigation Specific Styles === */
-
-#main-header {
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
-    border-color 0.3s ease-in-out, height 0.3s ease-in-out;
-  height: 70px; /* Default height */
-}
-
-#main-header.sticky-nav-scrolled {
-  background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
-  backdrop-filter: blur(12px); /* Increased blur */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -2px rgba(0, 0, 0, 0.04); /* Slightly stronger shadow */
-  border-bottom: 1px solid #e5e7eb;
-  /* Optional: Slightly shrink header height when sticky */
-  /* height: 65px;  */
-}
-/* Adjust nav padding when sticky if header height changes */
-/* #main-header.sticky-nav-scrolled nav {
-  height: 65px;
-} */
-
-/* Desktop Navigation Link Hover Effect */
+/* Desktop Navigation Link Hover Effect - Hidden on Mobile */
 .nav-link {
   position: relative;
-  padding: 0.5rem 0.1rem; /* Add slight padding for hover area */
-  color: #4b5563; /* medium-text */
+  padding: 0.5rem 0.1rem;
+  color: #4b5563;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
-  font-weight: 500; /* Slightly bolder */
+  font-weight: 500;
+  display: none; /* Hide desktop links by default, show on larger screens */
 }
-
 .nav-link::after {
   content: "";
   position: absolute;
@@ -375,11 +335,9 @@ svg {
   transform-origin: bottom right;
   transition: transform 0.3s ease-out;
 }
-
 .nav-link:hover {
   color: #1f2937; /* dark-text */
 }
-
 .nav-link:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
@@ -387,14 +345,26 @@ svg {
 
 /* Mobile Menu Panel Styling & Animation */
 #mobile-menu {
-  transform: translateY(-100%); /* Start hidden above */
+  position: fixed;
+  top: var(--header-height); /* Position below header */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--header-height)); /* Full remaining height */
+  background-color: rgba(255, 255, 255, 0.98); /* Slightly opaque white */
+  backdrop-filter: blur(10px);
+  padding: var(--mobile-padding-lg) var(--mobile-padding);
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.3s ease-out, visibility 0s linear 0.4s; /* Smooth cubic bezier for transform */
-  z-index: 40; /* Needs to be higher than content but lower than button if button icon changes */
+    opacity 0.3s ease-out, visibility 0s linear 0.4s;
+  z-index: 40; /* Below header but above content */
+  display: flex; /* Use flex for easy centering/spacing */
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* Space between links */
 }
-
 #mobile-menu.is-open {
   transform: translateY(0);
   opacity: 1;
@@ -406,36 +376,43 @@ svg {
 /* Mobile Navigation Link Styling */
 .mobile-nav-link {
   display: block;
-  padding: 0.75rem 1rem;
-  font-size: 1.125rem; /* lg text */
+  padding: 0.8rem 1.5rem; /* Good touch target size */
+  font-size: var(--font-size-lg); /* Readable size */
   font-weight: 600;
-  color: #4b5563; /* medium-text */
+  color: #374151; /* Slightly darker than desktop for contrast */
   text-align: center;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  border-radius: 0.375rem; /* rounded-md */
-  width: 80%; /* Limit width slightly */
-  margin-left: auto;
-  margin-right: auto;
+  border-radius: 8px; /* Softer rounding */
+  width: 100%; /* Full width within padding */
+  max-width: 300px; /* Prevent excessive width on wider mobile */
 }
-
 .mobile-nav-link:hover,
 .mobile-nav-link:focus {
-  color: #1f2937; /* dark-text */
-  background-color: #f3f4f6; /* gray-100 */
+  color: #1f2937;
+  background-color: #f3f4f6;
   outline: none;
 }
 
-/* Mobile CTA Button Adjustments */
+/* Mobile CTA Button Adjustments (in Menu) */
 .mobile-cta {
-  display: block; /* Make it block for centering/width */
-  width: 75%; /* Adjust width as needed */
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
+  width: 100%;
+  max-width: 300px;
   text-align: center;
-  padding: 0.75rem 1.25rem; /* Slightly larger padding */
+  padding: 0.8rem 1.5rem; /* Consistent padding */
+  margin-top: 1rem; /* Space above CTA */
+  /* Inherit base .cta-button styles via HTML class */
 }
 
 /* Mobile Menu Icon Transitions */
+#mobile-menu-button {
+  display: block; /* Show hamburger button by default */
+  z-index: 50; /* Ensure button is clickable above panel */
+  /* Assuming button styles (padding, etc.) are handled by Tailwind or other classes */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 #mobile-menu-button #hamburger-icon {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
@@ -444,7 +421,6 @@ svg {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-
 #mobile-menu-button[aria-expanded="true"] #hamburger-icon {
   opacity: 0;
 }
@@ -452,39 +428,26 @@ svg {
   opacity: 1;
 }
 
-/* === End Header Styles === */
-
-/* --- Keep your existing styles below --- */
-/* ... (body, scroll animations, laptop animation, etc.) ... */
-
-/* === Add these styles to your existing styles.css === */
-
 /* === Demo Page Specific Styles === */
-
-/* Form Field Base */
 .form-field {
   position: relative;
-  margin-bottom: 0.75rem; /* Add space below each field group */
+  margin-bottom: 1rem; /* Adjusted spacing */
 }
-
-/* Input & Textarea Base Styles */
 .form-input {
   display: block;
   width: 100%;
-  padding: 0.75rem 1rem; /* py-3 px-4 */
-  font-size: 1rem;
+  padding: 0.85rem 1rem; /* Slightly adjusted padding */
+  font-size: var(--font-size-base);
   line-height: 1.5;
-  color: #1f2937; /* dark-text */
+  color: #1f2937;
   background-color: #ffffff;
   background-clip: padding-box;
-  border: 1px solid #d1d5db; /* gray-300 */
-  appearance: none; /* Remove default styling */
-  border-radius: 0.375rem; /* rounded-md */
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  border: 1px solid #d1d5db;
+  appearance: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-
-/* Prevent Autocomplete Background Color Change (optional but common) */
 .form-input:-webkit-autofill,
 .form-input:-webkit-autofill:hover,
 .form-input:-webkit-autofill:focus,
@@ -493,43 +456,38 @@ svg {
   box-shadow: 0 0 0 30px white inset !important;
   -webkit-text-fill-color: #1f2937 !important; /* Ensure text color stays dark */
 }
-
 .form-input:focus {
   outline: none;
-  border-color: #3b82f6; /* accent-blue */
+  border-color: var(--primary-color); /* accent-blue */
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Subtle focus ring */
 }
-
-/* Specific style for textarea height */
 textarea.form-input {
-  min-height: 100px; /* Ensure textarea has a decent minimum height */
-  resize: vertical; /* Allow vertical resize */
+  min-height: 120px;
+  resize: vertical; /* Slightly taller */
 }
 
-/* Floating Label Styles */
+/* Floating Label Styles - Generally OK, check visual on mobile */
 .form-label {
   position: absolute;
-  top: 0.85rem; /* Adjust vertical position */
-  left: 1rem; /* Adjust horizontal position */
-  font-size: 1rem;
-  color: #6b7280; /* gray-500 */
-  pointer-events: none; /* Label doesn't block clicks on input */
+  top: 0.85rem;
+  left: 1rem;
+  font-size: var(--font-size-base);
+  color: #6b7280;
+  pointer-events: none;
   transition: all 0.2s ease-in-out;
-  background-color: #ffffff; /* Match form background to cover input border */
-  padding: 0 0.25rem; /* Add slight horizontal padding */
+  background-color: #ffffff;
+  padding: 0 0.25rem;
   white-space: nowrap;
 }
-
-/* State when input has content OR is focused */
 .form-input:not(:placeholder-shown) + .form-label,
 .form-input:focus + .form-label {
-  top: -0.6rem; /* Move label up */
-  left: 0.75rem; /* Adjust left position */
-  font-size: 0.75rem; /* Smaller font */
-  color: #3b82f6; /* accent-blue when active */
+  top: -0.6rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--primary-color);
 }
 
-/* Error State Styles (to be added by JS) */
+/* Error States */
 .form-input.input-error {
   border-color: #dc2626; /* error-red */
 }
@@ -539,28 +497,27 @@ textarea.form-input {
 .form-field .input-error + .form-label {
   color: #dc2626; /* Red label text on error */
 }
-
-/* Error Message Styling */
 .error-message {
-  display: none; /* Hidden by default */
-  margin-top: 0.25rem; /* space above */
-  font-size: 0.75rem; /* text-xs */
-  color: #dc2626; /* error-red */
-  text-align: left; /* Align text left */
+  display: none;
+  margin-top: 0.35rem; /* Slightly less space */
+  font-size: var(--font-size-sm);
+  color: #dc2626;
+  text-align: left;
 }
 .error-message.visible {
-  display: block; /* Shown by JS */
+  display: block;
 }
 
-/* Form Submit Button Specifics (Loading State) */
+/* Form Submit Button Specifics */
 .form-submit-button {
-  /* Inherits .nav-cta-button styles */
-  display: inline-flex; /* Needed for aligning text/spinner */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 150px; /* Give button a minimum width */
+  min-width: 150px;
+  width: 100%; /* Make button full width on mobile by default */
+  padding: 0.8rem 1.5rem; /* Adjust padding */
+  /* Assumes base button styles (.nav-cta-button or similar) are applied via HTML */
 }
-
 .form-submit-button .spinner-icon {
   display: none; /* Hidden by default */
 }
@@ -570,8 +527,6 @@ textarea.form-input {
 .form-submit-button .submit-text {
   display: inline-block; /* Shown by default */
 }
-
-/* Loading State (add .is-loading class via JS) */
 .form-submit-button.is-loading {
   cursor: wait;
   background-color: #fb923c; /* Lighter orange for loading */
@@ -584,8 +539,6 @@ textarea.form-input {
 .form-submit-button.is-loading .submit-icon {
   display: none; /* Hide text and icon */
 }
-
-/* Disabled State */
 .form-submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -594,12 +547,12 @@ textarea.form-input {
   background-color: #fdba74; /* Even lighter orange */
 }
 
-/* General Form Feedback Message (Success/General Error) */
+/* General Form Feedback Message */
 .form-feedback-message {
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 0.375rem;
-  font-size: 0.875rem;
-  display: none; /* Hidden by default */
+  font-size: var(--font-size-sm);
+  display: none;
 }
 .form-feedback-message.success {
   display: block;
@@ -614,95 +567,81 @@ textarea.form-input {
   border: 1px solid #fecaca; /* red-300 */
 }
 
-/* === End Demo Page Styles === */
-/* === Add these styles to your existing styles.css === */
-/* === Add these styles to your existing styles.css === */
-
 /* === Pain Point Card Styles === */
-
 .pain-point-card {
-  background-color: #ff000013; /* orange-50 */
-  padding: 1.5rem; /* p-6 */
-  border-radius: 0.5rem; /* rounded-lg */
+  background-color: #ff000013;
+  padding: var(--mobile-padding-lg);
+  border-radius: 0.5rem;
   text-align: center;
-  border: 1px solid #ff0000; /* orange-200 */
+  border: 1px solid #ff0000;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03),
-    0 1px 2px -1px rgba(0, 0, 0, 0.03); /* Adjusted shadow-sm */
+    0 1px 2px -1px rgba(0, 0, 0, 0.03);
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
-  /* Inherits animation classes from HTML */
+  width: 100%; /* Ensure cards stack nicely if in flex column */
 }
-
 .pain-point-card:hover {
   border-color: #580000; /* orange-400 */
   background-color: #ff00005d; /* orange-100 */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
     0 2px 4px -2px rgba(0, 0, 0, 0.05); /* Adjusted shadow-md */
 }
-
 .pain-point-icon-wrapper {
-  display: inline-flex; /* Allows centering */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px; /* w-16 */
-  height: 64px; /* h-16 */
+  width: 56px;
+  height: 56px; /* Slightly smaller icon wrapper */
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0.75rem; /* mb-3 */
-  background-color: #fd080060; /* orange-200 */
+  margin-bottom: 0.75rem;
+  background-color: #fd080060;
   border-radius: 50%; /* Make it a circle */
-  border: 1px solid #ff0000; /* orange-400 */
+  border: 1px solid #ff0000;
 }
 
-/* SVG inside the wrapper uses text-accent-orange from HTML */
-/* .pain-point-icon-wrapper svg {} */
-
-/* Heading and Paragraph text colors are set via Tailwind in HTML */
-/* .pain-point-card h3 {} */
-/* .pain-point-card p {} */
-
-/* === End Pain Point Card Styles === */
-
-/* === Add/Modify these styles in your existing styles.css === */
-
 /* === Enhanced CMMS Impact Visualization Styles === */
-
+/* Assume parent container (.before-after-container) handles flex-direction change via Tailwind/media queries */
+.before-panel,
+.after-panel {
+  width: 100%; /* Take full width when stacked on mobile */
+  margin-bottom: 1.5rem; /* Add space between stacked panels */
+  /* Base border etc assumed from Tailwind/HTML */
+}
 .after-panel:hover {
   border-color: #a7f3d0; /* lighter green-200 */
 }
 
 .chart-area {
-  /* Height, flex, items-end, justify-around, gap, mb, px via Tailwind */
   flex-shrink: 0;
-  min-height: 8rem; /* h-32 */
+  min-height: 6rem; /* Slightly smaller min-height for mobile */
+  padding: 0 0.5rem; /* Reduce horizontal padding */
+  position: relative; /* Needed for grid */
+  display: flex; /* Ensure flex properties apply */
+  align-items: flex-end;
+  justify-content: space-around; /* Adjust spacing as needed */
+  gap: 0.5rem; /* Reduce gap between bars */
+  margin-bottom: 1rem;
 }
-
-/* Chart Grid Background */
 .chart-grid {
   position: absolute;
-  inset: 0; /* Cover the entire chart area */
-  z-index: 0; /* Behind the bars */
-  /* Faint grid lines using repeating gradients */
+  inset: 0;
+  z-index: 0;
   background-image: linear-gradient(to right, #e5e7eb 1px, transparent 1px),
-    /* Vertical lines */
-      linear-gradient(to bottom, #e5e7eb 1px, transparent 1px); /* Horizontal lines */
-  background-size: 20px 20px; /* Adjust grid spacing */
-  opacity: 0.3; /* Make grid very faint */
-  border-radius: 0.25rem; /* Slight rounding */
-  mask-image: linear-gradient(
-    to top,
-    white 80%,
-    transparent 100%
-  ); /* Optional: Fade grid top */
+    linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+  background-size: 15px 15px; /* Smaller grid */
+  opacity: 0.2; /* Fainter grid */
+  border-radius: 0.25rem;
+  mask-image: linear-gradient(to top, white 80%, transparent 100%);
 }
-
 .chart-area .bar {
-  /* Base styling via Tailwind (w, bg-gradient, rounded-t) */
   transition: transform 0.3s ease-in-out, height 0.4s ease-in-out;
-  position: relative; /* Needed for data point */
-  z-index: 1; /* Above grid */
+  position: relative;
+  z-index: 1;
+  width: 100%; /* Allow flexbox gap/justify-content to control width */
+  max-width: 30px; /* Max bar width */
+  /* Base styling via Tailwind expected (bg-gradient, rounded-t) */
 }
-
 /* Data Point marker for 'After' bars */
 .after-panel .bar.data-point::after {
   content: "";
@@ -717,7 +656,6 @@ textarea.form-input {
   border: 1px solid white; /* Optional white border */
   box-shadow: 0 0 3px rgba(5, 150, 105, 0.5); /* Subtle glow */
 }
-
 /* Subtle pulse animation for 'Before' bars */
 .bar-pulse {
   animation: barPulseAnimation 2.2s infinite alternate ease-in-out;
@@ -736,250 +674,156 @@ textarea.form-input {
   animation-delay: 0.2s;
 }
 
-/* Stats Area Styling */
 .stats-area {
   flex-shrink: 0;
-  /* Base styling via Tailwind */
+  text-align: center; /* Center stats on mobile */
 }
-
 .stat-value-number {
-  /* Font styling via Tailwind */
-  line-height: 1.1; /* Tighten line height for large font */
+  line-height: 1.1;
+  font-size: clamp(1.8rem, 6vw, 2.5rem); /* Responsive font size */
 }
-
 .stat-description {
-  /* Font styling via Tailwind */
   line-height: 1.4;
-  color: #4b5563; /* medium-text - Ensure consistency */
+  color: #4b5563;
+  font-size: var(--font-size-sm); /* Smaller description */
 }
 
-/* === End Enhanced CMMS Impact Visualization Styles === */
-/* === Add these styles to your existing styles.css === */
-/* ========================================== */
-/* === Global Variables & Base Styles     === */
-/* ========================================== */
-
-/* --- About Intro Text Styling --- */
-/* Classes like .about-intro, text-*, font-*, mb-* are handled by Tailwind */
-/* We only need to ensure correct color variables are used if overriding */
-
+/* === About Intro Text Styling === */
+/* Assumes Tailwind classes handle responsiveness. Check font sizes */
 .about-intro h2 {
-  color: var(--color-text-dark);
+  color: var(--text-dark, #1f2937); /* Fallback to default dark text */
+  /* Ensure font size is responsive if needed */
 }
 .about-intro h2 .text-orange-500 {
-  /* Ensure accent color consistency */
-  color: var(--color-accent-orange);
+  color: var(--color-accent-orange, #f97316); /* Fallback to default orange */
 }
 .about-subtitle {
-  /* Example: If you want to force the blue color from 2nd request CSS hint */
-  color: var(--color-accent-blue);
-  /* Or keep it consistent with the first design's medium text */
-  /* color: var(--color-text-medium); */
+  color: var(--color-accent-blue, #3b82f6); /* Fallback to default blue */
+  /* Adjust font size if needed */
 }
 .about-content {
-  color: var(--color-text-medium); /* Body text color */
+  color: var(--text-medium, #4b5563); /* Fallback to default medium text */
+  /* Ensure readable font size (>= 1rem) */
 }
 
-/* ========================================== */
-/* === Timeline Section Styles            === */
-/* ========================================== */
-
+/* === Timeline Section Styles === */
 /* Import Fonts (Place this ideally in your main CSS import or HTML head) */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap");
-
-/* Apply base font */
-body {
-  font-family: "Inter", sans-serif;
-}
 
 /* Apply heading font */
 .font-heading {
   font-family: "Poppins", sans-serif;
 }
 
-/* --- Timeline Specific Styles --- */
-
+/* --- Timeline Specific Styles (Mobile First) --- */
 .timeline-item {
-  /* Base padding for mobile view - distance from the line */
-  padding-left: 2.75rem; /* 44px */
-  margin-bottom: 3rem; /* Spacing between items on mobile */
+  padding-left: 2.5rem; /* Space for dot/line */
+  margin-bottom: 2.5rem; /* Spacing between items */
+  position: relative; /* Needed for absolute positioning of dot/line */
 }
 .timeline-item:last-child {
   margin-bottom: 0;
 }
 
+/* Timeline Line (Mobile View) */
+.timeline-item::before {
+  /* Using pseudo-element for the line */
+  content: "";
+  position: absolute;
+  left: 0.75rem; /* Align with dot center */
+  top: 1.25rem; /* Start below dot */
+  bottom: -2.5rem; /* Extend down to next item approx start (matches margin-bottom) */
+  width: 2px; /* Line thickness */
+  background-color: #e2e8f0; /* Line color */
+  transform: translateX(-50%);
+  z-index: 1; /* Behind dot and card */
+}
+/* Adjust last item's line */
+.timeline-item:last-child::before {
+  bottom: auto; /* Don't extend past the last item */
+  height: 1rem; /* Or remove if no line needed below last */
+}
+
 /* Dot positioning on mobile */
 .timeline-item .timeline-dot {
-  left: 1rem; /* Center of the 2rem (w-8) marker space */
-  transform: translateX(-50%);
-}
-
-/* Reset padding for medium screens and apply alternating structure */
-@media (min-width: 768px) {
-  .timeline-item {
-    padding-left: 0;
-    margin-bottom: 0; /* space-y handles vertical spacing now */
-    display: flex; /* Enables the two-column layout */
-    align-items: flex-start; /* Align items to the top */
-  }
-
-  /* Even items: Content on the right */
-  .timeline-item:nth-child(even) .timeline-marker {
-    order: 2; /* Move marker (dot + content) to the right */
-    padding-left: 2rem; /* Space from center line */
-    /* lg:pl-12 is handled by utility class */
-  }
-  .timeline-item:nth-child(even) .timeline-spacer {
-    order: 1; /* Move spacer to the left */
-    padding-right: 2rem;
-    /* lg:pr-12 is handled by utility class */
-  }
-  .timeline-item:nth-child(even) .timeline-content-wrapper {
-    text-align: left;
-  }
-
-  /* Odd items: Content on the left (default order) */
-  .timeline-item:nth-child(odd) .timeline-marker {
-    padding-right: 2rem; /* Space from center line */
-    /* lg:pr-12 is handled by utility class */
-  }
-  .timeline-item:nth-child(odd) .timeline-spacer {
-    padding-left: 2rem;
-    /* lg:pl-12 is handled by utility class */
-  }
-  .timeline-item:nth-child(odd) .timeline-content-wrapper {
-    text-align: right;
-  }
-
-  /* Center dot perfectly on the line for desktop */
-  .timeline-item .timeline-dot {
-    left: 50%;
-    transform: translate(
-      -50%,
-      -2px
-    ); /* Adjust vertical alignment slightly if needed */
-  }
-
-  /* Ensure content wrapper takes full width within its half */
-  .timeline-content-wrapper {
-    width: 100%;
-  }
-}
-
-/* Timeline Dot Styling */
-.timeline-dot {
   position: absolute;
+  left: 0.75rem; /* Center of the marker space */
   top: 0.375rem; /* Adjust vertical alignment relative to text */
   width: 1.25rem; /* 20px */
   height: 1.25rem; /* 20px */
   border-radius: 9999px;
-  border: 4px solid;
+  border: 4px solid; /* Color defined by HTML class (e.g., border-orange-500) */
   z-index: 10;
+  transform: translateX(-50%); /* Center the dot */
+  background-color: white; /* Ensure dot bg covers line */
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
-/* Dot hover/group-hover effect */
+/* Timeline Card Styling - Mobile */
+.timeline-card {
+  display: block; /* Full width within padding */
+  width: 100%;
+  position: relative; /* For stacking context */
+  background-color: white;
+  padding: var(--mobile-padding); /* Use mobile padding */
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.04),
+    0 1px 2px -2px rgba(0, 0, 0, 0.04); /* Softer shadow */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+/* Dot hover/group-hover effect (Primarily Desktop) */
 .group:hover .timeline-dot {
-  transform: scale(1.15) translate(-43%, -2px); /* Adjust translate slightly due to scale */
+  transform: scale(1.15) translateX(-43%); /* Adjust centering slightly due to scale */
   box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.2); /* Orange pulse */
 }
 .group:hover .timeline-dot.bg-blue-500 {
-  /* Blue pulse for future items */
-  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2);
+  /* Assumes future items might use blue */
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2); /* Blue pulse */
 }
 
-/* Timeline Card Styling */
-.timeline-card {
-  display: inline-block; /* Allows text-align right/left to work */
-  width: auto; /* Fit content */
-  max-width: 100%; /* Ensure it doesn't overflow its container */
-  position: relative;
-  background-color: white;
-  padding: 1.25rem 1.5rem; /* p-5 p-6 */
-  border-radius: 0.5rem; /* rounded-lg */
-  border: 1px solid #e2e8f0; /* border-gray-200 */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-
-/* Card hover/group-hover effect */
+/* Card hover/group-hover effect (Primarily Desktop) */
 .group:hover .timeline-card {
   transform: translateY(-6px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
     0 4px 6px -4px rgba(0, 0, 0, 0.07); /* shadow-lg */
 }
 
-/* --- Animation Setup (using AOS - Animate On Scroll library) --- */
-/* Make sure you have AOS initialized in your JS */
-/* Example JS initialization:
-   document.addEventListener('DOMContentLoaded', () => {
-     AOS.init({
-       duration: 700, // values from 0 to 3000, with step 50ms
-       easing: 'ease-out-cubic', // default easing for AOS animations
-       once: true, // whether animation should happen only once - while scrolling down
-       offset: 50, // offset (in px) from the original trigger point
-       delay: 100, // values from 0 to 3000, with step 50ms
-     });
-   });
-*/
-
-/* Add custom AOS animations if needed, or rely on default fade-up etc. */
-
-/* ========================================== */
-/* === End Timeline Section Styles        === */
-/* ========================================== */
-
-/* --- Main Container & Header --- */
-
+/* === Survey Page Styles === */
 .survey-main {
-  padding-top: 70px; /* Offset for fixed header */
-  padding-bottom: 5rem; /* Increased bottom padding */
+  padding-top: calc(
+    var(--header-height) + 1rem
+  ); /* Offset for fixed header + space */
+  padding-bottom: 3rem; /* Adjust bottom padding */
 }
-@media (min-width: 768px) {
-  /* md breakpoint */
-  .survey-main {
-    padding-bottom: 7rem;
-  }
-}
-
 .survey-container {
-  max-width: 52rem; /* Slightly wider max-w-4xl for better form layout */
+  max-width: 100%; /* Use full width on mobile */
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-left: var(
+    --mobile-padding-sm
+  ); /* Smaller padding on smallest screens */
+  padding-right: var(--mobile-padding-sm);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
-@media (min-width: 640px) {
-  /* sm breakpoint */
-  .survey-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-}
-
 .survey-header {
   text-align: center;
-  margin-bottom: 3rem; /* Increased mb-12 */
+  margin-bottom: 2rem; /* Less margin */
 }
-
 .survey-header h1 {
-  font-size: clamp(1.875rem, 5vw, 2.5rem); /* Responsive H1 size */
-  font-weight: 800;
+  font-size: clamp(1.6rem, 6vw, 2rem); /* Adjusted responsive H1 */
+  font-weight: 700; /* Slightly less bold */
   color: #1f2937; /* dark-text */
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   line-height: 1.2;
 }
-
 .survey-header p {
-  font-size: 1.05rem; /* Slightly larger intro text */
-  line-height: 1.7;
+  font-size: var(--font-size-base); /* Base font size */
+  line-height: 1.6;
   color: #4b5563; /* medium-text */
-  margin-bottom: 2rem; /* mb-8 */
+  margin-bottom: 1.5rem; /* mb-6 */
   max-width: 42rem; /* max-w-2xl */
   margin-left: auto;
   margin-right: auto;
@@ -988,70 +832,60 @@ body {
 /* --- Progress Bar --- */
 .progress-container {
   width: 100%;
-  max-width: 28rem; /* max-w-sm */
-  margin: 2rem auto 0; /* Increased mt-8 */
+  max-width: 100%; /* Full width on mobile */
+  margin: 1.5rem auto 0; /* Adjust margin */
   background-color: #f3f4f6; /* gray-100 for softer background */
   border-radius: 9999px;
-  height: 0.6rem; /* Slightly thinner */
+  height: 0.5rem; /* Thinner bar */
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-
 .progress-bar {
   height: 100%;
-  background-color: #3b82f6; /* accent-blue */
-  background-image: linear-gradient(to right, #60a5fa, #3b82f6);
+  background-color: var(--primary-color); /* accent-blue */
+  background-image: linear-gradient(to right, #60a5fa, var(--primary-color));
   border-radius: 9999px;
   transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
-  width: 0%;
+  width: 0%; /* Controlled by JS */
 }
-
 .progress-text {
   display: block;
   text-align: center;
-  font-size: 0.8rem; /* Slightly larger */
+  font-size: 0.75rem; /* Slightly smaller */
   font-weight: 500; /* Medium weight */
   color: #4b5563; /* medium-text */
-  margin-top: 0.6rem;
+  margin-top: 0.4rem;
 }
 
 /* --- Form Layout & Base Styles --- */
 .survey-form-layout {
   background-color: #ffffff;
-  padding: 2rem; /* p-8 base */
-  border-radius: 0.75rem; /* rounded-xl for softer corners */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
-    0 4px 6px -4px rgba(0, 0, 0, 0.05); /* Softer shadow-lg */
+  padding: var(--mobile-padding); /* Mobile padding */
+  border-radius: 0.5rem; /* Smaller radius */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -2px rgba(0, 0, 0, 0.04); /* Softer shadow */
   border: 1px solid #e5e7eb; /* light-border */
 }
-@media (min-width: 768px) {
-  /* md breakpoint */
-  .survey-form-layout {
-    padding: 2.5rem 3rem; /* md:p-10 lg:p-12 */
-  }
-}
-
 .survey-form-layout fieldset {
-  margin-bottom: 3rem; /* Increased mb-12 */
+  margin-bottom: 2rem; /* Less space */
   border: none;
   padding: 0;
   border-top: 1px solid #f3f4f6; /* Very light top border for separation */
-  padding-top: 2rem; /* Space above legend */
+  padding-top: 1.5rem; /* Space above legend */
 }
 .survey-form-layout fieldset:first-of-type {
   border-top: none; /* No border on the first fieldset */
   padding-top: 0;
 }
 .survey-form-layout fieldset:last-of-type {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Less space below last fieldset */
 }
-
 .survey-form-layout legend {
-  font-size: 1.125rem; /* text-lg */
+  font-size: var(--font-size-lg); /* Smaller legend on mobile */
   font-weight: 700; /* font-bold */
   color: #111827; /* gray-900 for higher contrast legend */
-  margin-bottom: 1.75rem; /* mb-7 */
+  margin-bottom: 1.25rem; /* mb-5 */
   padding-bottom: 0; /* Remove padding */
   border-bottom: none; /* Remove border */
   width: auto; /* Don't force full width */
@@ -1059,22 +893,24 @@ body {
 }
 
 /* General form field styling */
-.form-field {
-  margin-bottom: 1.75rem; /* Slightly more space mb-7 */
+.survey-form-layout .form-field {
+  /* Increased specificity */
+  margin-bottom: 1.25rem; /* Slightly more space mb-5 */
   position: relative;
 }
-.form-field:last-child {
+.survey-form-layout .form-field:last-child {
   margin-bottom: 0;
 }
 
 /* Labels for text inputs, selects, textareas */
-.form-field
-  > label:first-child:not(.radio-group label):not(.checkbox-group label) {
+.survey-form-layout
+  .form-field
+  label:first-child:not(.radio-group label):not(.checkbox-group label) {
   display: block;
-  font-weight: 600; /* font-semibold */
+  font-weight: 500; /* font-medium */
   color: #374151; /* gray-700 */
-  margin-bottom: 0.6rem; /* Increased mb-2.5 */
-  font-size: 0.9rem; /* Consistent smaller size */
+  margin-bottom: 0.4rem; /* mb-1.5 */
+  font-size: var(--font-size-sm);
 }
 
 /* Base input, select, textarea */
@@ -1085,8 +921,8 @@ body {
 .survey-form-layout textarea {
   display: block;
   width: 100%;
-  padding: 0.75rem 1rem; /* py-3 px-4 */
-  font-size: 0.95rem;
+  padding: 0.75rem 0.9rem; /* Adjusted padding */
+  font-size: var(--font-size-base); /* Ensure readable base font */
   line-height: 1.5;
   color: #1f2937; /* dark-text */
   background-color: #f9fafb; /* Slightly off-white bg gray-50 */
@@ -1107,7 +943,6 @@ body {
 }
 
 .survey-form-layout select {
-  /* Sharper SVG arrow */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
   background-position: right 0.7rem center;
   background-repeat: no-repeat;
@@ -1116,7 +951,7 @@ body {
 }
 
 .survey-form-layout textarea {
-  min-height: 110px;
+  min-height: 100px;
   resize: vertical;
 }
 
@@ -1127,7 +962,7 @@ body {
 .survey-form-layout select:focus,
 .survey-form-layout textarea:focus {
   outline: none;
-  border-color: #3b82f6; /* accent-blue */
+  border-color: var(--primary-color); /* accent-blue */
   background-color: #ffffff; /* White background on focus */
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15),
     inset 0 1px 2px rgba(0, 0, 0, 0.04); /* Softer focus ring */
@@ -1150,26 +985,23 @@ body {
 .checkbox-group-fieldset {
   margin-top: 0.75rem;
   border: 1px solid #e5e7eb; /* Add subtle border */
-  padding: 1rem 1.25rem; /* Inner padding */
+  padding: 0.8rem 1rem; /* Adjust padding */
   border-radius: 0.5rem; /* rounded-lg */
   background-color: #f9fafb; /* Slight bg difference */
 }
 
 .radio-group,
 .checkbox-group {
-  display: grid; /* Use grid for better alignment */
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(180px, 1fr)
-  ); /* Responsive columns */
-  gap: 0.75rem 1.25rem; /* Row and column gap */
+  display: grid;
+  grid-template-columns: 1fr; /* Force single column on mobile */
+  gap: 0.5rem; /* Reduce gap */
 }
 
 .radio-group-vertical,
 .checkbox-group-vertical {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem; /* Consistent vertical gap */
+  gap: 0.6rem; /* Consistent vertical gap */
 }
 
 /* Individual radio/checkbox item label */
@@ -1179,11 +1011,11 @@ body {
 .checkbox-group-vertical label {
   display: flex;
   align-items: flex-start; /* Align top for multi-line text */
-  gap: 0.6rem;
+  gap: 0.75rem; /* Adjust gap */
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base); /* Ensure readable */
   color: #374151;
-  padding: 0.5rem 0.75rem; /* Add padding for better hover target */
+  padding: 0.6rem 0.5rem; /* Adjust padding for touch */
   border-radius: 0.375rem; /* rounded-md */
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
@@ -1202,10 +1034,10 @@ body {
   appearance: none;
   -webkit-appearance: none;
   flex-shrink: 0;
-  width: 1.25em; /* Slightly larger */
-  height: 1.25em;
-  margin-top: 0.15em; /* Adjust alignment */
-  border: 2px solid #cbd5e1; /* gray-300 for softer border */
+  width: 1.15em; /* Slightly smaller */
+  height: 1.15em;
+  margin-top: 0.2em; /* Adjust alignment */
+  border: 1.5px solid #cbd5e1; /* gray-300 for softer border */
   background-color: #ffffff;
   cursor: pointer;
   transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out,
@@ -1224,7 +1056,7 @@ body {
 .survey-form-layout input[type="checkbox"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-  border-color: #3b82f6;
+  border-color: var(--primary-color);
 }
 
 /* Checked state */
@@ -1236,7 +1068,6 @@ body {
 
 /* Checkmark/Dot */
 .survey-form-layout input[type="radio"]:checked::before {
-  /* Same as before */
   content: "";
   position: absolute;
   top: 50%;
@@ -1248,7 +1079,6 @@ body {
   background-color: #ffffff;
 }
 .survey-form-layout input[type="checkbox"]:checked::before {
-  /* Same as before */
   content: "";
   position: absolute;
   top: 50%;
@@ -1262,20 +1092,20 @@ body {
 
 /* --- Range Slider Refined --- */
 .rating-group {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem; /* Space below last slider */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem; /* Space below last slider */
 }
 .rating-item {
-  display: grid; /* Use grid for better alignment */
+  display: grid;
   grid-template-columns: 1fr auto; /* Label takes space, value fixed */
   align-items: center;
-  gap: 0.75rem 1rem; /* Row and column gap */
-  margin-bottom: 1.25rem;
+  gap: 0.5rem 0.8rem; /* Adjust gap */
+  margin-bottom: 1rem;
 }
 .rating-item label {
   grid-column: 1 / -1; /* Label spans both columns */
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 600; /* Semibold label */
   color: #374151;
   margin-bottom: 0; /* Remove default margin */
@@ -1285,13 +1115,13 @@ body {
   appearance: none;
   -webkit-appearance: none;
   width: 100%;
-  height: 8px; /* Slightly thicker track */
+  height: 6px; /* Thinner track */
   background: #e5e7eb;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
   position: relative;
-  --value-percent: 0%;
+  --value-percent: 0%; /* JS should update this CSS variable */
 }
 
 /* Track fill */
@@ -1304,21 +1134,21 @@ body {
   width: var(--value-percent);
   background-color: #60a5fa; /* Lighter blue for fill */
   border-radius: 4px;
-  transition: width 0.1s linear;
+  transition: width 0.1s linear; /* Needs JS to update --value-percent */
 }
 
 /* Webkit Thumb */
 .rating-item input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px; /* Slightly larger thumb */
+  width: 18px;
+  height: 18px; /* Slightly smaller thumb */
   background: #f97316; /* accent-orange */
   border-radius: 50%;
-  border: 3px solid #ffffff; /* White border */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ffffff; /* White border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  margin-top: -6px; /* Center thumb */
+  margin-top: -6px; /* Center thumb (=(trackHeight - thumbHeight)/2) */
   position: relative;
   z-index: 1;
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
@@ -1332,12 +1162,12 @@ body {
 
 /* Firefox Thumb */
 .rating-item input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 18px; /* Match webkit */
+  height: 18px; /* Match webkit */
   background: #f97316;
   border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ffffff; /* Match webkit */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -1353,18 +1183,26 @@ body {
 /* Firefox Track (explicitly set background) */
 .rating-item input[type="range"]::-moz-range-track {
   background: #e5e7eb;
-  height: 8px;
+  height: 6px; /* Match webkit */
+  border-radius: 4px;
+  border: none; /* Remove default FF border */
+}
+/* Firefox track fill - more complex, often requires JS or different techniques */
+/* Basic fill color for FF track */
+.rating-item input[type="range"]::-moz-range-progress {
+  background-color: #60a5fa; /* Match fill color */
+  height: 6px;
   border-radius: 4px;
 }
 
 .range-value {
   grid-column: 2 / 3; /* Value in second column */
   justify-self: end; /* Align right */
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: #1f2937; /* Dark text for value */
   font-weight: 600;
   background-color: #f3f4f6; /* Light gray background */
-  padding: 0.15rem 0.5rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 0.25rem;
   min-width: 2em; /* Ensure space for number */
   text-align: center;
@@ -1372,41 +1210,45 @@ body {
 
 /* --- Conditional Fields Refined --- */
 .conditional-input {
-  margin-top: 1rem; /* Increased space */
+  margin-top: 0.8rem; /* Increased space */
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height 0.4s ease-out, opacity 0.3s ease-in,
-    margin-top 0.4s ease-out;
+    margin-top 0.4s ease-out, visibility 0s linear 0.4s;
   visibility: hidden;
 }
-
 .conditional-input.visible {
-  max-height: 100px;
+  max-height: 100px; /* Adjust if needed */
   opacity: 1;
   visibility: visible;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-in 0.1s,
+    margin-top 0.4s ease-out, visibility 0s linear 0s;
 }
 
 .conditional-section {
   border-left: 4px solid #dbeafe; /* Lighter blue border */
   background-color: #fefeff; /* Almost white bg */
-  padding: 1.25rem 1rem 1.25rem 1.5rem; /* p-5 pl-6 */
-  margin-top: 1.75rem;
-  margin-bottom: 1.75rem;
+  padding: 1rem 0.8rem 1rem 1.25rem; /* Adjusted padding */
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   border-radius: 0 0.5rem 0.5rem 0; /* Rounded corners */
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height 0.5s ease-out, opacity 0.4s ease-in,
     margin-top 0.5s ease-out, padding 0.5s ease-out,
-    background-color 0.5s ease-out;
+    background-color 0.5s ease-out, visibility 0s linear 0.5s;
   visibility: hidden;
 }
 .conditional-section.visible {
-  max-height: 1000px;
+  max-height: 1000px; /* Adjust as needed */
   opacity: 1;
   visibility: visible;
-  margin-top: 1.75rem;
+  margin-top: 1.25rem;
+  transition: max-height 0.5s ease-out, opacity 0.4s ease-in 0.1s,
+    margin-top 0.5s ease-out, padding 0.5s ease-out,
+    background-color 0.5s ease-out, visibility 0s linear 0s;
 }
 /* Remove margin bottom from last field inside conditional section */
 .conditional-section .form-field:last-child {
@@ -1419,14 +1261,14 @@ body {
 }
 .floating-label-field input {
   background-color: #ffffff !important; /* Ensure white bg */
-  padding-top: 1.25rem; /* Make space for floated label */
-  padding-bottom: 0.25rem;
+  padding-top: 1.1rem; /* Make space for floated label */
+  padding-bottom: 0.4rem;
 }
 .floating-label-field label {
   position: absolute;
-  top: 0.85rem; /* Align with input padding */
-  left: 1rem;
-  font-size: 0.95rem;
+  top: 0.75rem; /* Align with input padding */
+  left: 0.9rem; /* Match input padding */
+  font-size: var(--font-size-base); /* Start at base size */
   color: #6b7280;
   pointer-events: none;
   transition: all 0.2s ease-out;
@@ -1436,10 +1278,10 @@ body {
 }
 .floating-label-field input:not(:placeholder-shown) + label,
 .floating-label-field input:focus + label {
-  top: 0.35rem; /* Move further up */
-  left: 0.9rem;
+  top: 0.25rem; /* Move further up */
+  left: 0.8rem; /* Adjust left slightly */
   font-size: 0.7rem; /* Smaller label */
-  color: #3b82f6;
+  color: var(--primary-color);
 }
 
 /* --- Validation & Error Messages Refined --- */
@@ -1456,7 +1298,7 @@ body {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); /* Red focus ring */
 }
 .form-field.has-error
-  > label:first-child:not(.radio-group label):not(.checkbox-group label) {
+  label:first-child:not(.radio-group label):not(.checkbox-group label) {
   color: #b91c1c; /* red-700 */
 }
 .form-field.has-error .radio-group-fieldset,
@@ -1471,8 +1313,8 @@ body {
 
 .error-message {
   display: none;
-  margin-top: 0.4rem;
-  font-size: 0.8rem; /* Slightly larger */
+  margin-top: 0.3rem;
+  font-size: 0.75rem; /* Slightly smaller */
   color: #b91c1c; /* red-700 */
   text-align: left;
   font-weight: 500;
@@ -1490,22 +1332,22 @@ body {
 
 /* --- Submit Area & Messages Refined --- */
 .form-submit-area {
-  margin-top: 3rem;
-  padding-top: 1.5rem; /* Add space above button */
+  margin-top: 2rem;
+  padding-top: 1rem; /* Add space above button */
   border-top: 1px solid #f3f4f6; /* Light separator */
   text-align: center;
 }
 
-/* Re-use .nav-cta-button for consistency */
+/* Re-use .nav-cta-button or .cta-button for consistency via HTML class */
 .form-submit-button {
-  /* Ensure this matches .nav-cta-button if needed */
+  /* Assuming base styles applied in HTML */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  min-width: 180px;
-  /* Inherit other styles from .nav-cta-button via HTML class */
+  padding: 0.8rem 1.5rem; /* Mobile padding */
+  font-size: var(--font-size-base); /* Mobile font size */
+  min-width: auto; /* Remove min-width for mobile */
+  width: 100%; /* Full width on mobile */
 }
 
 /* Spinner and Success Icon Handling */
@@ -1539,12 +1381,12 @@ body {
 }
 
 .form-message {
-  margin-top: 1.5rem;
-  padding: 1rem 1.25rem; /* Increased padding */
+  margin-top: 1rem;
+  padding: 0.8rem 1rem; /* Adjusted padding */
   border-radius: 0.5rem; /* rounded-lg */
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm); /* Mobile font size */
   font-weight: 500;
-  display: none;
+  display: none; /* Hidden by default */
   text-align: left;
   line-height: 1.5;
 }
@@ -1577,5 +1419,290 @@ body {
 }
 
 /* ========================================== */
-/* === End Survey Page Styles             === */
+/* === MEDIA QUERIES FOR RESPONSIVENESS === */
 /* ========================================== */
+
+/* Mobile-Specific Adjustments (Applied < 768px) */
+@media (max-width: 767px) {
+  /* Laptop Animation Scaling for Mobile */
+  .laptop {
+    transform: scale(0.75); /* Adjust scale factor as needed */
+    margin-top: 0rem;
+    margin-bottom: 1rem; /* Reduce bottom margin */
+  }
+  .screen {
+    /* Ensure width doesn't exceed viewport */
+    width: 90vw;
+    /* Height might need adjustment with scale, or use aspect-ratio */
+    /* Example: Consider aspect-ratio: 518 / 318; height: auto; */
+  }
+  .keyboard {
+    /* Adjust keyboard width relative to the scaled screen */
+    width: calc(90vw + 20px); /* Slightly wider than screen */
+    max-width: 95vw; /* Absolute max width */
+  }
+  .keyboard::after {
+    /* Touchpad */
+    width: 100px; /* Smaller touchpad */
+    margin-left: -50px;
+  }
+  .keyboard::before {
+    /* Feet Shadow - adjust positioning based on new width */
+    box-shadow: -130px 0 0 0px #3f444a, 130px 0 0 0px #3f444a; /* Rough example, adjust numbers */
+    width: 20px;
+    margin-left: -10px;
+  }
+
+  /* Ensure buttons are easily tappable and don't overflow */
+  .cta-button,
+  .survey-button {
+    padding: 0.7rem 1.5rem; /* Slightly reduced padding */
+    font-size: 1rem; /* Slightly reduced font size */
+  }
+
+  /* Very Small Screens adjustments */
+  @media (max-width: 480px) {
+    :root {
+      --mobile-padding: 0.75rem;
+      --mobile-padding-lg: 1rem;
+      /* Reduce base font slightly more if needed */
+      /* --font-size-base: 0.95rem; */
+      /* --font-size-sm: 0.8rem; */
+    }
+    .cta-button,
+    .survey-button {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+    /* Further reduce padding on containers */
+    .survey-container {
+      padding-left: var(--mobile-padding);
+      padding-right: var(--mobile-padding);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .survey-form-layout {
+      padding: var(--mobile-padding-lg);
+    }
+    /* Further reduce font sizes if absolutely needed */
+    .survey-header h1 {
+      font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+    }
+    .survey-form-layout legend {
+      font-size: var(--font-size-lg); /* Already smaller */
+    }
+    .survey-form-layout
+      .form-field
+      label:first-child:not(.radio-group label):not(.checkbox-group label) {
+      font-size: var(--font-size-sm); /* Already smaller */
+    }
+    /* Ensure floating label doesn't get too cramped */
+    .floating-label-field input:not(:placeholder-shown) + label,
+    .floating-label-field input:focus + label {
+      font-size: 0.65rem; /* Even smaller */
+    }
+    /* Reduce range value text */
+    .range-value {
+      font-size: 0.75rem; /* Smaller */
+    }
+  }
+}
+
+/* Medium screens (Tablets) */
+@media (min-width: 768px) {
+  /* Show Desktop Nav / Hide Mobile Toggle */
+  .nav-link {
+    display: inline-block; /* Show desktop links */
+  }
+  #mobile-menu-button {
+    display: none; /* Hide hamburger */
+  }
+  #mobile-menu {
+    display: none; /* Hide mobile panel */
+  }
+
+  /* Restore button width */
+  .form-submit-button {
+    width: auto; /* Revert to auto width */
+    min-width: 150px; /* Restore min-width */
+  }
+
+  /* Restore Survey Container Padding & Max Width */
+  .survey-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    max-width: 52rem; /* Restore max-width */
+  }
+
+  /* Restore Progress Bar Max Width */
+  .progress-container {
+    max-width: 28rem; /* Restore max-w-sm */
+  }
+
+  /* Restore Radio/Checkbox Grid */
+  .radio-group,
+  .checkbox-group {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(180px, 1fr)
+    ); /* Restore multi-column */
+    gap: 0.75rem 1.25rem;
+  }
+
+  /* Restore some spacing and font sizes for Survey */
+  .survey-header {
+    margin-bottom: 3rem;
+  }
+  .survey-header p {
+    font-size: 1.05rem;
+  }
+  .survey-form-layout {
+    padding: 2rem;
+  } /* Restore base padding */
+  .survey-form-layout fieldset {
+    margin-bottom: 3rem;
+  }
+  .survey-form-layout legend {
+    font-size: 1.125rem;
+  } /* Restore text-lg */
+
+  /* Restore CMMS Viz layout (assuming parent container controls flex-direction) */
+  .before-panel,
+  .after-panel {
+    width: auto; /* Let flexbox handle width */
+    margin-bottom: 0; /* Remove stacking margin */
+  }
+  .chart-area {
+    min-height: 8rem;
+    padding: 0 1rem;
+    gap: 0.75rem;
+  }
+  .stats-area {
+    text-align: left;
+  } /* Align left on desktop */
+
+  /* Timeline Section - Desktop Styles */
+  /* Reset mobile-specific padding and apply alternating structure */
+  .timeline-item {
+    padding-left: 0;
+    margin-bottom: 0; /* space-y handles vertical spacing now */
+    display: flex; /* Enables the two-column layout */
+    align-items: flex-start; /* Align items to the top */
+  }
+  .timeline-item::before {
+    /* Hide mobile line */
+    display: none;
+  }
+
+  /* Center line for desktop (You'll need an element for this in HTML or handle via JS/parent) */
+  /* Example: Assume a parent container has a ::before pseudo-element for the center line */
+  .timeline-container::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  /* Even items: Content on the right */
+  .timeline-item:nth-child(even) {
+    flex-direction: row-reverse; /* Reverse order for marker/spacer */
+    /* Assumes marker/spacer wrappers exist */
+  }
+  .timeline-item:nth-child(even) .timeline-marker {
+    /* order: 2; Handled by flex-direction */
+    padding-left: 2rem; /* Space from center line */
+    /* lg:pl-12 handled by utility class if needed */
+  }
+  .timeline-item:nth-child(even) .timeline-spacer {
+    /* order: 1; Handled by flex-direction */
+    padding-right: 2rem;
+    /* lg:pr-12 handled by utility class if needed */
+  }
+  .timeline-item:nth-child(even) .timeline-content-wrapper {
+    text-align: left;
+  }
+
+  /* Odd items: Content on the left (default flex order) */
+  .timeline-item:nth-child(odd) .timeline-marker {
+    padding-right: 2rem; /* Space from center line */
+    /* lg:pr-12 handled by utility class if needed */
+  }
+  .timeline-item:nth-child(odd) .timeline-spacer {
+    padding-left: 2rem;
+    /* lg:pl-12 handled by utility class if needed */
+  }
+  .timeline-item:nth-child(odd) .timeline-content-wrapper {
+    text-align: right;
+  }
+
+  /* Center dot perfectly on the line for desktop */
+  .timeline-item .timeline-dot {
+    left: 50%;
+    transform: translate(-50%, 0); /* Adjusted vertical alignment slightly */
+    position: relative; /* Change from absolute for flex context */
+    margin: 0.375rem auto; /* Center within its flex item */
+    top: 0; /* Reset top */
+    /* Need wrappers (marker/spacer) to handle padding from center */
+  }
+
+  /* Ensure content wrapper takes full width within its half */
+  .timeline-content-wrapper {
+    width: 100%;
+  }
+
+  /* Restore Timeline card padding if it was reduced */
+  .timeline-card {
+    padding: 1.25rem 1.5rem; /* p-5 p-6 */
+  }
+}
+
+/* Large screens (Desktops) */
+@media (min-width: 1024px) {
+  /* Restore original laptop scaling */
+  .laptop {
+    transform: scale(1); /* Ensure full scale */
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .keyboard {
+    /* Restore original keyboard width */
+    width: 620px;
+    max-width: calc(90vw + 102px); /* Allow keyboard to be wider than screen */
+  }
+  .keyboard::after {
+    /* Touchpad */
+    width: 120px;
+    margin-left: -60px;
+  }
+  .keyboard::before {
+    /* Feet Shadow */
+    box-shadow: -270px 0 0 0px #3f444a, 270px 0 0 0px #3f444a;
+    width: 40px;
+    margin-left: -10px;
+  }
+
+  /* Restore larger paddings/margins/fonts if changed for tablet */
+  .survey-form-layout {
+    padding: 2.5rem 3rem; /* md:p-10 lg:p-12 */
+  }
+  /* Add lg: timeline padding adjustments here if needed */
+  .timeline-item:nth-child(even) .timeline-marker {
+    padding-left: 3rem;
+  }
+  .timeline-item:nth-child(even) .timeline-spacer {
+    padding-right: 3rem;
+  }
+  .timeline-item:nth-child(odd) .timeline-marker {
+    padding-right: 3rem;
+  }
+  .timeline-item:nth-child(odd) .timeline-spacer {
+    padding-left: 3rem;
+  }
+}
