@@ -105,7 +105,7 @@ body {
     margin: 1rem auto; /* Reduced margins for mobile, still centered */
   }
   .laptop-scaler {
-    transform: scale(0.6); /* Scale content to 60% on phones */
+    transform: scale(0.2); /* Scale content to 60% on phones */
   }
 }
 
