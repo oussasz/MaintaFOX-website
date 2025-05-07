@@ -333,72 +333,141 @@ height: 65px;
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-
-/* Mobile Menu Panel Styling & Animation */
+/* Mobile Menu Panel with Glassmorphism Effect */
+/* Mobile Menu Panel with Glassmorphism Effect */
 #mobile-menu {
-  transform: translateY(-100%); /* Start hidden above */
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.3s ease-out, visibility 0s linear 0.4s; /* Smooth cubic bezier for transform */
-  z-index: 40; /* Needs to be higher than content but lower than button if button icon changes */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Semi-transparent white for glass effect */
+  backdrop-filter: blur(10px); /* Blur for modern glassmorphism */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  display: grid;
+  place-items: center; /* Center content with Grid */
+  transform: translateY(-100%); /* Hidden initially */
+  transition: transform 0.3s ease-out; /* Fast, smooth slide */
+  z-index: 1000;
 }
 
 #mobile-menu.is-open {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.3s ease-in, visibility 0s linear 0s;
+  transform: translateY(0); /* Slide into view */
 }
 
-/* Mobile Navigation Link Styling */
-.mobile-nav-link {
-  display: block;
-  padding: 0.75rem 1rem;
-  font-size: 1.125rem; /* lg text */
-  font-weight: 600;
-  color: #4b5563; /* medium-text */
+/* Navigation List Styling */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Minimal spacing */
+}
+
+/* Shared Button Styling for Consistency */
+.mobile-nav-link,
+.mobile-cta {
+  color: #ffffff; /* Bold white font color */
+  text-decoration: none;
+  font-size: 12px; /* Small, consistent size */
+  font-family: "Inter", sans-serif; /* Modern sans-serif font */
+  font-weight: 700; /* Bold for emphasis */
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Elegant spacing */
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05); /* Subtle background */
+  border-radius: 8px; /* Rounded corners */
+  transition: background 0.2s ease, transform 0.2s ease;
   text-align: center;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  border-radius: 0.375rem; /* rounded-md */
-  width: 80%; /* Limit width slightly */
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .mobile-nav-link:hover,
-.mobile-nav-link:focus {
-  color: #1f2937; /* dark-text */
-  background-color: #f3f4f6; /* gray-100 */
+.mobile-cta:hover {
+  background: rgba(255, 255, 255, 0.15); /* Brighter on hover */
+  transform: translateY(-2px); /* Lift effect */
+}
+
+.mobile-nav-link:focus,
+.mobile-cta:focus {
   outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3); /* Accessible focus ring */
 }
 
-/* Mobile CTA Button Adjustments */
+/* CTA Button Specifics */
 .mobile-cta {
-  display: block; /* Make it block for centering/width */
-  width: 75%; /* Adjust width as needed */
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 0.75rem 1.25rem; /* Slightly larger padding */
+  margin-top: 10px; /* Slight separation from nav links */
 }
 
-/* Mobile Menu Icon Transitions */
-#mobile-menu-button #hamburger-icon {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-}
-#mobile-menu-button #close-icon {
+/* Staggered Entrance Animation */
+#mobile-menu .mobile-nav-link,
+#mobile-menu .mobile-cta {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transform: translateY(-15px);
 }
 
-#mobile-menu-button[aria-expanded="true"] #hamburger-icon {
+#mobile-menu.is-open .mobile-nav-link,
+#mobile-menu.is-open .mobile-cta {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Delays */
+#mobile-menu.is-open .mobile-nav-link:nth-child(1) {
+  animation-delay: 0.05s;
+}
+#mobile-menu.is-open .mobile-nav-link:nth-child(2) {
+  animation-delay: 0.1s;
+}
+#mobile-menu.is-open .mobile-nav-link:nth-child(3) {
+  animation-delay: 0.15s;
+}
+#mobile-menu.is-open .mobile-nav-link:nth-child(4) {
+  animation-delay: 0.2s;
+}
+#mobile-menu.is-open .mobile-cta {
+  animation-delay: 0.25s;
+}
+
+/* Menu Button Styling (Hamburger to 'X') */
+#mobile-menu-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100; /* Above menu */
+}
+
+#mobile-menu-button .line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #ffffff; /* Match button font color */
+  margin-bottom: 4px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu-button[aria-expanded="true"] .line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#mobile-menu-button[aria-expanded="true"] .line:nth-child(2) {
   opacity: 0;
 }
-#mobile-menu-button[aria-expanded="true"] #close-icon {
-  opacity: 1;
+
+#mobile-menu-button[aria-expanded="true"] .line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* === End Header Styles === */
@@ -1556,14 +1625,28 @@ MOBILE RESPONSIVENESS OVERRIDES (max-width: 767px)
   */
 
   /* --- Hero Buttons --- */
+  .hero-buttons {
+    display: flex;
+    flex-wrap: nowrap; /* لا تسمح بالتفاف العناصر */
+    gap: 0.5rem; /* مسافة بين الزرين */
+    justify-content: center; /* توسيط الزرين */
+    flex-direction: row; /* صف أفقي دائمًا */
+    overflow-x: auto; /* في حال صغرت الشاشة كثيرًا */
+  }
+
   .cta-button,
   .survey-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* تمنع التفاف النص */
     padding: 0.6rem 1.2rem;
-    font-size: 0.95rem; /* Was 1.1rem */
+    font-size: 0.8rem;
   }
+
   .cta-button span,
   .survey-button span {
-    margin-right: 0.4rem; /* Was 0.5rem */
+    margin-right: 0.5rem; /* Was 0.5rem */
   }
 
   /* --- Header & Navigation --- */
