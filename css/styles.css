@@ -76,26 +76,45 @@ body {
   align-items: center;
   margin-top: 2rem; /* Adjust as needed */
   margin-bottom: 2rem; /* Adjust as needed */
+  width: 620px; /* Fixed width to match keyboard */
+  max-width: 90vw; /* Prevent overflow */
+  height: 342px; /* Fixed height to accommodate screen + keyboard */
+  position: relative;
+}
+
+/* Wrapper for scaling content without affecting layout dimensions */
+.laptop-scaler {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center center;
 }
 
 /* Responsive adjustments for Laptop Animation */
 @media (max-width: 1024px) {
   /* Tablet */
+  .laptop-scaler {
+    transform: scale(0.85); /* Scale content only */
+  }
   .laptop {
-    transform: scale(0.85); /* Slightly larger than mobile */
     margin-top: 2rem;
     margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 767px) {
-  /* Mobile (using 767px to avoid conflict with md: breakpoint) */
+  /* Mobile */
+  .laptop-scaler {
+    transform: scale(0.6); /* Scale content only */
+  }
   .laptop {
-    transform: scale(0.6); /* Adjusted scale for better visibility */
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
 }
+
 @keyframes led-pulse {
   0%,
   100% {
@@ -151,7 +170,6 @@ body {
   box-shadow: inset 0 0 0 2px #c8cacb, inset 0 0 0 10px #000;
   height: 318px;
   width: 518px;
-  max-width: 90vw; /* Prevent overflow on very small screens */
   margin: 0 auto;
   padding: 9px 9px 23px 9px;
   position: relative;
@@ -159,7 +177,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #ffffff; /* Darker background for contrast */
-  /* Ensure the image path is correct relative to the CSS file or use absolute path */
   background-image: url("../assets/interface.png");
   background-size: contain;
   background-position: center 40%;
@@ -171,7 +188,6 @@ body {
 }
 
 @keyframes openScreenAnimation {
-  /* Renamed for clarity */
   0% {
     transform: perspective(1900px) rotateX(-88.5deg);
   }
@@ -224,7 +240,6 @@ body {
   height: 24px;
   position: relative;
   width: 620px;
-  max-width: calc(90vw + 102px); /* Allow keyboard to be wider than screen */
   z-index: 9; /* Ensure it's below the screen fold */
   margin-top: -1px; /* Slight overlap */
 }
@@ -248,7 +263,6 @@ body {
   background: transparent; /* No background needed */
   border-radius: 0 0 3px 3px;
   bottom: -2px;
-  /* Simplified shadow using left/right positioning */
   box-shadow: -270px 0 0 0px #3f444a, /* Left shadow */ 270px 0 0 0px #3f444a; /* Right shadow */
   content: "";
   height: 2px;
@@ -257,7 +271,6 @@ body {
   position: absolute;
   width: 40px; /* Width of the gap between feet */
 }
-
 /* === Hero button === */
 .cta-button,
 .survey-button {
