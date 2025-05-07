@@ -74,7 +74,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.5rem; /* Adjust as needed */
+  margin-top: 2rem; /* Adjust as needed */
   margin-bottom: 2rem; /* Adjust as needed */
 }
 
@@ -83,17 +83,17 @@ body {
   /* Tablet */
   .laptop {
     transform: scale(0.85); /* Slightly larger than mobile */
-    margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 767px) {
   /* Mobile (using 767px to avoid conflict with md: breakpoint) */
   .laptop {
-    transform: scale(0.7); /* Adjusted scale for better visibility */
-    margin-top: 0rem;
-    margin-bottom: 2rem;
+    transform: scale(0.6); /* Adjusted scale for better visibility */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }
 @keyframes led-pulse {
