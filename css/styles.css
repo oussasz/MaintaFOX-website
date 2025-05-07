@@ -70,103 +70,41 @@ body {
 }
 
 /* === Hero Section Laptop Animation === */
-.laptop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 620px;
-  max-width: 90vw;
-  height: 342px;
-  position: relative;
-  margin: 2rem auto; /* Center horizontally with top/bottom margins */
+:root {
+  --scale: 1;
 }
 
-/* Wrapper for scaling content without affecting layout dimensions */
-.laptop-scaler {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform-origin: center center;
-}
-
-/* Responsive adjustments for Laptop Animation */
 @media (max-width: 1024px) {
-  /* Tablet */
-  .laptop-scaler {
-    transform: scale(0.85); /* Scale content to 85% on tablets */
+  :root {
+    --scale: 0.85;
   }
 }
 
 @media (max-width: 767px) {
-  /* Mobile (phones) */
-  .laptop {
-    margin: 1rem auto; /* Reduced margins for mobile, still centered */
-  }
-  .laptop-scaler {
-    transform: scale(0.2); /* Scale content to 60% on phones */
+  :root {
+    --scale: 0.6;
   }
 }
 
-/* Other styles remain unchanged */
-@keyframes led-pulse {
-  0%,
-  100% {
-    fill: #3b82f6; /* blue-500 */
-    filter: drop-shadow(0 0 0px #3b82f6);
-  }
-  50% {
-    fill: #3b82f6;
-    filter: drop-shadow(0 0 6px #3b82f6); /* glowing effect */
-  }
-}
-
-.animate-led-pulse {
-  animation: led-pulse 1.5s infinite ease-in-out;
-}
-
-.glow-button {
+.laptop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(620px * var(--scale));
+  height: auto;
+  max-width: 90vw;
   position: relative;
-  z-index: 0;
-}
-
-.glow-button::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  background: radial-gradient(circle, #a0c4ff 0%, transparent 70%);
-  border-radius: inherit;
-  z-index: -1;
-  animation: glowPulse 2s infinite ease-in-out;
-  opacity: 0.6;
-}
-
-@keyframes glowPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
+  margin: 2rem auto;
 }
 
 .screen {
-  border-radius: 20px;
-  box-shadow: inset 0 0 0 2px #c8cacb, inset 0 0 0 10px #000;
-  height: 318px;
-  width: 518px;
-  margin: 0 auto;
-  padding: 9px 9px 23px 9px;
+  border-radius: calc(20px * var(--scale));
+  box-shadow: inset 0 0 0 calc(2px * var(--scale)) #c8cacb,
+    inset 0 0 0 calc(10px * var(--scale)) #000;
+  height: calc(318px * var(--scale));
+  width: calc(518px * var(--scale));
+  padding: calc(9px * var(--scale)) calc(9px * var(--scale))
+    calc(23px * var(--scale)) calc(9px * var(--scale));
   position: relative;
   display: flex;
   align-items: center;
@@ -194,75 +132,80 @@ body {
 .screen::before {
   content: "";
   width: 100%;
-  height: 12px;
+  height: calc(12px * var(--scale));
   position: absolute;
   background: linear-gradient(#979899, transparent);
-  top: -3px;
+  top: calc(-3px * var(--scale));
   left: 0;
   transform: rotateX(90deg);
-  border-radius: 5px 5px 0 0;
+  border-radius: calc(5px * var(--scale)) calc(5px * var(--scale)) 0 0;
 }
 
 .laptop-header {
-  width: 100px;
-  height: 12px;
+  width: calc(100px * var(--scale));
+  height: calc(12px * var(--scale));
   position: absolute;
   background-color: #000;
-  top: 10px;
+  top: calc(10px * var(--scale));
   left: 50%;
   transform: translate(-50%, 0);
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 calc(6px * var(--scale)) calc(6px * var(--scale));
   z-index: 10;
 }
 
 .screen::after {
   background: linear-gradient(to bottom, #272727, #0d0d0d);
-  border-radius: 0 0 20px 20px;
-  bottom: 2px;
+  border-radius: 0 0 calc(20px * var(--scale)) calc(20px * var(--scale));
+  bottom: calc(2px * var(--scale));
   content: "";
-  height: 24px;
-  left: 2px;
+  height: calc(24px * var(--scale));
+  left: calc(2px * var(--scale));
   position: absolute;
-  width: calc(100% - 4px);
+  width: calc(100% - 4px * var(--scale));
 }
 
 .keyboard {
   background: radial-gradient(circle at center, #e2e3e4 85%, #a9abac 100%);
   border: solid #a0a3a7;
-  border-radius: 2px 2px 12px 12px;
-  border-width: 1px 2px 0 2px;
-  box-shadow: inset 0 -2px 8px 0 #6c7074;
-  height: 24px;
+  border-radius: calc(2px * var(--scale)) calc(2px * var(--scale))
+    calc(12px * var(--scale)) calc(12px * var(--scale));
+  border-width: calc(1px * var(--scale)) calc(2px * var(--scale)) 0
+    calc(2px * var(--scale));
+  box-shadow: inset 0 calc(-2px * var(--scale)) calc(8px * var(--scale)) 0
+    #6c7074;
+  height: calc(24px * var(--scale));
   position: relative;
-  width: 620px;
+  width: calc(620px * var(--scale));
   z-index: 9;
-  margin-top: -1px;
+  margin-top: calc(-1px * var(--scale));
 }
 
 .keyboard::after {
   background: #d1d3d4;
-  border-radius: 0 0 10px 10px;
-  box-shadow: inset 0 0 4px 1px #babdbf;
+  border-radius: 0 0 calc(10px * var(--scale)) calc(10px * var(--scale));
+  box-shadow: inset 0 0 calc(4px * var(--scale)) calc(1px * var(--scale))
+    #babdbf;
   content: "";
-  height: 10px;
+  height: calc(10px * var(--scale));
   left: 50%;
-  margin-left: -60px;
+  margin-left: calc(-60px * var(--scale));
   position: absolute;
   top: 0;
-  width: 120px;
+  width: calc(120px * var(--scale));
 }
 
 .keyboard::before {
   background: transparent;
-  border-radius: 0 0 3px 3px;
-  bottom: -2px;
-  box-shadow: -270px 0 0 0px #3f444a, 270px 0 0 0px #3f444a;
+  border-radius: 0 0 calc(3px * var(--scale)) calc(3px * var(--scale));
+  bottom: calc(-2px * var(--scale));
+  box-shadow: calc(-270px * var(--scale)) 0 0 0 #3f444a,
+    calc(270px * var(--scale)) 0 0 0 #3f444a;
   content: "";
-  height: 2px;
+  height: calc(2px * var(--scale));
   left: 50%;
-  margin-left: -10px;
+  margin-left: calc(-10px * var(--scale));
   position: absolute;
-  width: 40px;
+  width: calc(40px * var(--scale));
 }
 /* === Hero button === */
 .cta-button,
