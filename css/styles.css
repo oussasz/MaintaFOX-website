@@ -371,7 +371,7 @@ height: 65px;
 /* Shared Button Styling for Consistency */
 .mobile-nav-link,
 .mobile-cta {
-  color: #ffffff; /* Bold white font color */
+  color: #000000; /* Bold white font color */
   text-decoration: none;
   font-size: 12px; /* Small, consistent size */
   font-family: "Inter", sans-serif; /* Modern sans-serif font */
