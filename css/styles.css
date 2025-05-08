@@ -334,31 +334,82 @@ height: 65px;
   transform-origin: bottom left;
 }
 /* Mobile Menu Panel with Glassmorphism Effect */
-/* Mobile Menu Panel with Glassmorphism Effect */
+/* Mobile Menu Button (HTML provided, styles inferred or from previous context) */
+#mobile-menu-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100; /* Above menu */
+  /* HTML classes: text-dark-text focus:outline-none p-2 -mr-2 relative z-50 */
+  /* Ensure SVG stroke inherits text color: stroke="currentColor" in SVG */
+}
+
+/* SVG Icon Opacity Toggle (based on your HTML structure) */
+#mobile-menu-button #hamburger-icon {
+  transition: opacity 0.3s ease-in-out;
+}
+#mobile-menu-button #close-icon {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0; /* Initially hidden */
+  position: absolute; /* To overlay correctly */
+  /* Values from your HTML for close-icon: class="... absolute top-2 left-0 ..." */
+  /* Assuming button has p-2 (8px), top-2 (8px) is relative to that padding box */
+  top: 8px; /* Or directly from your SVG class if it means 0.5rem */
+  left: 8px; /* Or directly from your SVG class if it means 0.5rem */
+}
+
+#mobile-menu-button[aria-expanded="true"] #hamburger-icon {
+  opacity: 0;
+}
+
+#mobile-menu-button[aria-expanded="true"] #close-icon {
+  opacity: 1;
+}
+
+/* Mobile Menu Panel with Solid Background - CORRECTED HIDING */
 #mobile-menu {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Semi-transparent white for glass effect */
-  backdrop-filter: blur(10px); /* Blur for modern glassmorphism */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(
+    248,
+    249,
+    250,
+    0.97
+  ); /* Light, highly opaque solid color */
   display: grid;
-  place-items: center; /* Center content with Grid */
-  transform: translateY(-100%); /* Hidden initially */
-  transition: transform 0.3s ease-out; /* Fast, smooth slide */
+  place-items: center;
+  overflow: hidden; /* Prevents internal scroll issues */
   z-index: 1000;
+
+  /* Initial state: hidden, off-screen, and transparent */
+  /* COMBINE transforms: move up AND ensure compositing layer */
+  transform: translateY(-100%) translateZ(0);
+  opacity: 0;
+  visibility: hidden; /* Ensures it's not interactive and removed from accessibility tree when closed */
+
+  /* Transitions:
+     - transform & opacity: 0.3s ease-out for smooth slide/fade
+     - visibility: 0s duration, but with a delay when closing
+  */
+  /* When closing (removing .is-open): visibility change is delayed until other transitions finish */
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out,
+    visibility 0s linear 0.3s;
 }
 
 #mobile-menu.is-open {
-  transform: translateY(0); /* Slide into view */
+  /* Open state: visible, in view, and opaque */
+  transform: translateY(0) translateZ(0); /* Slide into view & maintain compositing layer */
+  opacity: 1;
+  visibility: visible;
+  /* When opening (adding .is-open): visibility change is immediate */
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out,
+    visibility 0s linear 0s;
 }
 
 /* Navigation List Styling */
@@ -371,47 +422,52 @@ height: 65px;
 /* Shared Button Styling for Consistency */
 .mobile-nav-link,
 .mobile-cta {
-  color: #000000; /* Bold white font color */
+  color: #000000;
   text-decoration: none;
-  font-size: 12px; /* Small, consistent size */
-  font-family: "Inter", sans-serif; /* Modern sans-serif font */
-  font-weight: 700; /* Bold for emphasis */
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px; /* Elegant spacing */
+  letter-spacing: 1.5px;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05); /* Subtle background */
-  border-radius: 8px; /* Rounded corners */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.03
+  ); /* Subtle dark tint for items on light menu */
+  border-radius: 8px;
   transition: background 0.2s ease, transform 0.2s ease;
   text-align: center;
 }
 
 .mobile-nav-link:hover,
 .mobile-cta:hover {
-  background: rgba(255, 255, 255, 0.15); /* Brighter on hover */
-  transform: translateY(-2px); /* Lift effect */
+  background: rgba(0, 0, 0, 0.07); /* Slightly darker on hover */
+  transform: translateY(-2px);
 }
 
 .mobile-nav-link:focus,
 .mobile-cta:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3); /* Accessible focus ring */
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* Focus ring for light background */
 }
 
 /* CTA Button Specifics */
 .mobile-cta {
-  margin-top: 10px; /* Slight separation from nav links */
+  margin-top: 10px;
 }
 
-/* Staggered Entrance Animation */
-#mobile-menu .mobile-nav-link,
+/* Staggered Entrance Animation (Applies when menu becomes .is-open) */
+#mobile-menu .mobile-nav-link, /* These rules will apply to children when #mobile-menu.is-open */
 #mobile-menu .mobile-cta {
-  opacity: 0;
-  transform: translateY(-15px);
+  opacity: 0; /* Initial state for staggered animation, overridden by keyframes */
+  transform: translateY(-15px); /* Initial state for staggered animation */
 }
 
 #mobile-menu.is-open .mobile-nav-link,
 #mobile-menu.is-open .mobile-cta {
-  animation: slideIn 0.4s ease-out forwards;
+  animation: slideIn 0.4s ease-out forwards; /* 'forwards' keeps the end state of the animation */
 }
 
 @keyframes slideIn {
@@ -437,39 +493,6 @@ height: 65px;
 #mobile-menu.is-open .mobile-cta {
   animation-delay: 0.25s;
 }
-
-/* Menu Button Styling (Hamburger to 'X') */
-#mobile-menu-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1100; /* Above menu */
-}
-
-#mobile-menu-button .line {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #ffffff; /* Match button font color */
-  margin-bottom: 4px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#mobile-menu-button[aria-expanded="true"] .line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-#mobile-menu-button[aria-expanded="true"] .line:nth-child(2) {
-  opacity: 0;
-}
-
-#mobile-menu-button[aria-expanded="true"] .line:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
 /* === End Header Styles === */
 
 /* --- Keep your existing styles below --- */
